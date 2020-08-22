@@ -1,7 +1,9 @@
 package com.vob.scanner;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,9 +14,11 @@ import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.InputType;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -72,7 +76,24 @@ public class DisplayActivity extends AppCompatActivity {
             root.mkdir();
         }
 
-        File file = new File(root, "picture.pdf");
+        AlertDialog.Builder builder = new AlertDialog.Builder(DisplayActivity.this);
+        builder.setTitle("Save file");
+        builder.setMessage("Enter a name for your file");
+
+        final EditText fileNameTV = new EditText(DisplayActivity.this);
+        fileNameTV.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(fileNameTV);
+
+        final String[] fileName = {""};
+
+        builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                fileName[0] = fileNameTV.getText().toString();
+            }
+        });
+
+        File file = new File(root, fileName[0]+".pdf");
 
         FileOutputStream fileOutputStream = null;
         try {

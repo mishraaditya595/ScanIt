@@ -17,6 +17,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.gu.toolargetool.TooLargeTool;
 import com.scanlibrary.ScanActivity;
 import com.scanlibrary.ScanConstants;
 import com.vob.scanner.constants.Constants;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         scannedImageView = findViewById(R.id.scannedImageView);
+
 
         findViewById(R.id.open_image).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
                     bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                     getContentResolver().delete(uri, null, null);
 
+                    Bitmap compressedBitmap = compressBitmap(bitmap);
+
                     String image = bitmapToString(bitmap);
 
                     Intent intent = new Intent(MainActivity.this, DisplayActivity.class);
@@ -85,6 +89,14 @@ public class MainActivity extends AppCompatActivity {
                  */
             }
         }
+    }
+
+    public Bitmap compressBitmap(Bitmap bitmap){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 40 , byteArrayOutputStream);
+        byte[] bytes = byteArrayOutputStream.toByteArray();
+        Bitmap compressedBitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+        return compressedBitmap;
     }
 
     public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
