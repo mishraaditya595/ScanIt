@@ -81,7 +81,8 @@ public class DocumentsFragment extends Fragment {
             if (requestCode == OPEN_THING) {
                 Uri uri = data.getExtras().getParcelable(ScanConstants.SCANNED_RESULT);
                 Bitmap bitmap = null;
-                try {
+                try
+                {
                     bitmap = MediaStore.Images.Media.getBitmap(Objects.requireNonNull(getActivity()).getContentResolver(), uri);
                     getActivity().getContentResolver().delete(uri, null, null);
 
@@ -92,19 +93,11 @@ public class DocumentsFragment extends Fragment {
                     Intent intent = new Intent(getActivity(), DisplayActivity.class);
                     intent.putExtra("image", image);
                     startActivity(intent);
-                } catch (IOException e) {
+                }
+                catch (IOException e)
+                {
                     e.printStackTrace();
                 }
-
-                /*String[] filepath = {MediaStore.Images.Media.DATA};
-                @SuppressLint("Recycle") Cursor cursor = getContentResolver().query(uri, filepath, null, null);
-
-                cursor.moveToFirst();
-                int coloumnIndex = cursor.getColumnIndex(filepath[0]);
-                String myPath = cursor.getString(coloumnIndex);
-                cursor.close();
-
-                 */
             }
         }
     }

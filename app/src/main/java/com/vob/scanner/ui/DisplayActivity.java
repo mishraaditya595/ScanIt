@@ -33,6 +33,8 @@ import static com.vob.scanner.constants.Constants.FOLDER;
 
 public class DisplayActivity extends AppCompatActivity {
 
+    String filename = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +51,33 @@ public class DisplayActivity extends AppCompatActivity {
         ((Button)findViewById(R.id.convert_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    bitmapToPDF(bitmap);
+                    //bitmapToPDF(bitmap);
+                getFileName();
             }
         });
+    }
+
+    private void getFileName() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Save as PDF");
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                filename = input.getText().toString();
+                Toast.makeText(DisplayActivity.this, filename, Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
     }
 
     private void bitmapToPDF(Bitmap bitmap)  {
