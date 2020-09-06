@@ -2,5 +2,14 @@
 <resources>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="primary">#1db995</color>
+    
+    <color name="blackSemiTransparent">#B2000000</color>
+    <color name="background">#e5e5e5</color>
+    <color name="grey">#808080</color>
+    <color name="white">#fafafa</color>
+    <color name="blue_semi_transparent">#805677fc</color>
+    <color name="blue_semi_transparent_pressed">#80738ffe</color>
+
 </resources>

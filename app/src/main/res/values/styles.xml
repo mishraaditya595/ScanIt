@@ -7,4 +7,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="customFAB">
+        <item name="android:background">@drawable/fab_label_shape</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 </resources>

@@ -6,23 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/main_tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1db995"
+        />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/main_tablayout"
+        android:layout_centerInParent="true"
+        />
+
+
+    <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/open_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/circle"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_margin="30dp"/>
-
-    <ImageView
-        android:id="@+id/scannedImageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:layout_marginBottom="60dp"
-        android:src="@mipmap/ic_launcher"
-        />
-
+        android:layout_margin="30dp"/>-->
 
 </RelativeLayout>

@@ -2,6 +2,7 @@ package com.vob.scanner;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -17,6 +18,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.google.android.material.tabs.TabLayout;
 import com.gu.toolargetool.TooLargeTool;
 import com.scanlibrary.ScanActivity;
 import com.scanlibrary.ScanConstants;
@@ -31,21 +33,29 @@ import static com.vob.scanner.constants.Constants.OPEN_THING;
 public class MainActivity extends AppCompatActivity {
 
     ImageView scannedImageView;
+    TabLayout tabLayout;
+    ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        scannedImageView = findViewById(R.id.scannedImageView);
+        tabLayout = findViewById(R.id.main_tablayout);
+        viewPager = findViewById(R.id.viewPager);
+        tabLayout.addTab(tabLayout.newTab().setText("Scan Documents"));
+        tabLayout.addTab(tabLayout.newTab().setText("Copy Text"));
+        tabLayout.addTab(tabLayout.newTab().setText("Scan QR"));
 
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
+        /*scannedImageView = findViewById(R.id.scannedImageView);
         findViewById(R.id.open_image).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openFiles();
             }
-        });
+        });*/
     }
 
     public void openFiles() {
