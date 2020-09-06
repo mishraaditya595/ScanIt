@@ -22,6 +22,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.gu.toolargetool.TooLargeTool;
 import com.scanlibrary.ScanActivity;
 import com.scanlibrary.ScanConstants;
+import com.vob.scanner.adapter.TabAdapter;
 import com.vob.scanner.constants.Constants;
 
 import java.io.ByteArrayOutputStream;
@@ -48,6 +49,21 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Scan QR"));
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        TabAdapter adapter = new TabAdapter(getSupportFragmentManager(),this,tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) { }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) { }
+        });
 
         /*scannedImageView = findViewById(R.id.scannedImageView);
         findViewById(R.id.open_image).setOnClickListener(new View.OnClickListener() {

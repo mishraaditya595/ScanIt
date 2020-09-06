@@ -35,7 +35,7 @@
             app:fab_colorNormal="@color/white"
             app:fab_colorPressed="@color/grey"
             app:fab_size="mini"
-            app:fab_icon="@drawable/ic_baseline_folder_open_24"
+            app:fab_icon="@drawable/ic_baseline_image_24"
             />
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
