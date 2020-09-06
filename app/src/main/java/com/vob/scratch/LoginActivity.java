@@ -1,4 +1,4 @@
-package com.vob.scanner;
+package com.vob.scratch;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.vob.scanner.R;
 
 public class LoginActivity extends AppCompatActivity {
 
