@@ -41,5 +41,4 @@ dependencies {
     implementation 'com.getbase:floatingactionbutton:1.10.1'
     //noinspection GradleCompatible
     implementation 'com.google.android.material:material:1.0.0'
-
 }

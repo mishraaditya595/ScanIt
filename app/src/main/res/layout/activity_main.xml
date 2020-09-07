@@ -6,30 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/appBarLayout"
+        >
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/main_toolbar"
+            android:background="@color/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/main_tablayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/appBarLayout"
         android:background="@color/colorPrimary"
-        android:layout_alignParentBottom="true"
         />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/main_tablayout"
-        android:layout_centerInParent="true"
-        />
-
-
-    <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/open_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/circle"
+        android:layout_below="@+id/main_tablayout"
+        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="30dp"/>-->
+        android:layout_centerVertical="true"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="-1dp"
+        />
 
 </RelativeLayout>
