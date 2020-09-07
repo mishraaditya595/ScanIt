@@ -10,14 +10,15 @@
         android:id="@+id/main_tablayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#1db995"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
         />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/main_tablayout"
+        android:layout_above="@+id/main_tablayout"
         android:layout_centerInParent="true"
         />
 
