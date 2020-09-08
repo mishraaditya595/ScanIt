@@ -21,12 +21,18 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.vob.scanner.R;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 import static com.vob.scanner.constants.Constants.COLOR_PDF;
 import static com.vob.scanner.constants.Constants.FOLDER;
@@ -51,15 +57,75 @@ public class DisplayActivity extends AppCompatActivity {
         ((Button)findViewById(R.id.convert_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    //bitmapToPDF(bitmap);
                 getFileName();
             }
         });
     }
 
+    private void exportPDF() {
+        FileOutputStream outputStream = null;
+        File storage = Environment.getExternalStorageDirectory();
+        File directory = new File(storage.getAbsolutePath()+"/ScanIt/Export/pdf");
+        directory.mkdir();
+
+        File export = new File(directory,filename);
+
+        try {
+            outputStream = new FileOutputStream(export);
+            outputStream.flush();
+            outputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Document document = new Document();
+        String directoryPath = android.os.Environment.getExternalStorageDirectory().getAbsolutePath()
+                                            +"/ScanIt/Export/pdf";
+
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream(directoryPath + "/" + filename + ".pdf"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+
+        document.open();
+
+        Image image = null;
+        try {
+            image = Image.getInstance(directoryPath + "/" + filename + ".jpg");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (BadElementException e) {
+            e.printStackTrace();
+        }
+
+        float scaler = ((document.getPageSize().getWidth() - document.leftMargin() - document.rightMargin() - 0)
+                                             / image.getWidth()) * 100;
+        image.scalePercent(scaler);
+        image.setAlignment(Image.ALIGN_CENTER | Image.ALIGN_TOP);
+
+        try {
+            document.add(image);
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+        document.close();
+
+        Toast.makeText(this, "PDF Saved", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(DisplayActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+
     private void getFileName() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Save as PDF");
+        builder.setTitle("Save as");
+        builder.setMessage("Enter a name for your files");
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
@@ -68,6 +134,7 @@ public class DisplayActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 filename = input.getText().toString();
                 Toast.makeText(DisplayActivity.this, filename, Toast.LENGTH_SHORT).show();
+                exportPDF();
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -76,11 +143,10 @@ public class DisplayActivity extends AppCompatActivity {
                 dialog.cancel();
             }
         });
-
         builder.show();
     }
 
-    private void bitmapToPDF(Bitmap bitmap)  {
+    private PdfDocument bitmapToPDF(Bitmap bitmap)  {
         PdfDocument pdfDocument = new PdfDocument();
         PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(bitmap.getWidth(), bitmap.getHeight(), 1).create();
         PdfDocument.Page page = pdfDocument.startPage(pageInfo);
@@ -96,31 +162,13 @@ public class DisplayActivity extends AppCompatActivity {
         canvas.drawBitmap(bitmap, 0, 0, null);
 
         pdfDocument.finishPage(page);
+        return pdfDocument;
+    }
 
-        File root = new File(Environment.getExternalStorageDirectory(), FOLDER);
-        if (!root.exists())
-        {
-            root.mkdir();
-        }
+    private void saveFile(PdfDocument pdfDocument) {
+        File root = new File(getCacheDir(), "ScanIt");
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(DisplayActivity.this);
-        builder.setTitle("Save file");
-        builder.setMessage("Enter a name for your file");
-
-        final EditText fileNameTV = new EditText(DisplayActivity.this);
-        fileNameTV.setInputType(InputType.TYPE_CLASS_TEXT);
-        builder.setView(fileNameTV);
-
-        final String[] fileName = {""};
-
-        builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                fileName[0] = fileNameTV.getText().toString();
-            }
-        });
-
-        File file = new File(root, fileName[0]+".pdf");
+        File file = new File(root, filename);
 
         FileOutputStream fileOutputStream = null;
         try {
@@ -136,7 +184,7 @@ public class DisplayActivity extends AppCompatActivity {
     public Bitmap stringToBitmap(String base64Str) throws IllegalArgumentException {
         byte[] decodedBytes = Base64.decode(
                 base64Str.substring(base64Str.indexOf(",") + 1),
-                Base64.DEFAULT        );
+                Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
     }
 }
