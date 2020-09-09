@@ -66,7 +66,7 @@ public class DisplayActivity extends AppCompatActivity {
         FileOutputStream outputStream = null;
         File storage = Environment.getExternalStorageDirectory();
         File directory = new File(storage.getAbsolutePath()+"/ScanIt/Export/pdf");
-        directory.mkdir();
+        directory.mkdirs();
 
         File export = new File(directory,filename);
 
