@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lib_name">Scanner</string>
+    <string name="image_originale">Image originale</string>
+    <string name="couleur_renforcee">Couleur renforcée</string>
+    <string name="niveau_de_gris">Niveau de gris</string>
+    <string name="noir_et_blanc"><![CDATA[Noir & Blanc]]></string>
+    <string name="image_scannee">Image scannée</string>
+    <string name="rotation_gauche">Rotation à gauche</string>
+    <string name="rotation_droite">Rotation à droite</string>
+    <string name="valider">Valider</string>
+    <string name="image_selectionnee">Image sélectionnée</string>
+    <string name="analyse_image">Analyse de l\'image</string>
+    <string name="peu_de_memoire">Peu de mémoire</string>
+    <string name="peu_de_memoire_desc">Votre téléphone a peu de mémoire restante, il se peut que vous ressentiez quelques lags durant le traitement des images</string>
+    <string name="application">Application</string>
+    <string name="validation">Validation</string>
+    <string name="rotation">Rotation</string>
+    <string name="scanning">Scan en cours</string>
+    <string name="new_contours">Nouveaux contours</string>
+    <string name="parcours_contours">Tous les contours ont été parcourus</string>
+    <string name="camera_info">La détection est plus efficace si le document est entièrement dans la photo et sur un fond qui n\'est pas de la même couleur que lui. \n\nDiminuer la résolution d\'affichage pour diminuer les lags. La photo prise sera toujours de meilleure qualité.</string>
+    <string name="shape_infos">Si les contours trouvés ne sont pas les bons vous pouvez les définir manuellement en bougeant les points bleus. \nVous pouvez également chercher de nouveaux contours grâce au bouton en bas à gauche.</string>
+</resources>

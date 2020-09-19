@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="blue">#88AAFF</color>
+    <color name="orange">#f80</color>
+    <color name="lightorange">#fb5</color>
+
+    <color name="polygonViewCircleStrokeColor">#ff59a9ff</color>
+    <color name="polygonViewCircleBackground">#90e5f8ff</color>
+    <color name="black">#000</color>
+    <color name="white">#fff</color>
+    <color name="grey">#333</color>
+</resources>
