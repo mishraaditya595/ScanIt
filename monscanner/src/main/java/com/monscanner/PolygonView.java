@@ -16,13 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Created by jhansi on 28/03/15.
- *
- * Cette classe provient de la library scanlibrary
- * addresse github : https://github.com/jhansireddy/AndroidScannerDemo
- * Un peu (pas mal) améliorée pour la fonction getOrderedPoints
- */
+
 public class PolygonView extends FrameLayout {
 
     private static final String TAG = "PolygonViewDebug";

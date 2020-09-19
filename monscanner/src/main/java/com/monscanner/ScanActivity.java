@@ -24,12 +24,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
-/**
- * Cette classe est la seule Activité de la librarie.
- * C'est le cas afin de faciliter le renvoi des données lors de la récupération des données
- * dans le onActivityResult de l'application externe.
- * Cette activité se remplie avec des fragments, cela provoque cependant un ecran vide si l'utilisateur appui plusieurs
- * fois sur la touche "retour" lors du traitement des images.
+/*
+        * This class is the only activity in the library.
+        * This is the case in order to facilitate data resending during data recovery
+        * in the onActivityResult of the external application.
+        * This activity is filled with fragments, however this causes a blank screen if the user presses several
+        * times on the "return" key when processing images.
  */
 public class ScanActivity extends AppCompatActivity implements ComponentCallbacks2 {
 
@@ -49,7 +49,7 @@ public class ScanActivity extends AppCompatActivity implements ComponentCallback
         onEditionFragment = false;
     }
 
-    // Ouvre les medias ou la camera en fonction de la demande de l'utilisateur
+    // Open the media or the camera according to the user's request
     private void handleIntentPreference() {
         int preference = getPreferenceContent();
         if (preference == ScanConstants.OPEN_CAMERA) {
@@ -63,7 +63,7 @@ public class ScanActivity extends AppCompatActivity implements ComponentCallback
         return getIntent().getIntExtra(ScanConstants.OPEN_INTENT_PREFERENCE, 0);
     }
 
-    // Ouvre les médias
+    // Open the media
     public void openMediaContent() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -71,13 +71,13 @@ public class ScanActivity extends AppCompatActivity implements ComponentCallback
         startActivityForResult(intent, ScanConstants.PICKFILE_REQUEST_CODE);
     }
 
-    // Ouvre la camera
+    // Open the camera
     public void openCamera() {
         Intent intent = new Intent(this, CameraActivity.class);
         startActivityForResult(intent, ScanConstants.START_CAMERA_REQUEST_CODE);
     }
 
-    // Supprime les fichiers temporaires utiles aux traitements des images
+    // Removes temporary files useful for image processing
     void clearTempImages() {
         try {
             File tempFolder = new File(ScanConstants.IMAGE_PATH);
@@ -115,14 +115,14 @@ public class ScanActivity extends AppCompatActivity implements ComponentCallback
         }
     }
 
-    // Traitement de l'image selectionnée
+    // Processing of the selected image
     protected void postImagePick(Bitmap bitmap) {
         Uri uri = getUri(bitmap);
         bitmap.recycle();
         onBitmapSelect(uri);
     }
 
-    // Set le fragment de validation de la forme du document
+    // Set the validation fragment of the document shape
     public void onBitmapSelect(Uri uri) {
         ShapeValidationFragment fragment = new ShapeValidationFragment();
         Bundle bundle = new Bundle();
@@ -135,7 +135,7 @@ public class ScanActivity extends AppCompatActivity implements ComponentCallback
         fragmentTransaction.commit();
     }
 
-    // Récupère le Bitmap lié à l'Uri passée en paramètre
+    // Retrieves the Bitmap linked to the Uri passed in parameter
     private Bitmap getBitmap(Uri selectedimg) throws IOException {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 1;
@@ -146,7 +146,7 @@ public class ScanActivity extends AppCompatActivity implements ComponentCallback
         fileDescriptor.getFileDescriptor(), null, options);
     }
 
-    // Enregistre le Bitmap et renvoie son Uri
+    // Save the Bitmap and return its Uri
     public static Uri getUri(Bitmap bitmap) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
@@ -157,7 +157,7 @@ public class ScanActivity extends AppCompatActivity implements ComponentCallback
         return Uri.parse(ScanConstants.IMAGE_PATH+"/originale.jpg");
     }
 
-    // Après la validation de la forme, set le fragment d'édition du document
+    // After validating the form, set the document edit fragment
     public void onScanFinish(Uri uri) {
         EditionFragment fragment = new EditionFragment();
         Bundle bundle = new Bundle();
@@ -171,7 +171,7 @@ public class ScanActivity extends AppCompatActivity implements ComponentCallback
         onEditionFragment = true;
     }
 
-    // Renvoie le bitmap redimentionné en fonction de la taille passée en paramètre
+    // Returns the bitmap resized according to the size passed in parameter
     Bitmap scaledBitmap(Bitmap bitmap, int width, int height) {
         Matrix m = new Matrix();
         m.setRectToRect(new RectF(0, 0, bitmap.getWidth(), bitmap.getHeight()), new RectF(0, 0, width, height), Matrix.ScaleToFit.CENTER);

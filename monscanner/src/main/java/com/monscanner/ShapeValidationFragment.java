@@ -49,14 +49,14 @@ import static org.opencv.core.CvType.CV_8U;
 import static org.opencv.core.CvType.CV_8UC3;
 
 /**
- * Cette classe est un fragment permettant de selectionner le document dans
- * l'image sélectionnée.
- * Le but est de détecter le document dans l'imaage. C'est à dire le plus grand
- * rectangle dans la plupart des cas. Cette détection se fait grace à la librairie
- * openCV. La mise en place d'une rapide hiérarchie des rectangles obtenus permet une
- * meilleure détection.
- * Il est possible de changer la forme détectée manuellement ou en appuyant sur le bouton de
- * parcours des contours
+ * This class is a fragment allowing to select the document in
+ * the selected image.
+ * The goal is to detect the document in the image. That is to say the biggest
+ * rectangle in most cases. This detection is done thanks to the library
+ * openCV. The implementation of a rapid hierarchy of the rectangles obtained allows a
+ * better detection.
+ * It is possible to change the detected shape manually or by pressing the button of
+ * course of contours
  */
 public class ShapeValidationFragment extends Fragment {
 
@@ -92,7 +92,7 @@ public class ShapeValidationFragment extends Fragment {
 
     private void init() {
 
-        // Set des OnClickListeners sur les boutons
+
         ImageButton infosButton = view.findViewById(R.id.shapeInfoButton);
         infosButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +112,7 @@ public class ShapeValidationFragment extends Fragment {
         srcGray = new Mat();
         src = new Mat();
 
-        // création du dossier des images temporaires
+        // create the temporary images folder
         folder = Environment.getExternalStorageDirectory();
         folder = new File(ScanConstants.IMAGE_PATH);
         if (!folder.exists()) {
@@ -120,7 +120,7 @@ public class ShapeValidationFragment extends Fragment {
                 Log.d(TAG, "onCreate: impossible de créer le dossier temp");
         }
 
-        // lancement de la recherche du document
+        // start of document search
         showProgressDialog(getString(R.string.analyse_image));
         final Uri uri = getArguments().getParcelable(ScanConstants.SELECTED_BITMAP);
         sourceframe.post(new Runnable() {
@@ -139,7 +139,7 @@ public class ShapeValidationFragment extends Fragment {
         popupInfos.showAsDropDown(v);
     }
 
-    // generation du bitmap redimentionné et lancement de la suite de la recherche du document
+    // generation of the resized bitmap and launch of the rest of the document search
     private void shapeDetection(final Uri uri) {
         try {
             File file = new File(uri.getPath());
@@ -159,11 +159,11 @@ public class ShapeValidationFragment extends Fragment {
         dismissDialog();
     }
 
-    // recherche des points correspondants aux coins du document
+    // find corresponding points at the corners of the document
     private MatOfPoint getPoints() {
         Mat blurred = new Mat();
 
-        // valeur à modifier pour ajustements de la recherche de rectangles
+        // value to modify for rectangle search adjustments
         Imgproc.medianBlur(scaled, blurred, 9);
         Mat threshOutput = new Mat(blurred.size(), CV_8U);
         squares = new ArrayList<>();
@@ -172,7 +172,7 @@ public class ShapeValidationFragment extends Fragment {
         indices = new ArrayList<>();
 
 
-        // valeur à modifier pour ajustements de la recherche de rectangles
+        // value to modify for rectangle search adjustments
 
         for (int c = 0; c < 3; c++) {
 
@@ -183,7 +183,6 @@ public class ShapeValidationFragment extends Fragment {
             List<Mat> loutput = new ArrayList<>();
             loutput.add(threshOutput);
             Core.mixChannels(lblurred,loutput,cmat);
-//            Imgcodecs.imwrite(ScanConstants.IMAGE_PATH+"/"+c+".jpg",threshOutput);
 
             // tests de differents threshold
             int threshold_level = 3;
@@ -193,16 +192,14 @@ public class ShapeValidationFragment extends Fragment {
                     for (int t=10; t<=60; t+=10) {
                         Imgproc.Canny(threshOutput, srcGray, t, t * 2);
                         Imgproc.dilate(srcGray, srcGray, new Mat(), new Point(-1, -1), 2);
-//                        Imgcodecs.imwrite(ScanConstants.IMAGE_PATH + "/" + c + "_" + l + "_" + t + ".jpg", srcGray);
 
                         findCannySquares(srcGray,cannySquares,c+t);
                     }
 
                 } else {
 
-                    // valeurs et calcul à modifier pour ajustements de la recherche de rectangles
+                    // values ​​and calculation to modify for rectangle search adjustments
                     Imgproc.threshold(threshOutput, srcGray, 200 - 175 / (l + 2f), 256, Imgproc.THRESH_BINARY);
-//                    Imgcodecs.imwrite(ScanConstants.IMAGE_PATH + "/" + c + "" + l + ".jpg", srcGray);
 
                     findThreshSquares(srcGray, threshSquares);
                 }
@@ -213,7 +210,7 @@ public class ShapeValidationFragment extends Fragment {
         if (indiceMax != -1)
             squares.add(cannySquares.get(indiceMax));
 
-        // Suppression des quadrilatères peu probables c'est à dire ceux qui touchent les bords
+        // Removal of unlikely quadrilaterals i.e. those that touch the edges
         List<MatOfPoint> squaresProba = new ArrayList<>();
         MatOfPoint pointsProba;
         List<Point> pointsList;
@@ -234,7 +231,7 @@ public class ShapeValidationFragment extends Fragment {
             }
         }
 
-        // selection du quadrilatère le plus grand
+        // selection of the largest quadrilateral
         int largest_contour_index = 0;
         MatOfPoint points = new MatOfPoint();
         if (squaresProba.size()!=0) {
@@ -281,7 +278,7 @@ public class ShapeValidationFragment extends Fragment {
         }
         squares.add(points);
 
-        // Ajout des autres contours après les 2 plus importants
+        // Addition of other contours after the 2 most important
         for (int id : indices) {
             if (id!=indiceMax)
                 squares.add(cannySquares.get(id));
@@ -306,18 +303,18 @@ public class ShapeValidationFragment extends Fragment {
 
 
     private void findCannySquares(Mat srcGray, SparseArray<MatOfPoint> cannySquares, int indice) {
-        // recherche des contours
+        // contours search
         List<MatOfPoint> contours = new ArrayList<>();
         Imgproc.findContours(srcGray, contours, new Mat(), Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
         MatOfPoint2f approx = new MatOfPoint2f();
         for (int i = 0; i < contours.size(); i++) {
             MatOfPoint2f contour = new MatOfPoint2f();
             contour.fromArray(contours.get(i).toArray());
-            // detection des formes géometriques
+            // detection of geometric shapes
             Imgproc.approxPolyDP(contour, approx, Imgproc.arcLength(contour, true) * 0.03, true);
             MatOfPoint approx1f = new MatOfPoint();
             approx1f.fromArray(approx.toArray());
-            // détection des quadrilatères parmis les formes géométriques
+            // detection of quadrilaterals among geometric shapes
             if (approx.total() == 4 && abs(Imgproc.contourArea(approx)) > (scaled.size().width / 5) * (scaled.size().height / 5) && Imgproc.isContourConvex(approx1f)) {
                 double maxCosine = 0;
 
@@ -325,7 +322,7 @@ public class ShapeValidationFragment extends Fragment {
                     double cosine = abs(angle(approx.toArray()[j % 4], approx.toArray()[j - 2], approx.toArray()[j - 1]));
                     maxCosine = max(maxCosine, cosine);
                 }
-                // selection des quadrilatères ayant des angles assez grands
+                // selection of quadrilaterals with large enough angles
                 if (maxCosine < 0.5) {
                     cannySquares.put(indice,approx1f);
                     indices.add(indice);
@@ -335,18 +332,18 @@ public class ShapeValidationFragment extends Fragment {
     }
 
     private void findThreshSquares(Mat srcGray, List<MatOfPoint> threshSquares) {
-        // recherche des contours
+        // contours search
         List<MatOfPoint> contours = new ArrayList<>();
         Imgproc.findContours(srcGray, contours, new Mat(), Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
         MatOfPoint2f approx = new MatOfPoint2f();
         for (int i = 0; i < contours.size(); i++) {
             MatOfPoint2f contour = new MatOfPoint2f();
             contour.fromArray(contours.get(i).toArray());
-            // detection des formes géometriques
+            // detection of geometric shapes
             Imgproc.approxPolyDP(contour, approx, Imgproc.arcLength(contour, true) * 0.03, true);
             MatOfPoint approx1f = new MatOfPoint();
             approx1f.fromArray(approx.toArray());
-            // détection des quadrilatères parmis les formes géométriques
+            // detection of quadrilaterals among geometric shapes
             if (approx.total() == 4 && abs(Imgproc.contourArea(approx)) > (scaled.size().width / 5) * (scaled.size().height / 5) && Imgproc.isContourConvex(approx1f)) {
                 double maxCosine = 0;
 
@@ -354,7 +351,7 @@ public class ShapeValidationFragment extends Fragment {
                     double cosine = abs(angle(approx.toArray()[j % 4], approx.toArray()[j - 2], approx.toArray()[j - 1]));
                     maxCosine = max(maxCosine, cosine);
                 }
-                // selection des quadrilatères ayant des angles assez grands
+                //selection of quadrilaterals with large enough angles
                 if (maxCosine < 0.5) {
                     threshSquares.add(approx1f);
                 }
@@ -362,7 +359,7 @@ public class ShapeValidationFragment extends Fragment {
         }
     }
 
-    // Set des points du PolygonView servant à délimiter les contours du document
+    // Set of PolygonView points used to delimit the contours of the document
     private void setPoints(MatOfPoint points) {
         Point[] pts = points.toArray();
         List<PointF> pointsf = new ArrayList<>();
@@ -386,7 +383,7 @@ public class ShapeValidationFragment extends Fragment {
         });
     }
 
-    // calcul d'une valeur d'angle en fonction de 3 points
+    // calculation of an angle value as a function of 3 points
     private double angle( Point pt1, Point pt2, Point pt0 ) {
         double dx1 = pt1.x - pt0.x;
         double dy1 = pt1.y - pt0.y;
@@ -395,12 +392,12 @@ public class ShapeValidationFragment extends Fragment {
         return (dx1*dx2 + dy1*dy2)/sqrt((dx1*dx1 + dy1*dy1)*(dx2*dx2 + dy2*dy2) + 1e-10);
     }
 
-    // affichage de l'image
+    //picture display
     private void afficheimage(Bitmap bm) {
         imageView.setImageBitmap(bm);
     }
 
-    // après validation, recadrage du document afin d'en faire un rectangle
+    // after validation, cropping of the document to make a rectangle
     private void scan(Mat src, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
         double w1 = sqrt( pow(x4 - x3 , 2) + pow(x4 - x3, 2));
         double w2 = sqrt( pow(x2 - x1 , 2) + pow(x2-x1, 2));
@@ -437,7 +434,7 @@ public class ShapeValidationFragment extends Fragment {
         Imgcodecs.imwrite(folder.getAbsolutePath()+"/scanned.jpg", dst);
     }
 
-    // fait apparaitre le dialogue d'attente
+    // brings up the waiting dialogue
     protected synchronized void showProgressDialog(String message) {
         if (progressDialogFragment != null && progressDialogFragment.isVisible()) {
             // Before creating another loading dialog, close all opened loading dialogs (if any)
@@ -449,12 +446,12 @@ public class ShapeValidationFragment extends Fragment {
         progressDialogFragment.show(fm, ProgressDialogFragment.class.toString());
     }
 
-    // ferme le dialogue d'attente
+    // close the wait dialog
     protected synchronized void dismissDialog() {
         progressDialogFragment.dismissAllowingStateLoss();
     }
 
-    // lance le scan du document dont les contours sont définis par le PolygonView
+    // launches the scan of the document whose contours are defined by the PolygonView
     private class ScanButtonListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
@@ -483,7 +480,7 @@ public class ShapeValidationFragment extends Fragment {
         }
     }
 
-    // Parcours la liste des quadrilatères trouvé et met à jour le polygonView
+    // Browse the list of quadrilaterals found and update the polygonView
     private class SwitchListener implements View.OnClickListener {
         private int id;
 

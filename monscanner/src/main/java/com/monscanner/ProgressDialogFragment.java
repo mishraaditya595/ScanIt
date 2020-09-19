@@ -9,10 +9,6 @@ import android.content.DialogInterface.OnKeyListener;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
-/**
- * Cette classe provient de la library scanlibrary
- * addresse github : https://github.com/jhansireddy/AndroidScannerDemo
- */
 @SuppressLint("ValidFragment")
 public class ProgressDialogFragment extends DialogFragment {
 
@@ -35,7 +31,6 @@ public class ProgressDialogFragment extends DialogFragment {
 			@Override
 			public boolean onKey(DialogInterface dialog, int keyCode,
 					KeyEvent event) {
-
 				return keyCode == KeyEvent.KEYCODE_BACK;
 			}
  

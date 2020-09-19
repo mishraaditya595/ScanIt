@@ -50,9 +50,9 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- *  ATTENTION : seule la résolution d'affichage peut être modifiée afin d'viter les
- *  lags dus à une qualité d'image trop haute. L'image obtenue lors de la capture de celle-ci
- *  sera toujours de la qualité la plus haute (à vérifier mais je crois)
+ CAUTION: only the display resolution can be changed in order to avoid
+ * lags due to too high image quality. The image obtained when capturing it
+ * will always be of the highest quality (to be checked but I believe)
  */
 public class CameraActivity extends AppCompatActivity {
 
@@ -121,14 +121,14 @@ public class CameraActivity extends AppCompatActivity {
         popupInfos.showAsDropDown(v);
     }
 
-    // Ouvre le menu pour changer de résolution d'affichage
+    // Open menu to change display resolution
     private void openSettings(View v) throws CameraAccessException {
         CameraManager cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
         cameraId = cameraManager.getCameraIdList()[0];
         CameraCharacteristics cc = cameraManager.getCameraCharacteristics(cameraId);
         StreamConfigurationMap map = cc.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
 
-        // Ajout des différentes options en fonction de celles disponibles sur l'appareil
+        // Addition of different options according to those available on the device
         PopupMenu menu = new PopupMenu(this, v);
         for (int i=0; i<indicesFormat.size(); i++) {
             assert map != null;
@@ -140,7 +140,7 @@ public class CameraActivity extends AppCompatActivity {
                 menu.getMenu().add(0, i, i, width+"x"+height);
         }
 
-        // Traitement de la sélection d'une option
+        // Processing the selection of an option
         menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -173,7 +173,7 @@ public class CameraActivity extends AppCompatActivity {
         menu.show();
     }
 
-    // Recherche des indices de formats correspondant à celui du format JPEG le plus haut
+    //Search for indexes of formats corresponding to that of the highest JPEG format
     private void setIndicesFormat() throws CameraAccessException {
         indicesFormat = new ArrayList<>();
 
@@ -193,7 +193,7 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
-    // Redimension de la surface d'affichage de l'image être la même que celle du format
+    // Image display area resize be the same as the format
     private void setAspectRatioTextureView(int resolutionWidth , int resolutionHeight ) {
         if(resolutionWidth > resolutionHeight) {
             int newWidth = frameLayout.getWidth();
@@ -214,12 +214,12 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
-    // Change la taille de la TextureView pour être la même que celle du format
+    // Change the size of the TextureView to be the same as the format
     private void updateTextureViewSize(int viewWidth, int viewHeight) {
         textureView.setLayoutParams(new FrameLayout.LayoutParams(viewWidth, viewHeight));
     }
 
-    // Traitement lors de l'appui sue le bouton de capture d'image
+    // Processing when pressing the image capture button
     private void takePicture() throws CameraAccessException {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},2);
@@ -246,7 +246,7 @@ public class CameraActivity extends AppCompatActivity {
             captureBuilder.addTarget(reader.getSurface());
             captureBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
 
-            // Rotation du JPEG
+            // JPEG rotation
             int rotation = getWindowManager().getDefaultDisplay().getRotation();
             captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));
 
@@ -338,7 +338,7 @@ public class CameraActivity extends AppCompatActivity {
         }
     };
 
-    // Ouvre la camera dès que la TextureView est prête
+    // Open the camera as soon as the TextureView is ready
     private void openCamera() throws CameraAccessException {
         CameraManager cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
         cameraId = cameraManager.getCameraIdList()[0];
@@ -358,7 +358,7 @@ public class CameraActivity extends AppCompatActivity {
             }
         });
 
-        // selection du format d'affichage
+        // selection of display format
         int indice = indicesFormat.get(selectedFormat);
         assert map != null;
         imageDimension = map.getOutputSizes(SurfaceTexture.class)[indice];
@@ -396,7 +396,7 @@ public class CameraActivity extends AppCompatActivity {
         }
     };
 
-    // Lance l'affichage de l'image sur la surface
+    // Starts displaying the image on the surface
     private void startCameraPreview() throws CameraAccessException {
         SurfaceTexture texture = textureView.getSurfaceTexture();
         texture.setDefaultBufferSize(imageDimension.getWidth(),imageDimension.getHeight());
@@ -428,7 +428,7 @@ public class CameraActivity extends AppCompatActivity {
         }, null);
     }
 
-    // Met à jour l'image affichée
+    // Updates the displayed image
     private void updatePreview() throws CameraAccessException {
         if (cameraDevice == null)
             return;
@@ -454,7 +454,7 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
-    // lance le thread de capture des images pour l'affichage
+    // starts the image capture thread for display
     private void startBackgroundThread() {
         handlerThread = new HandlerThread("Camera background");
         handlerThread.start();
@@ -473,7 +473,7 @@ public class CameraActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    // Arrete le thread de capture des images pour l'affichage
+    // Stops the image capture thread for display
     private void stopBackgroundThread() throws InterruptedException {
         handlerThread.quitSafely();
         handlerThread.join();

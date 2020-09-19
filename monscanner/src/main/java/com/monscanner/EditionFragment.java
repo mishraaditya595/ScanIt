@@ -32,10 +32,10 @@ import static org.opencv.core.Core.ROTATE_90_CLOCKWISE;
 import static org.opencv.core.Core.ROTATE_90_COUNTERCLOCKWISE;
 import static org.opencv.core.Core.rotate;
 /**
- * ATTENTION: afin d'augmenter les performances les modifications ne sont appliquées que sur
- * l'image redimmentionnée afin que l'utilisateur ai rapidement un visuel de celles ci.
- * L'état actuel (couleur + rotation) de l'image redimentionnée est enregistré, seules les
- * modifications finales sont appliquées à l'image d'origine lors de la validation.
+ * CAUTION: in order to increase performance, modifications are only applied to
+ * the image resized so that the user quickly has a visual of them.
+ * The current state (color + rotation) of the resized image is saved, only the
+ * Final changes are applied to the original image during checkout.
  */
 public class EditionFragment extends Fragment {
 
@@ -73,7 +73,6 @@ public class EditionFragment extends Fragment {
         angleFinal = 0;
         couleur = ORIGINAL;
 
-        // Set des OnClickListeners des boutons
         Button originalButton = view.findViewById(R.id.originalButton);
         originalButton.setOnClickListener(new OriginalListener());
         Button magicButton = view.findViewById(R.id.magicButton);
@@ -95,7 +94,7 @@ public class EditionFragment extends Fragment {
             Uri uri = Uri.fromFile(file);
             original = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
 
-            // redimention de l'image
+            // resize the image
             imageView.post(new Runnable() {
                 @Override
                 public void run() {
@@ -113,7 +112,7 @@ public class EditionFragment extends Fragment {
         }
     }
 
-    // mise à jour de l'affichage
+    // update display
     private void updateImage() {
         getActivity().runOnUiThread(new Runnable() {
             @Override
@@ -124,7 +123,7 @@ public class EditionFragment extends Fragment {
         });
     }
 
-    // affichage du dialogue d'attente lors d'une tache
+    // display of the wait dialog during a task
     protected synchronized void showProgressDialog(String message) {
         if (progressDialogFragment != null && progressDialogFragment.isVisible()) {
             // Before creating another loading dialog, close all opened loading dialogs (if any)
@@ -136,12 +135,12 @@ public class EditionFragment extends Fragment {
         progressDialogFragment.show(fm, ProgressDialogFragment.class.toString());
     }
 
-    // fermeture du dialogue d'attente
+    // closing the wait dialog
     protected synchronized void dismissDialog() {
         progressDialogFragment.dismissAllowingStateLoss();
     }
 
-    // enregistrement de l'image dans les medias et renvoi de l'Uri de celle-ci
+    // recording of the image in the media and return of the Uri thereof
     private Uri getUri(Context context, Bitmap bitmap) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
@@ -149,7 +148,7 @@ public class EditionFragment extends Fragment {
         return Uri.parse(path);
     }
 
-    // set l'image en couleur originale
+    // set the picture in original color
     private class OriginalListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
@@ -166,7 +165,7 @@ public class EditionFragment extends Fragment {
         }
     }
 
-    // set l'image en couleur renforcée
+    //set the image in enhanced color
     private class MagicListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
@@ -185,7 +184,7 @@ public class EditionFragment extends Fragment {
         }
     }
 
-    // set l'image en couleur "niveau de gris"
+    // set the image in "grayscale" color
     private class GrayListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
@@ -202,7 +201,7 @@ public class EditionFragment extends Fragment {
         }
     }
 
-    // set l'image en couleur noir & blanc
+    // set the picture in black & white color
     private class BWListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
@@ -220,7 +219,7 @@ public class EditionFragment extends Fragment {
         }
     }
 
-    // effectue une rotation de 90° ou -90° de l'image
+    // rotate the image 90 ° or -90 °
     private class RotationListener implements View.OnClickListener {
         private int angle;
 
@@ -250,7 +249,7 @@ public class EditionFragment extends Fragment {
         }
     }
 
-    // validation des modifications et application des modifications à l'image d'origine
+    // validate the changes and apply the changes to the original image
     private class ValidationListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {

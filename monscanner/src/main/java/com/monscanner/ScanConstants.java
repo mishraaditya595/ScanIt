@@ -2,9 +2,7 @@ package com.monscanner;
 
 import android.os.Environment;
 
-/**
- * Constantes qui sont utilisées dans la librairie
- */
+
 public abstract class ScanConstants {
 
     public static final int OPEN_GALERIE = 1;
