@@ -48,7 +48,7 @@
                 android:contentDescription="@string/image_selectionnee" />
         </FrameLayout>
 
-        <com.example.monscanner.PolygonView
+        <com.monscanner.PolygonView
             android:id="@+id/polygonView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

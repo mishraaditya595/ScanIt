@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: /home/aditya/StudioProjects/Document_scanner/OpenScan_test/opencv/src/org/opencv/engine/OpenCVEngineInterface.aidl
+ * Original file: /home/aditya/Scanner2/opencv/src/org/opencv/engine/OpenCVEngineInterface.aidl
  */
 package org.opencv.engine;
 /**
