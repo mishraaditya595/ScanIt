@@ -84,6 +84,10 @@ int attr camera_id 0x0
 int attr chainUseRtl 0x0
 int attr checkboxStyle 0x0
 int attr checkedTextViewStyle 0x0
+int attr civ_border_color 0x0
+int attr civ_border_overlay 0x0
+int attr civ_border_width 0x0
+int attr civ_circle_background_color 0x0
 int attr closeIcon 0x0
 int attr closeItemLayout 0x0
 int attr collapseContentDescription 0x0
@@ -647,7 +651,9 @@ int drawable circle_button 0x0
 int drawable circle_pressed 0x0
 int drawable circle_released 0x0
 int drawable gallery 0x0
+int drawable ic_baseline_camera_24 0x0
 int drawable ic_black_and_white 0x0
+int drawable ic_camera 0x0
 int drawable ic_enhance_image 0x0
 int drawable ic_gray 0x0
 int drawable ic_image 0x0
@@ -1495,6 +1501,11 @@ int styleable ButtonBarLayout_allowStacking 0
 int[] styleable CameraBridgeViewBase { 0x0, 0x0 }
 int styleable CameraBridgeViewBase_camera_id 0
 int styleable CameraBridgeViewBase_show_fps 1
+int[] styleable CircleImageView { 0x0, 0x0, 0x0, 0x0 }
+int styleable CircleImageView_civ_border_color 0
+int styleable CircleImageView_civ_border_overlay 1
+int styleable CircleImageView_civ_border_width 2
+int styleable CircleImageView_civ_circle_background_color 3
 int[] styleable ColorStateListItem { 0x0, 0x101031f, 0x10101a5 }
 int styleable ColorStateListItem_alpha 0
 int styleable ColorStateListItem_android_alpha 1

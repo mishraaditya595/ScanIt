@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment
 import com.getbase.floatingactionbutton.FloatingActionButton
 import com.monscanner.ScanActivity
 import com.monscanner.ScanConstants
+import com.openscan.BuildConfig
 import com.openscan.R
 import org.jetbrains.annotations.Nullable
 import java.io.FileNotFoundException
@@ -83,13 +84,17 @@ class HomeFragment : Fragment() {
         if (resultCode == RESULT_OK) {
             if (requestCode == REQUEST_CODE) {
                 try {
-                    assert(data != null)
+                    if (BuildConfig.DEBUG && data == null) {
+                        error("Assertion failed")
+                    }
                     val imageUri: Uri = Objects.requireNonNull(data!!.extras).getParcelable(ScanActivity.SCAN_RESULT)!!
                     val imageStream: InputStream = activity!!.contentResolver.openInputStream(imageUri)!!
                     val scannedImage = BitmapFactory.decodeStream(imageStream)
                     activity!!.contentResolver.delete(imageUri, null, null)
                     imageView!!.setImageBitmap(scannedImage)
-                } catch (e: FileNotFoundException) {
+                }
+                catch (e: FileNotFoundException)
+                {
                     e.printStackTrace()
                 }
             }

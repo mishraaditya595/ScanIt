@@ -21,7 +21,9 @@ drawable circle_button
 drawable circle_pressed
 drawable circle_released
 drawable gallery
+drawable ic_baseline_camera_24
 drawable ic_black_and_white
+drawable ic_camera
 drawable ic_enhance_image
 drawable ic_gray
 drawable ic_image
@@ -55,6 +57,7 @@ id sourceframe
 id switchButton
 id textView
 id textureView
+id top
 id validationButton
 layout activity_camera
 layout fragment_edition

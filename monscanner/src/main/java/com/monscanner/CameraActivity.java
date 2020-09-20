@@ -49,6 +49,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  CAUTION: only the display resolution can be changed in order to avoid
  * lags due to too high image quality. The image obtained when capturing it
