@@ -106,7 +106,9 @@
             android:layout_weight="1"
             android:background="@drawable/round_rectangle_button"
             android:layout_marginEnd="8dp"
-            android:text="Next" />
+            android:text="Next"
+            android:textColor="#FFFFFF"
+            />
     </LinearLayout>
 
 </LinearLayout>

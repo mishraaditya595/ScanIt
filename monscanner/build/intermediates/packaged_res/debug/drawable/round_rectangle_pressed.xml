@@ -9,6 +9,6 @@
         android:left="8dp"
         android:bottom="8dp"/>
 
-    <solid android:color="@color/orange"/>
+    <solid android:color="#006F64"/>
 
 </shape>

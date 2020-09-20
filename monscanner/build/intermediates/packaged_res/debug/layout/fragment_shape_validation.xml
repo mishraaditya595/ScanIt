@@ -76,6 +76,7 @@
             android:layout_weight="4"
             android:background="@drawable/round_rectangle_button"
             android:text="@string/valider"
+            android:textColor="#FFFFFF"
             android:layout_margin="8dp"/>
     </LinearLayout>
 

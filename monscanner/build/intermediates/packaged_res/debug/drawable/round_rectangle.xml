@@ -9,6 +9,9 @@
         android:right="8dp"
         android:top="8dp"/>
 
-    <gradient android:startColor="@color/orange" android:endColor="@color/lightorange" android:angle="90"/>
+    <gradient
+        android:startColor="#009688"
+        android:endColor="#009688"
+        android:angle="90"/>
 
 </shape>

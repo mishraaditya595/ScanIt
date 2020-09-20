@@ -4,10 +4,11 @@ import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.graphics.*
+import android.graphics.pdf.PdfDocument
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,8 +23,7 @@ import com.monscanner.ScanConstants
 import com.openscan.BuildConfig
 import com.openscan.R
 import org.jetbrains.annotations.Nullable
-import java.io.FileNotFoundException
-import java.io.InputStream
+import java.io.*
 import java.util.*
 
 
@@ -34,6 +34,8 @@ class HomeFragment : Fragment() {
     var bitmap: Bitmap? = null
     private val REQUEST_CODE = 7
     private var imageView: ImageView? = null
+    lateinit var pdfDocument: PdfDocument
+    val fileName = "newCodeTest.pdf"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,7 +93,7 @@ class HomeFragment : Fragment() {
                     val imageStream: InputStream = activity!!.contentResolver.openInputStream(imageUri)!!
                     val scannedImage = BitmapFactory.decodeStream(imageStream)
                     activity!!.contentResolver.delete(imageUri, null, null)
-                    imageView!!.setImageBitmap(scannedImage)
+                    makePDF(scannedImage)
                 }
                 catch (e: FileNotFoundException)
                 {
@@ -100,5 +102,50 @@ class HomeFragment : Fragment() {
             }
         }
     }
+
+    fun makePDF(bitmap: Bitmap) {
+        pdfDocument = PdfDocument()
+        val pageInfo: PdfDocument.PageInfo = PdfDocument.PageInfo.Builder(bitmap.width, bitmap.height, 1).create()
+        val page: PdfDocument.Page = pdfDocument.startPage(pageInfo)
+        val canvas: Canvas = page.getCanvas()
+        val paint = Paint()
+        paint.setColor(Color.parseColor("#FFFFFF"))
+        canvas.drawBitmap(bitmap, 0.0f, 0.0f, null)
+        pdfDocument.finishPage(page)
+        //if (fileName.getText().toString().isEmpty()) {
+        //    Toast.makeText(context, "You need to enter file name as follow\nyour_fileName.pdf", Toast.LENGTH_SHORT).show()
+        //}
+        saveFile()
+    }
+
+
+    fun saveFile() {
+        if (pdfDocument == null) {
+            return
+        }
+        val root = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Scanner")
+        var isDirectoryCreated: Boolean = root.exists()
+        if (!isDirectoryCreated) {
+            isDirectoryCreated = root.mkdir()
+        }
+        if (checkFileName()) {
+            val userInputFileName: String = fileName//.getText().toString()
+            val file = File(root, userInputFileName)
+            try {
+                val fileOutputStream = FileOutputStream(file)
+                pdfDocument.writeTo(fileOutputStream)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+            pdfDocument.close()
+        }
+
+        Toast.makeText(context, "Successful! PATH: Internal Storage/${Environment.DIRECTORY_DOWNLOADS}".trimIndent(), Toast.LENGTH_SHORT).show()
+    }
+
+    private fun checkFileName(): Boolean {
+        return true
+    }
+
 
 }
