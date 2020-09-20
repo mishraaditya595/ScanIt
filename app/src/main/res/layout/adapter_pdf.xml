@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    tools:ignore="MissingDefaultResource">
+    
+    <ImageView
+        android:id="@+id/pdf_icon_IV"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:src="@drawable/pdf_icon"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="5dp"
+        android:padding="7dp"
+        android:scaleType="fitCenter"
+        />
+
+    <TextView
+        android:id="@+id/filename_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/pdf_icon_IV"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingRight="10dp"
+        android:text="filename.pdf"
+        android:textSize="18sp"
+        />
+
+
+</RelativeLayout>
