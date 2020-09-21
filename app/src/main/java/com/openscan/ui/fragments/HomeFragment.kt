@@ -14,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ListView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -24,9 +25,11 @@ import com.monscanner.ScanConstants
 import com.openscan.BuildConfig
 import com.openscan.PDFProcessing
 import com.openscan.R
+import com.openscan.adapters.PDFAdapter
 import org.jetbrains.annotations.Nullable
 import java.io.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class HomeFragment : Fragment() {
@@ -39,8 +42,18 @@ class HomeFragment : Fragment() {
     lateinit var pdfDocument: PdfDocument
     val fileName = "newCodeTest.pdf"
 
+    lateinit var listView: ListView
+    lateinit var pdfAdapter: PDFAdapter
+    lateinit var dir: File
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initialiseFields(view)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -58,6 +71,40 @@ class HomeFragment : Fragment() {
     private fun initialiseFields(view: View?) {
         openCameraButton = view?.findViewById(R.id.openCameraButton)!!
         openFilesButton = view.findViewById(R.id.openFilesButton)!!
+        listView = view.findViewById(R.id.listView)
+        dir = File(Environment.getExternalStorageDirectory().absolutePath, "Scanner")
+        val listOfFiles = getFiles(dir)
+
+        pdfAdapter = PDFAdapter(activity?.applicationContext,listOfFiles)
+        listView.adapter = pdfAdapter
+    }
+
+    private fun getFiles(dir: File):ArrayList<File> {
+        val listFiles: Array<File> = dir.listFiles()
+        var fileList: ArrayList<File> = ArrayList()
+
+        if (listFiles != null && listFiles.size > 0) {
+            for (item in listFiles) {
+                if (item.isDirectory) {
+                    getFiles(item)
+                } else {
+                    var flag: Boolean = false
+                    if (item.name.endsWith(".pdf")) {
+                        for (element in fileList) {
+                            if (element.name.equals(item.name)) {
+                                flag = true
+                            }
+                        }
+                        if (flag) {
+                            flag = false
+                        } else {
+                            fileList.add(item)
+                        }
+                    }
+                }
+            }
+        }
+        return fileList
     }
 
     private fun openCamera(view: View?) {
