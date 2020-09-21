@@ -28,6 +28,7 @@
         android:paddingRight="10dp"
         android:text="filename.pdf"
         android:textSize="18sp"
+        android:textColor="#FFFFFF"
         />
 
 
