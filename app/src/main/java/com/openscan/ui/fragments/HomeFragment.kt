@@ -13,6 +13,7 @@ import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.ListView
 import android.widget.Toast
@@ -26,6 +27,7 @@ import com.openscan.BuildConfig
 import com.openscan.PDFProcessing
 import com.openscan.R
 import com.openscan.adapters.PDFAdapter
+import com.openscan.ui.DisplayPDFActivity
 import org.jetbrains.annotations.Nullable
 import java.io.*
 import java.util.*
@@ -45,6 +47,7 @@ class HomeFragment : Fragment() {
     lateinit var listView: ListView
     lateinit var pdfAdapter: PDFAdapter
     lateinit var dir: File
+    lateinit var listOfFiles: ArrayList<File>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,10 +76,17 @@ class HomeFragment : Fragment() {
         openFilesButton = view.findViewById(R.id.openFilesButton)!!
         listView = view.findViewById(R.id.listView)
         dir = File(Environment.getExternalStorageDirectory().absolutePath, "Scanner")
-        val listOfFiles = getFiles(dir)
+        listOfFiles = getFiles(dir)
 
         pdfAdapter = PDFAdapter(activity?.applicationContext,listOfFiles)
         listView.adapter = pdfAdapter
+        listView.setOnItemClickListener { parent, view, position, id ->
+            val intent = Intent(context?.applicationContext, DisplayPDFActivity::class.java)
+            intent.putExtra("position", position)
+            intent.putExtra("filename", listOfFiles.get(position).name)
+            intent.putExtra("file",listOfFiles.get(position))
+            startActivity(intent)
+        }
     }
 
     private fun getFiles(dir: File):ArrayList<File> {
