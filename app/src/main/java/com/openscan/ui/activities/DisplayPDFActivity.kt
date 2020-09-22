@@ -1,6 +1,5 @@
-package com.openscan.ui
+package com.openscan.ui.activities
 
-import android.graphics.pdf.PdfDocument
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.github.barteksc.pdfviewer.PDFView

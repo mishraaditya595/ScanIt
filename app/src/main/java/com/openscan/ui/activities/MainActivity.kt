@@ -1,26 +1,15 @@
-package com.openscan
+package com.openscan.ui.activities
 
-import android.Manifest
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Bundle
-import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.monscanner.ScanActivity
-import com.monscanner.ScanConstants
+import com.openscan.R
 import com.openscan.ui.fragments.HomeFragment
 import com.openscan.ui.fragments.OCRFragment
 import com.openscan.ui.fragments.QRFragment
-import java.io.FileNotFoundException
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 

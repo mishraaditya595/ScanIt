@@ -1,4 +1,4 @@
-package com.openscan
+package com.openscan.ui.activities
 
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.pdf.PdfDocument
 import android.os.Environment
-import android.widget.Toast
 import com.openscan.ui.fragments.HomeFragment
 import java.io.File
 import java.io.FileOutputStream

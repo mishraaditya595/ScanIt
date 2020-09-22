@@ -9,11 +9,9 @@ import android.graphics.pdf.PdfDocument
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.ListView
 import android.widget.Toast
@@ -24,10 +22,10 @@ import com.getbase.floatingactionbutton.FloatingActionButton
 import com.monscanner.ScanActivity
 import com.monscanner.ScanConstants
 import com.openscan.BuildConfig
-import com.openscan.PDFProcessing
+import com.openscan.ui.activities.PDFProcessing
 import com.openscan.R
 import com.openscan.adapters.PDFAdapter
-import com.openscan.ui.DisplayPDFActivity
+import com.openscan.ui.activities.DisplayPDFActivity
 import org.jetbrains.annotations.Nullable
 import java.io.*
 import java.util.*
