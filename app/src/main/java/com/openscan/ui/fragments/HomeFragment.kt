@@ -4,7 +4,8 @@ import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.pdf.PdfDocument
 import android.net.Uri
 import android.os.Bundle
@@ -12,9 +13,7 @@ import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.ListView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -22,17 +21,20 @@ import com.getbase.floatingactionbutton.FloatingActionButton
 import com.monscanner.ScanActivity
 import com.monscanner.ScanConstants
 import com.openscan.BuildConfig
-import com.openscan.ui.activities.PDFProcessing
 import com.openscan.R
 import com.openscan.adapters.PDFAdapter
 import com.openscan.ui.activities.DisplayPDFActivity
+import com.openscan.ui.activities.PDFProcessing
 import org.jetbrains.annotations.Nullable
-import java.io.*
+import java.io.File
+import java.io.FileNotFoundException
+import java.io.InputStream
 import java.util.*
 import kotlin.collections.ArrayList
 
 
 class HomeFragment : Fragment() {
+
 
     lateinit var openCameraButton: FloatingActionButton
     lateinit var openFilesButton: FloatingActionButton
@@ -40,12 +42,11 @@ class HomeFragment : Fragment() {
     private val REQUEST_CODE = 7
     private var imageView: ImageView? = null
     lateinit var pdfDocument: PdfDocument
-    val fileName = "newCodeTest.pdf"
-
     lateinit var listView: ListView
     lateinit var pdfAdapter: PDFAdapter
     lateinit var dir: File
     lateinit var listOfFiles: ArrayList<File>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,13 +77,14 @@ class HomeFragment : Fragment() {
         dir = File(Environment.getExternalStorageDirectory().absolutePath, "Scanner")
         listOfFiles = getFiles(dir)
 
-        pdfAdapter = PDFAdapter(activity?.applicationContext,listOfFiles)
+        pdfAdapter = PDFAdapter(activity?.applicationContext, listOfFiles)
         listView.adapter = pdfAdapter
         listView.setOnItemClickListener { parent, view, position, id ->
             val intent = Intent(context?.applicationContext, DisplayPDFActivity::class.java)
             intent.putExtra("position", position)
             intent.putExtra("filename", listOfFiles.get(position).name)
-            intent.putExtra("file",listOfFiles.get(position))
+            intent.putExtra("file", listOfFiles.get(position))
+
             startActivity(intent)
         }
     }
@@ -150,8 +152,14 @@ class HomeFragment : Fragment() {
                     val imageStream: InputStream = activity!!.contentResolver.openInputStream(imageUri)!!
                     val scannedImage = BitmapFactory.decodeStream(imageStream)
                     activity!!.contentResolver.delete(imageUri, null, null)
-                    PDFProcessing().makePDF(scannedImage)
-                    Toast.makeText(context, "Successful! PATH: Internal Storage/${Environment.getExternalStorageDirectory().absolutePath}/Scanner".trimIndent(), Toast.LENGTH_SHORT).show()
+                    val filename = getName()
+                    if (filename != null)
+                    {
+                        PDFProcessing().makePDF(scannedImage, filename)
+                        Toast.makeText(context, "Successful! PATH: Internal Storage/${Environment.getExternalStorageDirectory().absolutePath}/Scanner".trimIndent(), Toast.LENGTH_SHORT).show()
+                    }
+                    else
+                        Toast.makeText(context, "Null filename", Toast.LENGTH_SHORT).show()
                 }
                 catch (e: FileNotFoundException)
                 {
@@ -159,6 +167,25 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun getName(): String?{
+        var name: String
+        val alert: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(context)
+        val mView: View = layoutInflater.inflate(R.layout.filename_dialog, null)
+        val txt_inputText: EditText = mView.findViewById<View>(R.id.txt_input) as EditText
+        val btn_cancel: Button = mView.findViewById<View>(R.id.btn_cancel) as Button
+        val btn_okay: Button = mView.findViewById<View>(R.id.btn_okay) as Button
+        alert.setView(mView)
+        val alertDialog: android.app.AlertDialog? = alert.create()
+        alertDialog?.setCanceledOnTouchOutside(false)
+        btn_cancel.setOnClickListener(View.OnClickListener { alertDialog?.dismiss() })
+        btn_okay.setOnClickListener(View.OnClickListener {
+            name = txt_inputText.text.toString()
+            alertDialog?.dismiss()
+        })
+        alertDialog?.show()
+        return txt_inputText.text.toString()
     }
 
 
