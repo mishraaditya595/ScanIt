@@ -17,6 +17,8 @@ class MainActivity : AppCompatActivity() {
     private var imageView: ImageView? = null
     private lateinit var bottomNavigationView: BottomNavigationView
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -26,18 +28,15 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId)
             {
-                R.id.home ->
-                {
+                R.id.home -> {
                     loadFragment(HomeFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.ocr ->
-                {
+                R.id.ocr -> {
                     loadFragment(OCRFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.qr ->
-                {
+                R.id.qr -> {
                     loadFragment(QRFragment())
                     return@setOnNavigationItemSelectedListener true
                 }

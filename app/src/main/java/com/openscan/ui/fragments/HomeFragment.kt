@@ -50,13 +50,13 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onResume() {
         super.onResume()
         initialiseFields(view)
     }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -167,14 +167,13 @@ class HomeFragment : Fragment() {
                     val imageStream: InputStream = activity!!.contentResolver.openInputStream(imageUri)!!
                     val scannedImage = BitmapFactory.decodeStream(imageStream)
                     activity!!.contentResolver.delete(imageUri, null, null)
-                    val filename = getName()
-                    if (filename != null)
-                    {
-                        PDFProcessing().makePDF(scannedImage, filename)
-                        Toast.makeText(context, "Successful! PATH: Internal Storage/${Environment.getExternalStorageDirectory().absolutePath}/Scanner".trimIndent(), Toast.LENGTH_SHORT).show()
-                    }
-                    else
-                        Toast.makeText(context, "Null filename", Toast.LENGTH_SHORT).show()
+                    getNameAndSavePDF(scannedImage)
+
+                        //PDFProcessing().makePDF(scannedImage, filename)
+                        //Toast.makeText(context, "Successful! PATH: Internal Storage/${Environment.getExternalStorageDirectory().absolutePath}/Scanner".trimIndent(), Toast.LENGTH_SHORT).show()
+
+
+                        //Toast.makeText(context, "Null filename", Toast.LENGTH_SHORT).show()
                 }
                 catch (e: FileNotFoundException)
                 {
@@ -184,8 +183,8 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun getName(): String?{
-        var name: String
+    private fun getNameAndSavePDF(scannedImage: Bitmap) {
+        var name: String = ""
         val alert: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(context)
         val mView: View = layoutInflater.inflate(R.layout.filename_dialog, null)
         val txt_inputText: EditText = mView.findViewById<View>(R.id.txt_input) as EditText
@@ -194,13 +193,17 @@ class HomeFragment : Fragment() {
         alert.setView(mView)
         val alertDialog: android.app.AlertDialog? = alert.create()
         alertDialog?.setCanceledOnTouchOutside(false)
-        btn_cancel.setOnClickListener(View.OnClickListener { alertDialog?.dismiss() })
+        btn_cancel.setOnClickListener(View.OnClickListener {
+            name = "#123#..456"
+            alertDialog?.dismiss() })
         btn_okay.setOnClickListener(View.OnClickListener {
             name = txt_inputText.text.toString()
             alertDialog?.dismiss()
+            Toast.makeText(context,"Generating PDF...",Toast.LENGTH_LONG).show()
+            PDFProcessing().makePDF(scannedImage, name)
         })
         alertDialog?.show()
-        return txt_inputText.text.toString()
+
     }
 
 
