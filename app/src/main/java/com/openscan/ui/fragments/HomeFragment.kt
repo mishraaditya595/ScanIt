@@ -2,6 +2,7 @@ package com.openscan.ui.fragments
 
 import android.Manifest
 import android.app.Activity.RESULT_OK
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -16,6 +17,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import com.getbase.floatingactionbutton.FloatingActionButton
 import com.monscanner.ScanActivity
@@ -23,7 +25,6 @@ import com.monscanner.ScanConstants
 import com.openscan.BuildConfig
 import com.openscan.R
 import com.openscan.adapters.PDFAdapter
-import com.openscan.ui.activities.DisplayPDFActivity
 import com.openscan.ui.activities.PDFProcessing
 import org.jetbrains.annotations.Nullable
 import java.io.File
@@ -95,12 +96,27 @@ class HomeFragment : Fragment() {
         pdfAdapter = PDFAdapter(activity?.applicationContext, listOfFiles)
         listView.adapter = pdfAdapter
         listView.setOnItemClickListener { parent, view, position, id ->
-            val intent = Intent(context?.applicationContext, DisplayPDFActivity::class.java)
+            /*val intent = Intent(context?.applicationContext, DisplayPDFActivity::class.java)
             intent.putExtra("position", position)
             intent.putExtra("filename", listOfFiles.get(position).name)
             intent.putExtra("file", listOfFiles.get(position))
 
-            startActivity(intent)
+            startActivity(intent)*/
+            val file = listOfFiles.get(position)
+            val apkURI: Uri = FileProvider.getUriForFile(
+                    context!!, context!!.applicationContext
+                    .packageName.toString() + ".provider", file)
+            val target = Intent(Intent.ACTION_VIEW)
+            target.setDataAndType(apkURI, "application/pdf")
+            target.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
+
+            val intent = Intent.createChooser(target, "Open File")
+            intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+            try {
+                startActivity(intent)
+            } catch (e: ActivityNotFoundException) {
+                Toast.makeText(context, "No PDF reader found. Install a PDF reader to view files.", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
@@ -195,11 +211,12 @@ class HomeFragment : Fragment() {
         alertDialog?.setCanceledOnTouchOutside(false)
         btn_cancel.setOnClickListener(View.OnClickListener {
             name = "#123#..456"
-            alertDialog?.dismiss() })
+            alertDialog?.dismiss()
+        })
         btn_okay.setOnClickListener(View.OnClickListener {
             name = txt_inputText.text.toString()
             alertDialog?.dismiss()
-            Toast.makeText(context,"Generating PDF...",Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Generating PDF...", Toast.LENGTH_LONG).show()
             PDFProcessing().makePDF(scannedImage, name)
         })
         alertDialog?.show()
