@@ -62,12 +62,27 @@ class HomeFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
+        checkForStoragePermissions()
+
         initialiseFields(view)
 
         openCameraButton.setOnClickListener { openCamera(view) }
         openFilesButton.setOnClickListener { openGallery(view) }
 
         return view
+    }
+
+    private fun checkForStoragePermissions() {
+        //camera permissions
+        if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), 2)
+        }
+
+        //storage permissions
+        if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
+        }
     }
 
     private fun initialiseFields(view: View?) {
@@ -90,7 +105,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun getFiles(dir: File):ArrayList<File> {
-        val listFiles: Array<File> = dir.listFiles()
+        val listFiles: Array<File>? = dir.listFiles()
         var fileList: ArrayList<File> = ArrayList()
 
         if (listFiles != null && listFiles.size > 0) {
