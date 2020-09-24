@@ -1,5 +1,6 @@
 package com.openscan.ui.activities
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.github.barteksc.pdfviewer.PDFView
@@ -8,6 +9,7 @@ import com.github.barteksc.pdfviewer.listener.OnPageChangeListener
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle
 import com.openscan.R
 import java.io.File
+import java.net.URI
 
 
 class DisplayPDFActivity : AppCompatActivity(), OnPageChangeListener, OnLoadCompleteListener {
@@ -22,15 +24,20 @@ class DisplayPDFActivity : AppCompatActivity(), OnPageChangeListener, OnLoadComp
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_pdf)
 
-        initialiseFields()
-        position = intent.getIntExtra("position", -1)
-        fileName = intent.getStringExtra("filename")
-        file = getIntent().extras["file"] as File
-        displayPDF()
+        //initialiseFields()
+        //position = intent.getIntExtra("position", -1)
+        val path = intent.getStringExtra("uri")
+        val uri = Uri.parse(path)
+        val file = File(uri.path)
+        //displayPDF()
+
+        val pdfView = findViewById<com.joanzapata.pdfview.PDFView>(R.id.newpdfview)
+        pdfView.fromFile(file).load()
+
     }
 
     private fun initialiseFields() {
-        pdfView = findViewById(R.id.pdf_viewer)
+       // pdfView = findViewById(R.id.pdf_viewer)
     }
 
     private fun displayPDF() {
