@@ -9,7 +9,6 @@ import com.github.barteksc.pdfviewer.listener.OnPageChangeListener
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle
 import com.openscan.R
 import java.io.File
-import java.net.URI
 
 
 class DisplayPDFActivity : AppCompatActivity(), OnPageChangeListener, OnLoadCompleteListener {
@@ -18,29 +17,29 @@ class DisplayPDFActivity : AppCompatActivity(), OnPageChangeListener, OnLoadComp
     var pageNumber: Int = 0
     lateinit var fileName: String
     var position: Int = -1
-    lateinit var file: File
+    //lateinit var file: File
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_pdf)
 
-        //initialiseFields()
-        //position = intent.getIntExtra("position", -1)
+        initialiseFields()
+        fileName = intent.getStringExtra("filename")
         val path = intent.getStringExtra("uri")
         val uri = Uri.parse(path)
         val file = File(uri.path)
-        //displayPDF()
+        displayPDF(file)
 
-        val pdfView = findViewById<com.joanzapata.pdfview.PDFView>(R.id.newpdfview)
-        pdfView.fromFile(file).load()
+        //val pdfView = findViewById<com.joanzapata.pdfview.PDFView>(R.id.newpdfview)
+        //pdfView.fromFile(file).load()
 
     }
 
     private fun initialiseFields() {
-       // pdfView = findViewById(R.id.pdf_viewer)
+       pdfView = findViewById(R.id.pdf_viewer)
     }
 
-    private fun displayPDF() {
+    private fun displayPDF(file: File) {
         pdfView.fromFile(file)
                 .defaultPage(pageNumber)
                 .enableSwipe(true)
@@ -49,6 +48,7 @@ class DisplayPDFActivity : AppCompatActivity(), OnPageChangeListener, OnLoadComp
                 .enableAnnotationRendering(true)
                 .onLoad(this)
                 .scrollHandle(DefaultScrollHandle(this))
+                .load()
     }
 
     override fun onPageChanged(page: Int, pageCount: Int) {

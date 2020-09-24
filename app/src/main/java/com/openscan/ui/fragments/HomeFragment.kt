@@ -127,7 +127,8 @@ class HomeFragment : Fragment() {
                 Toast.makeText(context, "No PDF reader found. Install a PDF reader to view files.", Toast.LENGTH_LONG).show()
             }*/
             val intent = Intent(context?.applicationContext, DisplayPDFActivity::class.java)
-            intent.putExtra("uri",file.toURI().toString())
+            intent.putExtra("uri", file.toURI().toString())
+            intent.putExtra("filename", file.name)
             startActivity(intent)
 
         }
