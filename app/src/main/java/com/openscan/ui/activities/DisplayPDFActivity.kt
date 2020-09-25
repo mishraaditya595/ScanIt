@@ -3,6 +3,7 @@ package com.openscan.ui.activities
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.github.barteksc.pdfviewer.PDFView
 import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener
@@ -30,9 +31,21 @@ class DisplayPDFActivity : AppCompatActivity(), OnPageChangeListener, OnLoadComp
         val file = File(uri.path)
         displayPDF(file)
 
+        setupToolbar()
         //val pdfView = findViewById<com.joanzapata.pdfview.PDFView>(R.id.newpdfview)
         //pdfView.fromFile(file).load()
 
+    }
+
+    private fun setupToolbar() {
+        var toolbar = findViewById<Toolbar>(R.id.pdf_view_toolbar)
+        toolbar.setTitle(fileName)
+        toolbar.setTitleTextAppearance(applicationContext, R.style.TextAppearance_AppCompat_Title)
+        toolbar.setTitleTextColor(-0x1)
+
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
+        supportActionBar?.setDisplayShowHomeEnabled(true);
     }
 
     private fun initialiseFields() {

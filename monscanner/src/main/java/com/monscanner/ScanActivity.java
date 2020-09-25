@@ -38,7 +38,7 @@ public class ScanActivity extends AppCompatActivity implements ComponentCallback
     public static final String SCAN_RESULT = "scan_result";
     private boolean onEditionFragment;
     static {
-        System.loadLibrary("opencv_java4");
+       System.loadLibrary("opencv_java4");
     }
 
     @Override

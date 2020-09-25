@@ -26,7 +26,11 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".ui.activities.DisplayPDFActivity" />
+        <activity android:name=".ui.activities.DisplayPDFActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.activities.MainActivity" />
+        </activity>
         <activity android:name=".ui.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
