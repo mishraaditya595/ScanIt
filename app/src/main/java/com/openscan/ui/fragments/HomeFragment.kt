@@ -2,7 +2,6 @@ package com.openscan.ui.fragments
 
 import android.Manifest
 import android.app.Activity.RESULT_OK
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -11,14 +10,12 @@ import android.graphics.pdf.PdfDocument
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import android.provider.DocumentsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import com.getbase.floatingactionbutton.FloatingActionButton
 import com.monscanner.ScanActivity
@@ -28,7 +25,6 @@ import com.openscan.R
 import com.openscan.adapters.PDFAdapter
 import com.openscan.ui.activities.DisplayPDFActivity
 import com.openscan.ui.activities.PDFProcessing
-import com.openscan.ui.activities.WebViewActivity
 import org.jetbrains.annotations.Nullable
 import java.io.File
 import java.io.FileNotFoundException
