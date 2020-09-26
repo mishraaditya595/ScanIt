@@ -1,10 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
+
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.openscan"
+        applicationId "com.vob.scanit"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
@@ -49,7 +50,18 @@ dependencies {
     implementation 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
 
     implementation 'com.rmtheis:tess-two:5.4.1'
+
+
+
+    implementation 'com.google.firebase:firebase-core:15.0.2'
+    implementation 'com.google.firebase:firebase-ml-vision:15.0.0'
+
+    implementation 'com.google.android.gms:play-services-vision:20.1.1'
+    implementation 'com.google.android.gms:play-services-vision-common:19.1.1'
+    implementation 'com.google.android.gms:play-services-vision-image-label:18.0.4'
+
 }
 repositories {
     mavenCentral()
 }
+//apply plugin: 'com.google.gms.google-services'
