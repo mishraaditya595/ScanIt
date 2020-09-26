@@ -24,7 +24,7 @@ import com.openscan.BuildConfig
 import com.openscan.R
 import com.openscan.adapters.PDFAdapter
 import com.openscan.ui.activities.DisplayPDFActivity
-import com.openscan.ui.activities.PDFProcessing
+import com.openscan.PDFProcessing
 import org.jetbrains.annotations.Nullable
 import java.io.File
 import java.io.FileNotFoundException

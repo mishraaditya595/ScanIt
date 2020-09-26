@@ -3,17 +3,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#121212"
     tools:context=".ui.fragments.OCRFragment">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fragment under construction"
+        android:id="@+id/ocr_tv"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         android:textSize="18dp"
-        android:textStyle="bold"
         android:layout_centerInParent="true"
         android:textColor="#FFFFFF"
+        android:layout_margin="15dp"
         />
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="15dp"
+        app:fab_addButtonColorNormal="@color/colorAccent"
+        app:fab_addButtonPlusIconColor="@color/white"
+        app:fab_labelStyle="@style/customFAB">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/openCameraButton_ocr"
+            app:fab_title="Open Camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/white"
+            app:fab_colorPressed="@color/grey"
+            app:fab_size="mini"
+            app:fab_icon="@drawable/ic_baseline_camera_24"
+            />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/openFilesButton_ocr"
+            app:fab_title="Open Files"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/white"
+            app:fab_colorPressed="@color/grey"
+            app:fab_size="mini"
+            app:fab_icon="@drawable/ic_baseline_image_24"
+            />
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 </RelativeLayout>
