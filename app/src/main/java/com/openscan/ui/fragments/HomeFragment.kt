@@ -98,6 +98,7 @@ class HomeFragment : Fragment() {
 
         pdfAdapter = PDFAdapter(activity?.applicationContext, listOfFiles)
         listView.adapter = pdfAdapter
+        
         listView.setOnItemClickListener { parent, view, position, id ->
             /*val intent = Intent(context?.applicationContext, DisplayPDFActivity::class.java)
             intent.putExtra("position", position)

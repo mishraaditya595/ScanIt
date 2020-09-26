@@ -47,6 +47,8 @@ dependencies {
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
 
     implementation 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
+
+    implementation 'com.rmtheis:tess-two:5.4.1'
 }
 repositories {
     mavenCentral()
