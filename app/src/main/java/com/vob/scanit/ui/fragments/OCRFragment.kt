@@ -19,6 +19,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.getbase.floatingactionbutton.FloatingActionButton
+import com.google.firebase.FirebaseApp
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.google.firebase.ml.vision.text.FirebaseVisionText
@@ -53,6 +54,7 @@ class OCRFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_o_c_r, container, false)
 
         initialiseFields(view)
+        FirebaseApp.initializeApp(context)
 
         //button.setOnClickListener{ startCameraActivity() }
 
@@ -131,7 +133,7 @@ class OCRFragment : Fragment() {
     private fun detectText(scannedImage: Bitmap?)
     {
         var firebaseVisionImage: FirebaseVisionImage = FirebaseVisionImage.fromBitmap(scannedImage!!)
-
+        var firebaseApp = FirebaseApp.initializeApp(context)
         var firebaseVisionTextDetector = FirebaseVision.getInstance().visionTextDetector
         firebaseVisionTextDetector.detectInImage(firebaseVisionImage)
                 .addOnSuccessListener {

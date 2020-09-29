@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.FirebaseApp
 import com.vob.scanit.R
 import com.vob.scanit.ui.fragments.HomeFragment
 import com.vob.scanit.ui.fragments.OCRFragment
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        FirebaseApp.initializeApp(applicationContext)
         bottomNavigationView = findViewById(R.id.bottom_nav_view)
         loadFragment(HomeFragment())
         bottomNavigationView.setOnNavigationItemSelectedListener {
