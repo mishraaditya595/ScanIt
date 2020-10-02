@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1066889650723",
+    "firebase_url": "https://scanit-9f70e.firebaseio.com",
+    "project_id": "scanit-9f70e",
+    "storage_bucket": "scanit-9f70e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1066889650723:android:9de41dbfbd82bda19bc796",
+        "android_client_info": {
+          "package_name": "com.vob.scanit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1066889650723-s28vb1i14tfe4a4gf8g8biqoo2okrr1e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vob.scanit",
+            "certificate_hash": "5aa3679e740dcda74a01fef12024bdf671931eb7"
+          }
+        },
+        {
+          "client_id": "1066889650723-5m3ie50pmrptn2ji8dvontsu5qvj8ti0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcfNuW3u9O4bWfHxU416uPBV4uIftZYPQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1066889650723-5m3ie50pmrptn2ji8dvontsu5qvj8ti0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

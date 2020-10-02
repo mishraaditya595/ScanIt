@@ -56,7 +56,6 @@ class OCRFragment : Fragment() {
         initialiseFields(view)
         FirebaseApp.initializeApp(context)
 
-        //button.setOnClickListener{ startCameraActivity() }
 
         openCameraButton.setOnClickListener { openCamera(view) }
         openFilesButton.setOnClickListener { openGallery(view) }
@@ -158,92 +157,6 @@ class OCRFragment : Fragment() {
             }
         }
     }
-
-    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 100 && resultCode == Activity.RESULT_OK)
-        {
-            prepareTessData()
-            startOCR(outputFileDir)
-        }
-        else
-        {
-            Toast.makeText(activity, "Error while analysing image.", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun prepareTessData(){
-        try {
-            val dir: File = File(DATA_PATH + TESS_DATA)
-            if (!dir.exists())
-                dir.mkdirs()
-            var filelist = activity?.assets?.list("")
-            if (filelist != null)
-            {
-                filelist.forEach {filename: String ->
-                    val pathToDataFile = DATA_PATH + TESS_DATA + "/" + filename
-                    if (!File(pathToDataFile).exists())
-                    {
-                        val inputStream = activity?.assets?.open(filename)
-                        val outputStream = FileOutputStream(pathToDataFile)
-                        var buff = ByteArray(1024)
-                        var len: Int? = inputStream?.read(buff)
-                        if (len != null)
-                        {
-                            while (len > 0)
-                            {
-                                outputStream.write(buff, 0, len)
-                            }
-                        }
-                        inputStream?.close()
-                        outputStream.close()
-                    }
-                }
-            }
-        }
-        catch (e: Exception){
-            Toast.makeText(activity, e.message, Toast.LENGTH_LONG).show()
-        }
-    }
-
-    private fun startOCR(imageUri: Uri){
-        try
-        {
-            val options: BitmapFactory.Options = BitmapFactory.Options()
-            options.inSampleSize = 7
-            val bitmap: Bitmap = BitmapFactory.decodeFile(imageUri.path, options)
-            val result = getText(bitmap)
-            textView.text = result
-        }
-        catch (e: Exception)
-        {
-            Toast.makeText(activity,e.message,Toast.LENGTH_LONG).show()
-        }
-    }
-
-    private fun getText(bitmap: Bitmap): String{
-        try
-        {
-            tessBaseAPI = TessBaseAPI()
-        }
-        catch (e: Exception)
-        {
-            Toast.makeText(activity,e.message,Toast.LENGTH_LONG).show()
-        }
-        tessBaseAPI.init(DATA_PATH, "eng")
-        tessBaseAPI.setImage(bitmap)
-        var resultStr = "No result"
-        try
-        {
-            resultStr = tessBaseAPI.utF8Text
-        }
-        catch (e: Exception)
-        {
-            Toast.makeText(activity,e.message,Toast.LENGTH_LONG).show()
-        }
-        tessBaseAPI.end()
-        return resultStr
-    }*/
 
     private fun initialiseFields(view: View) {
         textView = view.findViewById(R.id.ocr_tv)
