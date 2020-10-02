@@ -56,7 +56,6 @@ class OCRFragment : Fragment() {
         initialiseFields(view)
         FirebaseApp.initializeApp(context)
 
-
         openCameraButton.setOnClickListener { openCamera(view) }
         openFilesButton.setOnClickListener { openGallery(view) }
 
@@ -144,6 +143,7 @@ class OCRFragment : Fragment() {
     }
 
     private fun displayTextFromImage(firebaseVisionText: FirebaseVisionText) {
+        textView.text = ""
         var blockList: List<FirebaseVisionText.Block> = firebaseVisionText.blocks
         if (blockList.size == 0)
         {
@@ -152,10 +152,26 @@ class OCRFragment : Fragment() {
         else
         {
             blockList.forEach {
-                var text = it.text
-                textView.text = text
+                /*var text = it.text
+                textView.text = text*/
+                var lines = it.lines
+                lines.forEach { line ->
+                    if (textView.text.toString() == "")
+                    {
+                        textView.text = line.text
+                        textView.append("\n")
+                    }
+                    else
+                    {
+                        textView.append(line.text)
+                        textView.append("\n")
+                    }
+                    //var elements = line.elements
+                    //elements.forEach { element -> }
+                }
             }
         }
+
     }
 
     private fun initialiseFields(view: View) {
