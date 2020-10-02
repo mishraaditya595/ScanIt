@@ -1,13 +1,23 @@
 # Scanner
-Scanner is an Android application that facilitates scanning documents using the phone's camera.
 
-It automatically detect the edge of the paper over a surface, provides the feature to tweak the image and then save it as a PDF.
-
+Scanner is an Android application that aims to be your all in one scanner. The best part of the application is the fact that it is open source.
 ### Note: It is still under primary stages of development.
+
+# Features
+
+1. Easily converts images into a PDF file.
+2. Automatically detects edges from the image, so you don't have to.
+3. Live scanning of documents.
+4. Quickly extract texts from image.
+
+### No processing happens on any server other than your phone. 
+### There is no risk of data theft from this side.
 
 ## Contributing
 
 If you have any idea, feel free to fork it and submit your changes back to me. Contributions are appreciated.
+
+Please check the contributing guidelines and the code of conduct [here](https://github.com/mishraaditya595/Scanner/blob/master/CONTRIBUTING.md) before making a pull request.
 
 ## License
 
