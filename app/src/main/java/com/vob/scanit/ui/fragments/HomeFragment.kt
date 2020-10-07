@@ -190,7 +190,7 @@ class HomeFragment : Fragment() {
                         if (BuildConfig.DEBUG && data == null) {
                             error("Assertion failed")
                         }
-                        val imageUri: Uri = Objects.requireNonNull(data!!.extras).getParcelable(ScanActivity.SCAN_RESULT)!!
+                        val imageUri: Uri = Objects.requireNonNull(data!!.extras)!!.getParcelable(ScanActivity.SCAN_RESULT)!!
                         val imageStream: InputStream = activity!!.contentResolver.openInputStream(imageUri)!!
                         val scannedImage = BitmapFactory.decodeStream(imageStream)
                         activity!!.contentResolver.delete(imageUri, null, null)
