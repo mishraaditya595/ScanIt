@@ -25,7 +25,7 @@ class DisplayPDFActivity : AppCompatActivity(), OnPageChangeListener, OnLoadComp
         setContentView(R.layout.activity_display_pdf)
 
         initialiseFields()
-        fileName = intent.getStringExtra("filename").toString()
+        fileName = intent.getStringExtra("filename")
         val path = intent.getStringExtra("uri")
         val uri = Uri.parse(path)
         val file = File(uri.path)
