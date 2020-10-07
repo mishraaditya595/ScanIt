@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="scanit_icon_background">#121212</color>
+    <color name="scanit_icon_background">#FFFFFF</color>
 </resources>

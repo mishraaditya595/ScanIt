@@ -3,11 +3,11 @@ apply plugin: 'kotlin-android'
 
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.vob.scanit"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 29
         versionCode 1
         versionName "0.1"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
