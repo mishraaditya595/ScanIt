@@ -1,6 +1,6 @@
-# Scanner
+# ScanIt
 
-Scanner is an Android application that aims to be your all in one scanner. The best part of the application is the fact that it is open source.
+ScanIt is an Android application that aims to be your all in one scanner. The best part of the application is the fact that it is open source.
 ### Note: It is still under primary stages of development.
 
 # Features
