@@ -2,14 +2,17 @@ package com.vob.scanit.ui.fragments
 
 import android.Manifest
 import android.app.Activity
+import android.content.ClipData
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
+import android.text.ClipboardManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,30 +21,29 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.getbase.floatingactionbutton.FloatingActionButton
 import com.google.firebase.FirebaseApp
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.google.firebase.ml.vision.text.FirebaseVisionText
-import com.googlecode.tesseract.android.TessBaseAPI
 import com.monscanner.ScanActivity
 import com.monscanner.ScanConstants
 import com.vob.scanit.R
 import java.io.File
 import java.io.InputStream
-import java.lang.Exception
 import java.util.*
 
 class OCRFragment : Fragment() {
 
-    private val TAG: String? = getActivity()?.javaClass?.simpleName
-    public val TESS_DATA: String = "/tessdata"
+    //private val TAG: String? = getActivity()?.javaClass?.simpleName
+    //public val TESS_DATA: String = "/tessdata"
+    //lateinit var button: Button
     lateinit var textView: TextView
-    lateinit var button: Button
+    lateinit var copyToClipboardBtn: Button
     lateinit var instruction_text: TextView
     lateinit var openCameraButton: FloatingActionButton
     lateinit var openFilesButton: FloatingActionButton
-    lateinit var tessBaseAPI: TessBaseAPI
     lateinit var outputFileDir: Uri
     val DATA_PATH: String = android.os.Environment.getExternalStorageDirectory().absolutePath + "/Scanner/Tess"
 
@@ -65,6 +67,8 @@ class OCRFragment : Fragment() {
             instruction_text.visibility = View.VISIBLE
         }
 
+        copyToClipboardBtn.setOnClickListener { copyTextToClipboard() }
+
         return view
     }
 
@@ -73,6 +77,7 @@ class OCRFragment : Fragment() {
         openCameraButton = view.findViewById(R.id.openCameraButton_ocr)!!
         openFilesButton = view.findViewById(R.id.openFilesButton_ocr)!!
         instruction_text = view.findViewById(R.id.ocr_instruction_tv)
+        copyToClipboardBtn = view.findViewById(R.id.copy_button)
     }
 
     fun openCamera(view: View?) {
@@ -112,7 +117,7 @@ class OCRFragment : Fragment() {
                 dir.mkdirs()
             val imageFilePath = imagePath + "/ocr.jpg"
             outputFileDir = Uri.fromFile(File(imageFilePath))
-            val intent = Intent (MediaStore.ACTION_IMAGE_CAPTURE)
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileDir)
             //if (intent.resolveActivity(activity!!.packageManager) != null)
                 //startActivityForResult(intent, 100)
@@ -151,7 +156,7 @@ class OCRFragment : Fragment() {
                     displayTextFromImage(it)
                 }
                 .addOnFailureListener {
-                    Toast.makeText(activity,"Error: ${it.message}",Toast.LENGTH_LONG).show()
+                    Toast.makeText(activity, "Error: ${it.message}", Toast.LENGTH_LONG).show()
                 }
     }
 
@@ -160,7 +165,7 @@ class OCRFragment : Fragment() {
         var blockList: List<FirebaseVisionText.Block> = firebaseVisionText.blocks
         if (blockList.size == 0)
         {
-            Toast.makeText(activity,"No text found",Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "No text found", Toast.LENGTH_SHORT).show()
         }
         else
         {
@@ -187,6 +192,19 @@ class OCRFragment : Fragment() {
         if (textView.text.isNotEmpty())
         {
             instruction_text.visibility = View.INVISIBLE
+        }
+    }
+
+    private fun copyTextToClipboard() {
+        if (textView.text.isNotEmpty()) {
+            val clipboard = context!!.getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
+            val clip = ClipData.newPlainText("Copied Text", textView.text)
+            clipboard.primaryClip = clip
+            Toast.makeText(context, "Text copied to clipboard", Toast.LENGTH_SHORT).show()
+        }
+        else
+        {
+            Toast.makeText(context, "Error: No text found.", Toast.LENGTH_LONG).show()
         }
     }
 }
