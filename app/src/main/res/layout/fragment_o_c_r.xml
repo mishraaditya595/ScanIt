@@ -8,13 +8,30 @@
     tools:context=".ui.fragments.OCRFragment">
 
     <TextView
+        android:id="@+id/ocr_instruction_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:text="Click on the '+' icon to start extracting texts fromt the images."
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:layout_margin="10dp"
+        android:padding="4dp"
+        android:visibility="invisible"
+        />
+
+    <TextView
         android:id="@+id/ocr_tv"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="match_parent"
         android:textSize="18dp"
         android:layout_centerInParent="true"
         android:textColor="#FFFFFF"
         android:layout_margin="15dp"
+        android:layout_above="@+id/copy_button"
+        android:layout_below="@+id/ocr_instruction_tv"
+        android:textIsSelectable="true"
         />
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
@@ -49,5 +66,18 @@
             app:fab_icon="@drawable/ic_baseline_image_24"
             />
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+    <Button
+        android:id="@+id/copy_button"
+        android:layout_width="130dp"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="14dp"
+        android:padding="10dp"
+        android:drawableRight="@drawable/ic_content_copy_black_24dp"
+        android:background="@drawable/rounded__button"
+        android:text="Copy to clipboard"
+        />
 
 </RelativeLayout>

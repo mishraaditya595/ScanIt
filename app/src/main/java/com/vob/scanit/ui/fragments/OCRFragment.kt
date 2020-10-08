@@ -38,6 +38,7 @@ class OCRFragment : Fragment() {
     public val TESS_DATA: String = "/tessdata"
     lateinit var textView: TextView
     lateinit var button: Button
+    lateinit var instruction_text: TextView
     lateinit var openCameraButton: FloatingActionButton
     lateinit var openFilesButton: FloatingActionButton
     lateinit var tessBaseAPI: TessBaseAPI
@@ -59,7 +60,19 @@ class OCRFragment : Fragment() {
         openCameraButton.setOnClickListener { openCamera(view) }
         openFilesButton.setOnClickListener { openGallery(view) }
 
+        if (textView.text.isEmpty())
+        {
+            instruction_text.visibility = View.VISIBLE
+        }
+
         return view
+    }
+
+    private fun initialiseFields(view: View) {
+        textView = view.findViewById(R.id.ocr_tv)
+        openCameraButton = view.findViewById(R.id.openCameraButton_ocr)!!
+        openFilesButton = view.findViewById(R.id.openFilesButton_ocr)!!
+        instruction_text = view.findViewById(R.id.ocr_instruction_tv)
     }
 
     fun openCamera(view: View?) {
@@ -171,13 +184,9 @@ class OCRFragment : Fragment() {
                 }
             }
         }
-
+        if (textView.text.isNotEmpty())
+        {
+            instruction_text.visibility = View.INVISIBLE
+        }
     }
-
-    private fun initialiseFields(view: View) {
-        textView = view.findViewById(R.id.ocr_tv)
-        openCameraButton = view.findViewById(R.id.openCameraButton_ocr)!!
-        openFilesButton = view.findViewById(R.id.openFilesButton_ocr)!!
-    }
-
 }
