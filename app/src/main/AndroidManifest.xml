@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    
 
     <application
         android:allowBackup="true"
@@ -14,6 +13,7 @@
         android:roundIcon="@mipmap/scanit_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.activities.ShowQRData"></activity>
 
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
@@ -29,12 +29,12 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name="com.vob.scanit.ui.activities.DisplayPDFActivity">
+        <activity android:name=".ui.activities.DisplayPDFActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.vob.scanit.ui.activities.MainActivity" />
         </activity>
-        <activity android:name="com.vob.scanit.ui.activities.MainActivity">
+        <activity android:name=".ui.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
