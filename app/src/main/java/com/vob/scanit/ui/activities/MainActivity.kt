@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.FirebaseApp
+import com.rbddevs.splashy.Splashy
 import com.vob.scanit.R
 import com.vob.scanit.ui.fragments.HomeFragment
 import com.vob.scanit.ui.fragments.OCRFragment
@@ -24,7 +25,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //setSplashScreen()
+
         FirebaseApp.initializeApp(applicationContext)
+
         bottomNavigationView = findViewById(R.id.bottom_nav_view)
         loadFragment(HomeFragment())
         bottomNavigationView.setOnNavigationItemSelectedListener {
@@ -51,6 +55,20 @@ class MainActivity : AppCompatActivity() {
         }
 
         setupToolbar()
+    }
+
+    private fun setSplashScreen() {
+        Splashy(this)
+                .setLogo(R.mipmap.scanit_icon_round)
+                .setTitle("ScanIt")
+                .setTitleColor("#FFFFFF")
+                .setSubTitle("Your All-In-One Scanner")
+                .setSubTitleColor("#FFFFFF")
+                .setProgressColor(R.color.white)
+                .setBackgroundColor(R.color.colorPrimaryDark)
+                .setFullScreen(true)
+                .setDuration(5000)
+                .show()
     }
 
     private fun setupToolbar() {

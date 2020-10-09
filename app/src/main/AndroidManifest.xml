@@ -13,7 +13,14 @@
         android:roundIcon="@mipmap/scanit_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activities.ShowQRData"></activity>
+        <activity android:name=".ui.activities.SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.activities.ShowQRData" />
 
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
@@ -35,11 +42,6 @@
                 android:value="com.vob.scanit.ui.activities.MainActivity" />
         </activity>
         <activity android:name=".ui.activities.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
