@@ -1,7 +1,11 @@
 # ScanIt
 
 ScanIt is an Android application that aims to be your all in one scanner. The best part of the application is the fact that it is open source.
-### Note: It is still under primary stages of development.
+### Note: The beta version of the app has been released on the Google Play Store.
+
+<a href="https://play.google.com/store/apps/details?id=com.vob.scanit" target="_blank">
+<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" alt="Get it on Google Play" height="90"/></a>
+
 
 # Features
 
@@ -9,6 +13,7 @@ ScanIt is an Android application that aims to be your all in one scanner. The be
 2. Automatically detects edges from the image, so you don't have to.
 3. Live scanning of documents.
 4. Quickly extract texts from image.
+5. Read and Generate QR codes.
 
 ### No processing happens on any server other than your phone. 
 ### There is no risk of data theft from this side.
