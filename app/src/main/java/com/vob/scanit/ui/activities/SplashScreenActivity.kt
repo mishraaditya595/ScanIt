@@ -24,9 +24,9 @@ class SplashScreenActivity : AppCompatActivity() {
                 .setSubTitleColor("#FFFFFF")
                 .setProgressColor(R.color.white)
                 .setBackgroundColor(R.color.colorPrimaryDark)
-                .setAnimation(Splashy.Animation.SLIDE_IN_LEFT_BOTTOM, 1500)
+                .setAnimation(Splashy.Animation.SLIDE_IN_LEFT_BOTTOM, 1300)
                 .setFullScreen(true)
-                .setDuration(4000)
+                .setDuration(3000)
                 .setFullScreen(true)
                 .show()
 
@@ -34,6 +34,6 @@ class SplashScreenActivity : AppCompatActivity() {
         handler.postDelayed({
             startActivity(Intent(this, MainActivity::class.java))
             finish()
-        },4000)
+        },3000)
     }
 }
