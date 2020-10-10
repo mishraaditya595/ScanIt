@@ -26,4 +26,16 @@
         app:maskColor="#77000000"
         />
 
+    <Button
+        android:id="@+id/generate_qr_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Generate QR"
+        android:textAllCaps="false"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="18dp"
+        android:padding="15dp"
+        android:background="@drawable/rounded_button_coloraccent"
+        />
+
 </RelativeLayout>

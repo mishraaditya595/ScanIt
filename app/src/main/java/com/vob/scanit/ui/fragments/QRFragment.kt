@@ -16,6 +16,7 @@ import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.CodeScannerView
 import com.budiyev.android.codescanner.DecodeCallback
 import com.vob.scanit.R
+import com.vob.scanit.ui.activities.GenerateQRActivity
 //import com.google.zxing.integration.android.IntentIntegrator
 //import com.vob.scanit.R
 import com.vob.scanit.ui.activities.ShowQRData
@@ -42,6 +43,13 @@ class QRFragment : Fragment() {
 
         //scannerView = view.findViewById(R.id.scannerView)
         //startScanner()
+
+        val generateQRBtn: Button = view.findViewById(R.id.generate_qr_btn)
+        generateQRBtn.setOnClickListener {
+            val intent = Intent(context, GenerateQRActivity::class.java)
+            startActivity(intent)
+        }
+
         return view
     }
 

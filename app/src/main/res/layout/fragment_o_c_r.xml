@@ -76,8 +76,9 @@
         android:layout_margin="14dp"
         android:padding="10dp"
         android:drawableRight="@drawable/ic_content_copy_black_24dp"
-        android:background="@drawable/rounded__button"
+        android:background="@drawable/rounded__button_colorprimary"
         android:text="Copy to clipboard"
+        android:elevation="10dp"
         />
 
 </RelativeLayout>

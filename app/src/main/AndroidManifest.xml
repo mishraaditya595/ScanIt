@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/scanit_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.activities.GenerateQRActivity"></activity>
         <activity android:name=".ui.activities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,8 +42,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.vob.scanit.ui.activities.MainActivity" />
         </activity>
-        <activity android:name=".ui.activities.MainActivity">
-        </activity>
+        <activity android:name=".ui.activities.MainActivity"></activity>
     </application>
 
 </manifest>
