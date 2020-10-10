@@ -7,7 +7,7 @@
 7    <uses-sdk
 8        android:minSdkVersion="21"
 8-->/home/aditya/Scanner2/opencv/AndroidManifest.xml
-9        android:targetSdkVersion="26" />
+9        android:targetSdkVersion="29" />
 9-->/home/aditya/Scanner2/opencv/AndroidManifest.xml
 10
 11</manifest>

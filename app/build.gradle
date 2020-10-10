@@ -4,16 +4,18 @@ apply plugin: 'kotlin-android'
 
 android {
     //noinspection GradleCompatible
-    compileSdkVersion 28
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.vob.scanit"
         minSdkVersion 21
         //noinspection OldTargetApi
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 2
         versionName "0.1.1"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -49,7 +51,7 @@ dependencies {
 
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
 
-    implementation 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
+    //implementation 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
 
     implementation 'com.rmtheis:tess-two:5.4.1'
 

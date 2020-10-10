@@ -82,17 +82,26 @@ class OCRFragment : Fragment() {
 
     fun openCamera(view: View?) {
         if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), 2)
-        } else {
+                ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(context!!, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE),
+                    2)
+        }
+        else
+        {
             startScan(ScanConstants.OPEN_CAMERA)
         }
     }
 
     fun openGallery(view: View?) {
-        if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
-        } else {
+        if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(context!!, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE), 2)
+        }
+        else
+        {
             startScan(ScanConstants.OPEN_GALERIE)
         }
     }
@@ -196,15 +205,16 @@ class OCRFragment : Fragment() {
     }
 
     private fun copyTextToClipboard() {
-        if (textView.text.isNotEmpty()) {
-            val clipboard = context!!.getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
-            val clip = ClipData.newPlainText("Copied Text", textView.text)
-            clipboard.primaryClip = clip
-            Toast.makeText(context, "Text copied to clipboard", Toast.LENGTH_SHORT).show()
-        }
-        else
+        if (textView.text.isEmpty())
         {
             Toast.makeText(context, "Error: No text found.", Toast.LENGTH_LONG).show()
+            return
         }
+
+        var clipboard = context!!.getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
+        var clip = ClipData.newPlainText("Copied Text", textView.text)
+
+        //clipboard.primaryClip = clip
+        Toast.makeText(context, "Text copied to clipboard", Toast.LENGTH_SHORT).show()
     }
 }
