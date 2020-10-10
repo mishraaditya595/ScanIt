@@ -8,7 +8,7 @@ ScanIt is an Android application that aims to be your all in one scanner. The be
 
 
 # Features
-
+### Note: The beta release on the Google Play Store might not have all the features mentioned here. New features will eventually show up. You are requested to have patience.
 1. Easily converts images into a PDF file.
 2. Automatically detects edges from the image, so you don't have to.
 3. Live scanning of documents.
