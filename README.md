@@ -57,26 +57,20 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ```
 
-This project uses some code of [scanlibrary](https://github.com/jhansireddy/AndroidScannerDemo) by Jhansi Karee, licenced under MIT
-```
-Copyright (c) 2016 Jhansi Karee
+## Credits
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+The following libraries/modules are used in the project:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+- [Scan Library](https://github.com/jhansireddy/AndroidScannerDemo) by Jhansi Karee, licenced under MIT.
+- [OpenCV Android](http://opencv.org/) licenced under BSD.
+- [Floating Action Button](https://github.com/zendesk/android-floating-action-button) by Zendesk, licenced under Apache 2.0.
+- [Android PDF Viewer](https://github.com/barteksc/AndroidPdfViewer) by Barteksc, licenced under Apache 2.0.
+- [ML Kit](https://developers.google.com/ml-kit) by Google.
+- [Code Scanner](https://github.com/yuriy-budiyev/code-scanner) by Yuriy Budiyev, licenced under MIT.
+- [Splashy](https://github.com/rahuldange09/Splashy) by Rahul Dange, licenced under Apache 2.0.
+- [QR Generator](https://github.com/androidmads/QRGenerator) by Mushtaq M A, licenced under MIT.
+- [ZXing Core](https://mvnrepository.com/artifact/com.google.zxing/core/3.3.2) by Google.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
-This project uses OpenCV Android, licenced under BSD
+- [Material.io](https://material.io/) for providing resources for frontend work.
+
+### Thanks to every one.
