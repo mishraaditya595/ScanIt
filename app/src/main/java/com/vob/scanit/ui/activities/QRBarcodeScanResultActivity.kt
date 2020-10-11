@@ -1,12 +1,18 @@
 package com.vob.scanit.ui.activities
 
+import android.content.Intent
+import android.net.Uri
+import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.webkit.URLUtil
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import com.vob.scanit.PDFProcessing
 import com.vob.scanit.R
 
 class QRBarcodeScanResultActivity : AppCompatActivity() {
@@ -33,9 +39,39 @@ class QRBarcodeScanResultActivity : AppCompatActivity() {
         val isUrl: Boolean = URLUtil.isValidUrl(scanData)
         scanResultTV.text = scanData
         if (isUrl)
-            Toast.makeText(applicationContext,"Is URL",Toast.LENGTH_SHORT).show()
+        {
+            val openURL = Intent(Intent.ACTION_VIEW)
+            openURL.data = Uri.parse(scanData)
+            startActivity(openURL)
+        }
         else
-            Toast.makeText(applicationContext,"Not URL",Toast.LENGTH_SHORT).show()
+        {
+            val alert: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
+            val mView: View = layoutInflater.inflate(R.layout.filename_dialog, null)
+
+            val txt_inputText: EditText = mView.findViewById<View>(R.id.txt_input) as EditText
+            val btn_cancel: Button = mView.findViewById<View>(R.id.btn_cancel) as Button
+            val btn_okay: Button = mView.findViewById<View>(R.id.btn_okay) as Button
+            val header = mView.findViewById<View>(R.id.heading) as TextView
+
+            header.text = "The data extracted seems not to be URL"
+            txt_inputText.visibility = View.INVISIBLE
+            btn_okay.text = "Open URL"
+            btn_cancel.text = "Close"
+
+            alert.setView(mView)
+            val alertDialog: android.app.AlertDialog? = alert.create()
+            alertDialog?.setCanceledOnTouchOutside(false)
+            btn_cancel.setOnClickListener(View.OnClickListener {
+                alertDialog?.dismiss()
+            })
+            btn_okay.setOnClickListener(View.OnClickListener {
+                val openURL = Intent(Intent.ACTION_VIEW)
+                openURL.data = Uri.parse("https://$scanData")
+                startActivity(openURL)
+            })
+            alertDialog?.show()
+        }
     }
 
     private fun initialiseFields() {
