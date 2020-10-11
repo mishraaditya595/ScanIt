@@ -2,24 +2,21 @@ package com.vob.scanit.ui.activities
 
 import android.content.Intent
 import android.net.Uri
-import android.opengl.Visibility
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.webkit.URLUtil
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.vob.scanit.PDFProcessing
 import com.vob.scanit.R
 
 class QRBarcodeScanResultActivity : AppCompatActivity() {
 
     lateinit var scanData: String
-    lateinit var copyToClipboardBtn: Button
     lateinit var openInBrowserBtn: Button
+    lateinit var shareBtn: Button
     lateinit var scanResultTV: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,13 +32,13 @@ class QRBarcodeScanResultActivity : AppCompatActivity() {
         scanResultTV.text = scanData
 
         openInBrowserBtn.setOnClickListener {openInBrowser()}
-
+        shareBtn.setOnClickListener { share() }
     }
 
     private fun initialiseFields() {
-        copyToClipboardBtn = findViewById(R.id.copy_clip_btn)
         openInBrowserBtn = findViewById(R.id.openInBrowser_btn)
         scanResultTV = findViewById(R.id.scanResult_tv)
+        shareBtn = findViewById(R.id.share_btn)
     }
 
     private fun openInBrowser() {
@@ -56,6 +53,17 @@ class QRBarcodeScanResultActivity : AppCompatActivity() {
         {
             showAlertDialog()
         }
+    }
+
+    private fun share() {
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, scanData)
+            type = "text/plain"
+        }
+
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        startActivity(shareIntent)
     }
 
     private fun showAlertDialog() {
@@ -87,10 +95,19 @@ class QRBarcodeScanResultActivity : AppCompatActivity() {
     }
 
     private fun setupToolbar() {
-        var toolbar = findViewById<Toolbar>(R.id.main_toolbar)
+        var toolbar = findViewById<Toolbar>(R.id.showdata_toolbar)
         toolbar.title = "Scan Result"
         toolbar.setTitleTextAppearance(applicationContext, R.style.TextAppearance_AppCompat_Title)
         toolbar.setTitleTextColor(-0x1)
         setSupportActionBar(toolbar)
+
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
+        getSupportActionBar()?.setDisplayShowHomeEnabled(true)
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
 }

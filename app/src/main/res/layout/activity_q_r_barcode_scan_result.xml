@@ -15,7 +15,7 @@
         >
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/main_toolbar"
+            android:id="@+id/showdata_toolbar"
             android:background="@color/colorPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             android:layout_width="match_parent"
@@ -27,37 +27,37 @@
     <TextView
         android:id="@+id/scanResult_tv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_below="@+id/appBarLayout_scanResult"
-        android:layout_margin="3dp"
-        android:padding="2dp"
+        android:layout_marginTop="30dp"
+        android:padding="8dp"
         android:background="@color/grey"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="22sp"
         />
 
-    <Button
-        android:id="@+id/openInBrowser_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/scanResult_tv"
-        android:text=" Open In Browser  "
-        android:textSize="15sp"
-        android:drawableRight="@drawable/ic_baseline_open_in_browser_24"
-        android:textAllCaps="false"
-        android:padding="8dp"
-        android:elevation="10dp"
-        android:layout_margin="10dp"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/rounded_button_coloraccent"
-        />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/scanResult_tv"
+        android:layout_height="150dp"
+        android:layout_centerVertical="true"
         android:layout_margin="20dp"
         android:layout_centerHorizontal="true">
+
+        <Button
+            android:id="@+id/openInBrowser_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="30dp"
+            android:background="@drawable/rounded_button_coloraccent"
+            android:drawableRight="@drawable/ic_baseline_open_in_browser_24"
+            android:elevation="10dp"
+            android:padding="8dp"
+            android:text=" Open In Browser  "
+            android:textAllCaps="false"
+            android:textSize="15sp" />
 
         <Button
             android:id="@+id/share_btn"
@@ -75,21 +75,6 @@
             android:background="@drawable/rounded_button_coloraccent"
             />
 
-        <Button
-            android:id="@+id/copy_clip_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text=" Copy Text  "
-            android:textSize="15sp"
-            android:drawableRight="@drawable/ic_content_copy_black_24dp"
-            android:textAllCaps="false"
-            android:padding="8dp"
-            android:elevation="10dp"
-            android:layout_margin="30dp"
-            android:layout_alignParentLeft="true"
-            android:background="@drawable/rounded_button_coloraccent"
-            />
     </RelativeLayout>
 
   </RelativeLayout>

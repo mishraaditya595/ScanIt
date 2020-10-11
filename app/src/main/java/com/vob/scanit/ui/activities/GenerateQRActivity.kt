@@ -1,9 +1,7 @@
 package com.vob.scanit.ui.activities
 
-import android.R.attr.bitmap
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -11,6 +9,7 @@ import android.widget.Toast
 import androidmads.library.qrgenearator.QRGContents
 import androidmads.library.qrgenearator.QRGEncoder
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.google.zxing.WriterException
 import com.vob.scanit.R
 
@@ -23,6 +22,8 @@ class GenerateQRActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_generate_q_r)
+
+        setupToolbar()
 
         initialiseFields()
 
@@ -48,7 +49,7 @@ class GenerateQRActivity : AppCompatActivity() {
             }
             else
             {
-                Toast.makeText(applicationContext,"Cannot generate QR for null input",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Cannot generate QR for null input", Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -58,5 +59,21 @@ class GenerateQRActivity : AppCompatActivity() {
         url_et = findViewById(R.id.url_et)
         qr_iv = findViewById(R.id.qr_IV)
         generateBtn = findViewById(R.id.generate_btn)
+    }
+
+    private fun setupToolbar() {
+        var toolbar = findViewById<Toolbar>(R.id.generate_qr_toolbar)
+        toolbar.title = "Generate QR"
+        toolbar.setTitleTextAppearance(applicationContext, R.style.TextAppearance_AppCompat_Title)
+        toolbar.setTitleTextColor(-0x1)
+        setSupportActionBar(toolbar)
+
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
+        getSupportActionBar()?.setDisplayShowHomeEnabled(true)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
