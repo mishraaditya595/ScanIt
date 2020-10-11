@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".ui.activities.QRBarcodeScanResultActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/appBarLayout_scanResult"
+        >
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/main_toolbar"
+            android:background="@color/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/scanResult_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appBarLayout_scanResult"
+        android:layout_margin="3dp"
+        android:padding="2dp"
+        android:background="@color/grey"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        />
+
+    <Button
+        android:id="@+id/openInBrowser_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scanResult_tv"
+        android:text=" Open In Browser  "
+        android:textSize="15sp"
+        android:drawableRight="@drawable/ic_baseline_open_in_browser_24"
+        android:textAllCaps="false"
+        android:padding="8dp"
+        android:elevation="10dp"
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/rounded_button_coloraccent"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scanResult_tv"
+        android:layout_margin="20dp"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:id="@+id/share_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text=" Share "
+            android:textSize="15sp"
+            android:drawableRight="@drawable/ic_baseline_share_24"
+            android:textAllCaps="false"
+            android:padding="8dp"
+            android:elevation="10dp"
+            android:layout_margin="30dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/rounded_button_coloraccent"
+            />
+
+        <Button
+            android:id="@+id/copy_clip_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text=" Copy Text  "
+            android:textSize="15sp"
+            android:drawableRight="@drawable/ic_content_copy_black_24dp"
+            android:textAllCaps="false"
+            android:padding="8dp"
+            android:elevation="10dp"
+            android:layout_margin="30dp"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/rounded_button_coloraccent"
+            />
+    </RelativeLayout>
+
+  </RelativeLayout>

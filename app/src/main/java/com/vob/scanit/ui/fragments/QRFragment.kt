@@ -17,6 +17,7 @@ import com.budiyev.android.codescanner.CodeScannerView
 import com.budiyev.android.codescanner.DecodeCallback
 import com.vob.scanit.R
 import com.vob.scanit.ui.activities.GenerateQRActivity
+import com.vob.scanit.ui.activities.QRBarcodeScanResultActivity
 //import com.google.zxing.integration.android.IntentIntegrator
 //import com.vob.scanit.R
 import com.vob.scanit.ui.activities.ShowQRData
@@ -60,7 +61,9 @@ class QRFragment : Fragment() {
         codeScanner = CodeScanner(activity, scannerView)
         codeScanner.decodeCallback = DecodeCallback {
             activity.runOnUiThread {
-                Toast.makeText(activity, it.text, Toast.LENGTH_LONG).show()
+                val intent = Intent(activity, QRBarcodeScanResultActivity::class.java)
+                intent.putExtra("result", it.text)
+                startActivity(intent)
             }
         }
         scannerView.setOnClickListener {
@@ -86,7 +89,6 @@ class QRFragment : Fragment() {
             }
         }
     }
-
     private fun restartScanner() {
         scannerView.resumeScannerView()
     }*/
@@ -101,7 +103,6 @@ class QRFragment : Fragment() {
         integrator.setBarcodeImageEnabled(false)
         integrator.initiateScan()
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
         val data = scanResult.contents
@@ -109,7 +110,6 @@ class QRFragment : Fragment() {
             view!!.findViewById<TextView>(R.id.result_tv).text = data
         else
             view!!.findViewById<TextView>(R.id.result_tv).text = "Error"
-
     }*/
 
     /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
