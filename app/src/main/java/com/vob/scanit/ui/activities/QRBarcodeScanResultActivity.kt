@@ -31,13 +31,21 @@ class QRBarcodeScanResultActivity : AppCompatActivity() {
         initialiseFields()
 
         setupToolbar()
-        showResult()
+
+        scanResultTV.text = scanData
+
+        openInBrowserBtn.setOnClickListener {openInBrowser()}
 
     }
 
-    private fun showResult() {
+    private fun initialiseFields() {
+        copyToClipboardBtn = findViewById(R.id.copy_clip_btn)
+        openInBrowserBtn = findViewById(R.id.openInBrowser_btn)
+        scanResultTV = findViewById(R.id.scanResult_tv)
+    }
+
+    private fun openInBrowser() {
         val isUrl: Boolean = URLUtil.isValidUrl(scanData)
-        scanResultTV.text = scanData
         if (isUrl)
         {
             val openURL = Intent(Intent.ACTION_VIEW)
@@ -46,38 +54,36 @@ class QRBarcodeScanResultActivity : AppCompatActivity() {
         }
         else
         {
-            val alert: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
-            val mView: View = layoutInflater.inflate(R.layout.filename_dialog, null)
-
-            val txt_inputText: EditText = mView.findViewById<View>(R.id.txt_input) as EditText
-            val btn_cancel: Button = mView.findViewById<View>(R.id.btn_cancel) as Button
-            val btn_okay: Button = mView.findViewById<View>(R.id.btn_okay) as Button
-            val header = mView.findViewById<View>(R.id.heading) as TextView
-
-            header.text = "The data extracted seems not to be URL"
-            txt_inputText.visibility = View.INVISIBLE
-            btn_okay.text = "Open URL"
-            btn_cancel.text = "Close"
-
-            alert.setView(mView)
-            val alertDialog: android.app.AlertDialog? = alert.create()
-            alertDialog?.setCanceledOnTouchOutside(false)
-            btn_cancel.setOnClickListener(View.OnClickListener {
-                alertDialog?.dismiss()
-            })
-            btn_okay.setOnClickListener(View.OnClickListener {
-                val openURL = Intent(Intent.ACTION_VIEW)
-                openURL.data = Uri.parse("https://$scanData")
-                startActivity(openURL)
-            })
-            alertDialog?.show()
+            showAlertDialog()
         }
     }
 
-    private fun initialiseFields() {
-        copyToClipboardBtn = findViewById(R.id.copy_clip_btn)
-        openInBrowserBtn = findViewById(R.id.openInBrowser_btn)
-        scanResultTV = findViewById(R.id.scanResult_tv)
+    private fun showAlertDialog() {
+        val alert: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
+        val mView: View = layoutInflater.inflate(R.layout.filename_dialog, null)
+
+        val txt_inputText: EditText = mView.findViewById<View>(R.id.txt_input) as EditText
+        val btn_cancel: Button = mView.findViewById<View>(R.id.btn_cancel) as Button
+        val btn_okay: Button = mView.findViewById<View>(R.id.btn_okay) as Button
+        val header = mView.findViewById<View>(R.id.heading) as TextView
+
+        header.text = "The data extracted seems not to be URL"
+        txt_inputText.visibility = View.GONE
+        btn_okay.text = "Open URL"
+        btn_cancel.text = "Close"
+
+        alert.setView(mView)
+        val alertDialog: android.app.AlertDialog? = alert.create()
+        alertDialog?.setCanceledOnTouchOutside(false)
+        btn_cancel.setOnClickListener(View.OnClickListener {
+            alertDialog?.dismiss()
+        })
+        btn_okay.setOnClickListener(View.OnClickListener {
+            val openURL = Intent(Intent.ACTION_VIEW)
+            openURL.data = Uri.parse("https://$scanData")
+            startActivity(openURL)
+        })
+        alertDialog?.show()
     }
 
     private fun setupToolbar() {
