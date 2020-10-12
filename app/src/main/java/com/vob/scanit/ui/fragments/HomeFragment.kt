@@ -16,11 +16,11 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import com.getbase.floatingactionbutton.FloatingActionButton
 import com.monscanner.ScanActivity
 import com.monscanner.ScanConstants
-import com.vob.scanit.BottomSheetDialog
 import com.vob.scanit.BuildConfig
 import com.vob.scanit.PDFProcessing
 import com.vob.scanit.R
@@ -120,9 +120,18 @@ class HomeFragment : Fragment() {
     }
 
     private fun openBottomSheet(position: Int) {
+        val file = listOfFiles.get(position)
+        val uri: Uri = FileProvider.getUriForFile(context!!, "com.vob.scanit.provider", file)
 
-        val bottomSheetDialog = BottomSheetDialog()
-        bottomSheetDialog.show(activity!!.supportFragmentManager, "Modal Bottom Sheet")
+
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.putExtra(Intent.EXTRA_STREAM, uri)
+        intent.setType("application/pdf")
+        startActivity(Intent.createChooser(intent,"Share via"))
+
+
+        //val bottomSheetDialog = BottomSheetDialog()
+        //bottomSheetDialog.show(activity!!.supportFragmentManager, "Modal Bottom Sheet")
     }
 
     fun getFiles(dir: File): ArrayList<File> {
