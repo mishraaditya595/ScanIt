@@ -20,11 +20,12 @@ import androidx.fragment.app.Fragment
 import com.getbase.floatingactionbutton.FloatingActionButton
 import com.monscanner.ScanActivity
 import com.monscanner.ScanConstants
+import com.vob.scanit.BottomSheetDialog
 import com.vob.scanit.BuildConfig
+import com.vob.scanit.PDFProcessing
 import com.vob.scanit.R
 import com.vob.scanit.adapters.PDFAdapter
 import com.vob.scanit.ui.activities.DisplayPDFActivity
-import com.vob.scanit.PDFProcessing
 import org.jetbrains.annotations.Nullable
 import java.io.File
 import java.io.FileNotFoundException
@@ -99,7 +100,7 @@ class HomeFragment : Fragment() {
         dir = File(Environment.getExternalStorageDirectory().absolutePath, "Scanner")
         listOfFiles = getFiles(dir)
 
-        pdfAdapter = PDFAdapter(activity?.applicationContext, listOfFiles)
+        pdfAdapter = PDFAdapter(activity?.applicationContext, listOfFiles, activity)
         listView.adapter = pdfAdapter
         
         listView.setOnItemClickListener { parent, view, position, id ->
@@ -112,9 +113,19 @@ class HomeFragment : Fragment() {
             startActivity(intent)
 
         }
+        listView.onItemLongClickListener = AdapterView.OnItemLongClickListener { parent, view, position, id ->
+            openBottomSheet(position)
+            true
+        }
     }
 
-        fun getFiles(dir: File): ArrayList<File> {
+    private fun openBottomSheet(position: Int) {
+
+        val bottomSheetDialog = BottomSheetDialog()
+        bottomSheetDialog.show(activity!!.supportFragmentManager, "Modal Bottom Sheet")
+    }
+
+    fun getFiles(dir: File): ArrayList<File> {
             val listFiles: Array<File>? = dir.listFiles()
             var fileList: ArrayList<File> = ArrayList()
 
