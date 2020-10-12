@@ -101,8 +101,8 @@ class QRBarcodeScanResultActivity : AppCompatActivity() {
         toolbar.setTitleTextColor(-0x1)
         setSupportActionBar(toolbar)
 
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
-        getSupportActionBar()?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
     override fun onSupportNavigateUp(): Boolean {

@@ -1,7 +1,10 @@
 package com.vob.scanit.ui.activities
 
+import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.ImageView
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -73,10 +76,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupToolbar() {
         var toolbar = findViewById<Toolbar>(R.id.main_toolbar)
-        toolbar.setTitle("ScanIt")
-        toolbar.setTitleTextAppearance(applicationContext, R.style.TextAppearance_AppCompat_Title)
-        toolbar.setTitleTextColor(-0x1)
+        //toolbar.setTitle("ScanIt")
+        //toolbar.setTitleTextAppearance(applicationContext, R.style.TextAppearance_AppCompat_Title)
+        //toolbar.setTitleTextColor(-0x1)
+
         setSupportActionBar(toolbar)
+
+
     }
 
     private fun loadFragment(fragment: Fragment) {

@@ -75,16 +75,19 @@ class HomeFragment : Fragment() {
     private fun checkForStoragePermissions() {
         //camera permissions
         if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+        {
             ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), 2)
         }
 
         //storage permissions
-        if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+        {
             ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
         }
 
-        if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+        {
             ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
         }
     }
@@ -100,29 +103,9 @@ class HomeFragment : Fragment() {
         listView.adapter = pdfAdapter
         
         listView.setOnItemClickListener { parent, view, position, id ->
-            /*val intent = Intent(context?.applicationContext, DisplayPDFActivity::class.java)
-            intent.putExtra("position", position)
-            intent.putExtra("filename", listOfFiles.get(position).name)
-            intent.putExtra("file", listOfFiles.get(position))
 
-            startActivity(intent)*/
             val file = listOfFiles.get(position)
-            /*val apkURI: Uri = FileProvider.getUriForFile(
-                    context!!, context!!.applicationContext
-                    .packageName.toString() + ".provider", file)
-            val target = Intent(Intent.ACTION_VIEW)
-            target.setDataAndType(apkURI, "")
-            target.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
 
-            val intent = Intent.createChooser(target, "Open File")
-            //intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-            //intent.flags = Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-            try {
-                Toast.makeText(context, file.path, Toast.LENGTH_LONG).show()
-                startActivity(intent)
-            } catch (e: ActivityNotFoundException) {
-                Toast.makeText(context, "No PDF reader found. Install a PDF reader to view files.", Toast.LENGTH_LONG).show()
-            }*/
             val intent = Intent(context?.applicationContext, DisplayPDFActivity::class.java)
             intent.putExtra("uri", file.toURI().toString())
             intent.putExtra("filename", file.name)
@@ -135,21 +118,31 @@ class HomeFragment : Fragment() {
             val listFiles: Array<File>? = dir.listFiles()
             var fileList: ArrayList<File> = ArrayList()
 
-            if (listFiles != null && listFiles.size > 0) {
-                for (item in listFiles) {
-                    if (item.isDirectory) {
+            if (listFiles != null && listFiles.size > 0)
+            {
+                for (item in listFiles)
+                {
+                    if (item.isDirectory)
+                    {
                         getFiles(item)
-                    } else {
+                    }
+                    else
+                    {
                         var flag: Boolean = false
-                        if (item.name.endsWith(".pdf")) {
-                            for (element in fileList) {
-                                if (element.name.equals(item.name)) {
+                        if (item.name.endsWith(".pdf"))
+                        {
+                            for (element in fileList)
+                            {
+                                if (element.name.equals(item.name))
+                                {
                                     flag = true
                                 }
                             }
-                            if (flag) {
+                            if (flag)
+                            {
                                 flag = false
-                            } else {
+                            } else
+                            {
                                 fileList.add(item)
                             }
                         }
@@ -161,17 +154,23 @@ class HomeFragment : Fragment() {
 
         fun openCamera(view: View?) {
             if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
-                    ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+            {
                 ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), 2)
-            } else {
+            }
+            else
+            {
                 startScan(ScanConstants.OPEN_CAMERA)
             }
         }
 
         fun openGallery(view: View?) {
-            if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+            {
                 ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
-            } else {
+            }
+            else
+            {
                 startScan(ScanConstants.OPEN_GALERIE)
             }
         }
@@ -184,10 +183,14 @@ class HomeFragment : Fragment() {
 
         override fun onActivityResult(requestCode: Int, resultCode: Int, @Nullable data: Intent?) {
             super.onActivityResult(requestCode, resultCode, data)
-            if (resultCode == RESULT_OK) {
-                if (requestCode == REQUEST_CODE) {
-                    try {
-                        if (BuildConfig.DEBUG && data == null) {
+            if (resultCode == RESULT_OK)
+            {
+                if (requestCode == REQUEST_CODE)
+                {
+                    try
+                    {
+                        if (BuildConfig.DEBUG && data == null)
+                        {
                             error("Assertion failed")
                         }
                         val imageUri: Uri = Objects.requireNonNull(data!!.extras)?.getParcelable(ScanActivity.SCAN_RESULT)!!
@@ -201,7 +204,9 @@ class HomeFragment : Fragment() {
 
 
                         //Toast.makeText(context, "Null filename", Toast.LENGTH_SHORT).show()
-                    } catch (e: FileNotFoundException) {
+                    }
+                    catch (e: FileNotFoundException)
+                    {
                         e.printStackTrace()
                     }
                 }

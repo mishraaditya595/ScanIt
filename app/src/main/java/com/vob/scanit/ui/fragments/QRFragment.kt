@@ -36,14 +36,6 @@ class QRFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_q_r, container, false)
 
-        //val i = Intent(activity, QrCodeActivity::class.java)
-        //startActivityForResult(i, REQUEST_CODE_QR_SCAN)
-
-        //val button = view.findViewById<Button>(R.id.startscan_btn)
-        //button.setOnClickListener { letsScan() }
-
-        //scannerView = view.findViewById(R.id.scannerView)
-        //startScanner()
 
         val generateQRBtn: Button = view.findViewById(R.id.generate_qr_btn)
         generateQRBtn.setOnClickListener {
@@ -81,59 +73,4 @@ class QRFragment : Fragment() {
         super.onPause()
     }
 
-    /*private fun startScanner() {
-        scannerView.apply {
-            //addObserver(context)
-            onResultListener {
-                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-    private fun restartScanner() {
-        scannerView.resumeScannerView()
-    }*/
-
-
-    /*private fun letsScan() {
-        val integrator = IntentIntegrator(activity)
-        integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES)
-        integrator.setPrompt("scan")
-        integrator.setCameraId(0)
-        integrator.setBeepEnabled(false)
-        integrator.setBarcodeImageEnabled(false)
-        integrator.initiateScan()
-    }
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        val scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
-        val data = scanResult.contents
-        if (data!=null)
-            view!!.findViewById<TextView>(R.id.result_tv).text = data
-        else
-            view!!.findViewById<TextView>(R.id.result_tv).text = "Error"
-    }*/
-
-    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (resultCode != Activity.RESULT_OK) {
-            //Log.d(LOGTAG, "COULD NOT GET A GOOD RESULT.")
-            if (data == null)
-                return
-            val result = data.getStringExtra("com.blikoon.qrcodescanner.error_decoding_image")
-            if (result != null)
-            {
-                Toast.makeText(context,"QR code could not be scanned.", Toast.LENGTH_SHORT).show()
-            }
-            return
-        }
-        if (requestCode == REQUEST_CODE_QR_SCAN)
-        {
-            if (data == null) return
-            //Getting the passed result
-            val result = data.getStringExtra("com.blikoon.qrcodescanner.got_qr_scan_relult")
-            //Log.d(LOGTAG, "Have scan result in your app activity :$result")
-            val intent = Intent(QRFragment().context, ShowQRData::class.java)
-            intent.putExtra("data",result)
-            startActivity(intent)
-            //Toast.makeText(QRFragment().context,result, Toast.LENGTH_SHORT).show()
-        }
-    }*/
 }
