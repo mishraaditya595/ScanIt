@@ -18,6 +18,14 @@
         android:layout_marginTop="10dp"
         android:hint="Enter file name here"
         android:textSize="20sp" />
+    <TextView
+        android:id="@+id/error_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Error: File name already taken."
+        android:textColor="@color/Red"
+        android:visibility="gone"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

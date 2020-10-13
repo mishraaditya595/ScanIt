@@ -256,6 +256,9 @@ class HomeFragment : Fragment() {
             val txt_inputText: EditText = mView.findViewById<View>(R.id.txt_input) as EditText
             val btn_cancel: Button = mView.findViewById<View>(R.id.btn_cancel) as Button
             val btn_okay: Button = mView.findViewById<View>(R.id.btn_okay) as Button
+            val error_msg : TextView = mView.findViewById(R.id.error_msg)
+
+            var errorCode: Boolean = true
             alert.setView(mView)
             val alertDialog: android.app.AlertDialog? = alert.create()
             alertDialog?.setCanceledOnTouchOutside(false)
@@ -265,9 +268,22 @@ class HomeFragment : Fragment() {
             })
             btn_okay.setOnClickListener(View.OnClickListener {
                 name = txt_inputText.text.toString()
+                val filelist = getFiles(dir)
+                for (file in filelist)
+                {
+                    if (file.name.equals("$name.pdf"))
+                    {
+                        Toast.makeText(context, "Error: File with the given name already exists.", Toast.LENGTH_SHORT).show()
+                        error_msg.visibility = View.VISIBLE
+                        errorCode = false
+                    }
+                }
+                if (errorCode)
+                {
+                    Toast.makeText(context, "Generating PDF...", Toast.LENGTH_SHORT).show()
+                    PDFProcessing().makePDF(scannedImage, name)
+                }
                 alertDialog?.dismiss()
-                Toast.makeText(context, "Generating PDF...", Toast.LENGTH_SHORT).show()
-                PDFProcessing().makePDF(scannedImage, name)
 
                 val handler = Handler()
                 handler.postDelayed({
