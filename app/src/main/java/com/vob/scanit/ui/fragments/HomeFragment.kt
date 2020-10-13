@@ -11,6 +11,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +20,7 @@ import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.getbase.floatingactionbutton.FloatingActionButton
 import com.monscanner.ScanActivity
@@ -42,14 +45,12 @@ class HomeFragment : Fragment() {
 
     lateinit var openCameraButton: FloatingActionButton
     lateinit var openFilesButton: FloatingActionButton
-    var bitmap: Bitmap? = null
     private val REQUEST_CODE = 7
-    private var imageView: ImageView? = null
-    lateinit var pdfDocument: PdfDocument
     lateinit var listView: ListView
     lateinit var pdfAdapter: PDFAdapter
     lateinit var dir: File
     lateinit var listOfFiles: ArrayList<File>
+    lateinit var searchBar: EditText
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -91,6 +92,19 @@ class HomeFragment : Fragment() {
             true
         }
 
+        searchBar.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val string = s.toString()
+                pdfAdapter.filter(string)
+            }
+        })
+
         return view
     }
 
@@ -119,7 +133,7 @@ class HomeFragment : Fragment() {
         openFilesButton = view.findViewById(R.id.openFilesButton)!!
         listView = view.findViewById(R.id.listView)
         dir = File(Environment.getExternalStorageDirectory().absolutePath, "Scanner")
-
+        searchBar = view.findViewById(R.id.search_bar_HF)
     }
 
     fun updateListView(){

@@ -25,11 +25,15 @@ import com.vob.scanit.ui.fragments.HomeFragment;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Locale;
 
 public class PDFAdapter extends ArrayAdapter<File> {
 
     Context context;
     ArrayList<File> fileList;
+    ArrayList<File> searchList = new ArrayList<>();
     ViewHolder viewHolder;
     private ImageView options_btn;
     Activity activity;
@@ -39,6 +43,7 @@ public class PDFAdapter extends ArrayAdapter<File> {
         this.context = context;
         this.fileList = fileList;
         this.activity = activity;
+        this.searchList.addAll(this.fileList);
     }
 
     @Override
@@ -74,6 +79,26 @@ public class PDFAdapter extends ArrayAdapter<File> {
 
 
         return view;
+    }
+
+    public void filter(String characterText) {
+        characterText = characterText.toLowerCase(Locale.getDefault());
+        fileList.clear();
+        if (characterText.length() == 0)
+        {
+            fileList.addAll(searchList);
+        }
+        else
+        {
+            for (File file : searchList)
+            {
+                if (file.getName().toLowerCase(Locale.getDefault()).contains(characterText))
+                {
+                    fileList.add(file);
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 
     public class ViewHolder

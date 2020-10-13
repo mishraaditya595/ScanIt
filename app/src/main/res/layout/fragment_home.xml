@@ -6,11 +6,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.HomeFragment"
     android:background="#000000">
+    
+    <EditText
+        android:id="@+id/search_bar_HF"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Search"
+        android:textColor="@color/white"
+        android:padding="10dp"
+        />
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/search_bar_HF"
         android:divider="#6F6C6C"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
