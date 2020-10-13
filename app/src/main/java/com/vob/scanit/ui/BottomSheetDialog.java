@@ -66,16 +66,16 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
                 {
                     if (fdelete.delete())
                     {
-                        Toast.makeText(getActivity(),"file Deleted :" + uri.getPath(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),"File deleted successfully.",Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
-                        Toast.makeText(getActivity(),"file Deleted :" + uri.getPath(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),"File could not be deleted." + uri.getPath(),Toast.LENGTH_SHORT).show();
                     }
                 }
                 else
                 {
-                    Toast.makeText(getActivity(),"file does not exist :" + uri.getPath(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"Error: File not found",Toast.LENGTH_SHORT).show();
                 }
                 dismiss();
             }

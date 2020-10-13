@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.pdf.PdfDocument
 import android.os.Environment
+import com.vob.scanit.ui.fragments.HomeFragment
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException

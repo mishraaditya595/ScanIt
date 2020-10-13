@@ -10,6 +10,7 @@ import android.graphics.pdf.PdfDocument
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,6 +28,7 @@ import com.vob.scanit.PDFProcessing
 import com.vob.scanit.R
 import com.vob.scanit.adapters.PDFAdapter
 import com.vob.scanit.ui.activities.DisplayPDFActivity
+import com.vob.scanit.ui.activities.MainActivity
 import org.jetbrains.annotations.Nullable
 import java.io.File
 import java.io.FileNotFoundException
@@ -68,8 +70,26 @@ class HomeFragment : Fragment() {
 
         initialiseFields(view)
 
+        updateListView()
+
         openCameraButton.setOnClickListener { openCamera(view) }
         openFilesButton.setOnClickListener { openGallery(view) }
+
+        listView.setOnItemClickListener { parent, view, position, id ->
+
+            val file = listOfFiles.get(position)
+
+            val intent = Intent(context?.applicationContext, DisplayPDFActivity::class.java)
+            intent.putExtra("uri", file.toURI().toString())
+            intent.putExtra("filename", file.name)
+            startActivity(intent)
+
+        }
+
+        listView.onItemLongClickListener = AdapterView.OnItemLongClickListener { parent, view, position, id ->
+            openBottomSheet(position)
+            true
+        }
 
         return view
     }
@@ -99,25 +119,14 @@ class HomeFragment : Fragment() {
         openFilesButton = view.findViewById(R.id.openFilesButton)!!
         listView = view.findViewById(R.id.listView)
         dir = File(Environment.getExternalStorageDirectory().absolutePath, "Scanner")
-        listOfFiles = getFiles(dir)
 
+    }
+
+    fun updateListView(){
+        listOfFiles = getFiles(dir)
+        listOfFiles.sort()
         pdfAdapter = PDFAdapter(activity?.applicationContext, listOfFiles, activity)
         listView.adapter = pdfAdapter
-        
-        listView.setOnItemClickListener { parent, view, position, id ->
-
-            val file = listOfFiles.get(position)
-
-            val intent = Intent(context?.applicationContext, DisplayPDFActivity::class.java)
-            intent.putExtra("uri", file.toURI().toString())
-            intent.putExtra("filename", file.name)
-            startActivity(intent)
-
-        }
-        listView.onItemLongClickListener = AdapterView.OnItemLongClickListener { parent, view, position, id ->
-            openBottomSheet(position)
-            true
-        }
     }
 
     private fun openBottomSheet(position: Int) {
@@ -243,11 +252,15 @@ class HomeFragment : Fragment() {
             btn_okay.setOnClickListener(View.OnClickListener {
                 name = txt_inputText.text.toString()
                 alertDialog?.dismiss()
-                Toast.makeText(context, "Generating PDF...", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Generating PDF...", Toast.LENGTH_SHORT).show()
                 PDFProcessing().makePDF(scannedImage, name)
+
+                val handler = Handler()
+                handler.postDelayed({
+                    updateListView()
+                },1000)
             })
             alertDialog?.show()
-
         }
 
 }
