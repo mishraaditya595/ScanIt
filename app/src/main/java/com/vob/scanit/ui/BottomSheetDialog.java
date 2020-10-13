@@ -14,8 +14,10 @@ import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.pranavpandey.android.dynamic.toasts.DynamicToast;
 import com.vob.scanit.R;
 import com.vob.scanit.ui.activities.MainActivity;
+import com.vob.scanit.ui.fragments.HomeFragment;
 
 import java.io.File;
 
@@ -66,7 +68,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
                 {
                     if (fdelete.delete())
                     {
-                        Toast.makeText(getActivity(),"File deleted successfully.",Toast.LENGTH_SHORT).show();
+                        DynamicToast.makeSuccess(getActivity(),"File deleted successfully.",Toast.LENGTH_SHORT).show();
                     }
                     else
                     {

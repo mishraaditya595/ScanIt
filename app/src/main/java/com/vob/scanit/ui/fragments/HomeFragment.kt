@@ -25,6 +25,7 @@ import androidx.fragment.app.Fragment
 import com.getbase.floatingactionbutton.FloatingActionButton
 import com.monscanner.ScanActivity
 import com.monscanner.ScanConstants
+import com.pranavpandey.android.dynamic.toasts.DynamicToast
 import com.vob.scanit.ui.BottomSheetDialog
 import com.vob.scanit.BuildConfig
 import com.vob.scanit.PDFProcessing
@@ -137,6 +138,7 @@ class HomeFragment : Fragment() {
     }
 
     fun updateListView(){
+        dir = File(Environment.getExternalStorageDirectory().absolutePath, "Scanner")
         listOfFiles = getFiles(dir)
         listOfFiles.sort()
         pdfAdapter = PDFAdapter(activity?.applicationContext, listOfFiles, activity)
@@ -148,6 +150,11 @@ class HomeFragment : Fragment() {
 
         val bottomSheetDialog = BottomSheetDialog(file)
         bottomSheetDialog.show(activity!!.supportFragmentManager, "Modal Bottom Sheet")
+
+        val handler = Handler()
+        handler.postDelayed({
+            updateListView()
+        },2000)
     }
 
     fun getFiles(dir: File): ArrayList<File> {
@@ -273,7 +280,8 @@ class HomeFragment : Fragment() {
                 {
                     if (file.name.equals("$name.pdf"))
                     {
-                        Toast.makeText(context, "Error: File with the given name already exists.", Toast.LENGTH_SHORT).show()
+                        DynamicToast.makeWarning(context!!,"File with the given name already exists.",Toast.LENGTH_LONG).show()
+                        //Toast.makeText(context, "Error: File with the given name already exists.", Toast.LENGTH_SHORT).show()
                         error_msg.visibility = View.VISIBLE
                         errorCode = false
                     }
