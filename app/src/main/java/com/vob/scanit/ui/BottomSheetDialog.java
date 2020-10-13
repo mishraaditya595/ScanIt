@@ -61,7 +61,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v)
             {
-                File fdelete = new File(uri.getPath());
+                File fdelete = file;
                 if (fdelete.exists())
                 {
                     if (fdelete.delete())
@@ -72,6 +72,10 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
                     {
                         Toast.makeText(getActivity(),"file Deleted :" + uri.getPath(),Toast.LENGTH_SHORT).show();
                     }
+                }
+                else
+                {
+                    Toast.makeText(getActivity(),"file does not exist :" + uri.getPath(),Toast.LENGTH_SHORT).show();
                 }
                 dismiss();
             }
