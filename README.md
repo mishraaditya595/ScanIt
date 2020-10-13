@@ -59,7 +59,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ## Credits
 
-The following libraries/modules are used in the project:
+The following libraries/modules/resources are used in the project:
 
 - [Scan Library](https://github.com/jhansireddy/AndroidScannerDemo) by Jhansi Karee, licenced under MIT.
 - [OpenCV Android](http://opencv.org/) licenced under BSD.
@@ -70,7 +70,8 @@ The following libraries/modules are used in the project:
 - [Splashy](https://github.com/rahuldange09/Splashy) by Rahul Dange, licenced under Apache 2.0.
 - [QR Generator](https://github.com/androidmads/QRGenerator) by Mushtaq M A, licenced under MIT.
 - [ZXing Core](https://mvnrepository.com/artifact/com.google.zxing/core/3.3.2) by Google.
+- [Dynamic Toasts](https://github.com/pranavpandey/dynamic-toasts) by Pranav Pandey, licenced under Apache 2.0.
 
-- [Material.io](https://material.io/) for providing resources for frontend work.
+- [Material.io](https://material.io/) 
 
 ### Thanks to every one.
