@@ -10,8 +10,7 @@
     <RelativeLayout
         android:id="@+id/top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
         <Space
             android:layout_width="wrap_content"
@@ -37,6 +36,7 @@
             android:scaleType="fitCenter"
             android:layout_alignParentLeft="true"
             android:src="@drawable/settings" />
+
     </RelativeLayout>
 
     <FrameLayout
