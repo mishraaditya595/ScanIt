@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".ui.activities.GenerateQRActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -28,8 +29,11 @@
         android:layout_height="wrap_content"
         android:hint="Enter the url here for which QR has to be generated"
         android:padding="10dp"
-        android:layout_margin="10dp"
-        android:layout_above="@+id/generate_btn"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_below="@+id/appBarLayout_generate_qr"
+        android:background="@drawable/rounded_edit_text"
         />
 
     <Button
@@ -38,9 +42,10 @@
         android:layout_height="wrap_content"
         android:text="Generate"
         android:textAllCaps="false"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/url_et"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
+        android:layout_margin="10dp"
+        android:elevation="50dp"
         android:background="@drawable/rounded_button_coloraccent"
         />
 
@@ -51,6 +56,44 @@
         android:layout_height="300dp"
         android:layout_margin="10dp"
         android:layout_centerInParent="true"
+        android:src="@color/NavyBlue"
         />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        >
+
+        <Button
+            android:id="@+id/share_qr_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:text="Share"
+            android:textAllCaps="false"
+            android:background="@drawable/rounded_button_coloraccent"
+            />
+
+        <Button
+            android:id="@+id/save_qr_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/share_qr_button"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="10dp"
+            android:text="Save"
+            android:textAllCaps="false"
+            android:background="@drawable/rounded_button_coloraccent"
+            />
+
+    </RelativeLayout>
+
+
+
 
 </RelativeLayout>

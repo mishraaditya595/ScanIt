@@ -42,6 +42,7 @@ public class PDFProcessing() {
             return
         }
         val root = File(Environment.getExternalStorageDirectory().absolutePath, "Scanner")
+
         var isDirectoryCreated: Boolean = root.exists()
         if (!isDirectoryCreated) {
             isDirectoryCreated = root.mkdir()
