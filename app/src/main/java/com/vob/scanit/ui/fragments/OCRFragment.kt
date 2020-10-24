@@ -29,6 +29,7 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.google.firebase.ml.vision.text.FirebaseVisionText
 import com.monscanner.ScanActivity
 import com.monscanner.ScanConstants
+import com.pranavpandey.android.dynamic.toasts.DynamicToast
 import com.vob.scanit.R
 import java.io.File
 import java.io.InputStream
@@ -207,7 +208,7 @@ class OCRFragment : Fragment() {
     private fun copyTextToClipboard() {
         if (textView.text.isEmpty())
         {
-            Toast.makeText(context, "Error: No text found.", Toast.LENGTH_LONG).show()
+            DynamicToast.makeError(context!!, "Error: No text found.", Toast.LENGTH_LONG).show()
             return
         }
 
@@ -215,6 +216,6 @@ class OCRFragment : Fragment() {
         var clip = ClipData.newPlainText("Copied Text", textView.text)
 
         //clipboard.primaryClip = clip
-        Toast.makeText(context, "Text copied to clipboard", Toast.LENGTH_SHORT).show()
+        DynamicToast.makeSuccess(context!!, "Text copied to clipboard", Toast.LENGTH_SHORT).show()
     }
 }

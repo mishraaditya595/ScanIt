@@ -14,7 +14,7 @@
 
     <item
         android:id="@+id/qr"
-        android:icon="@drawable/ic_baseline_code_24"
+        android:icon="@drawable/ic_qr_code_black_24dp"
         android:title="Scan Code"
         />
 </menu>
