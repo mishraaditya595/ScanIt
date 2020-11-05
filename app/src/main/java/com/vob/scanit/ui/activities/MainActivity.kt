@@ -76,9 +76,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupToolbar() {
         var toolbar = findViewById<Toolbar>(R.id.main_toolbar)
-        //toolbar.setTitle("ScanIt")
-        //toolbar.setTitleTextAppearance(applicationContext, R.style.TextAppearance_AppCompat_Title)
-        //toolbar.setTitleTextColor(-0x1)
+        toolbar.setTitle("ScanIt")
+        toolbar.setTitleTextAppearance(applicationContext, R.style.TextAppearance_AppCompat_Title)
+        toolbar.setTitleTextColor(-0x1)
 
         setSupportActionBar(toolbar)
 

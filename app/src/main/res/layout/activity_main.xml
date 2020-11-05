@@ -21,20 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/app_name"
-                android:textStyle="bold"
-                android:textSize="25sp"
-                android:textColor="@color/white"
-                android:gravity="center"
-                android:padding="5dp"
-                android:layout_marginRight="15dp"
-                android:textIsSelectable="false"
-                android:elevation="15dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                />
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
