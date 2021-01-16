@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.vob.scanit" >
+    package="com.vob.scanit">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -13,11 +13,11 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/scanit_icon_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".ui.activities.QRBarcodeScanResultActivity" >
-        </activity>
+        android:theme="@style/AppTheme">
+        <activity android:name=".ui.activities.AboutAppActivity"></activity>
+        <activity android:name=".ui.activities.QRBarcodeScanResultActivity"></activity>
         <activity android:name=".ui.activities.GenerateQRActivity" />
-        <activity android:name=".ui.activities.SplashScreenActivity" >
+        <activity android:name=".ui.activities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activities.ShowQRData" />
-        <activity android:name=".ui.activities.DisplayPDFActivity" >
+        <activity android:name=".ui.activities.DisplayPDFActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.vob.scanit.ui.activities.MainActivity" />
@@ -40,7 +40,7 @@
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
-            android:grantUriPermissions="true" >
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />

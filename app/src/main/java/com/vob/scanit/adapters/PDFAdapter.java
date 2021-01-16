@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.pranavpandey.android.dynamic.toasts.DynamicToast;
 import com.vob.scanit.R;
 import com.vob.scanit.ui.activities.MainActivity;
 import com.vob.scanit.ui.fragments.HomeFragment;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Handler;
 
 public class PDFAdapter extends ArrayAdapter<File> {
 
@@ -76,6 +78,13 @@ public class PDFAdapter extends ArrayAdapter<File> {
         }
         viewHolder.filename.setText(fileList.get(position).getName());
         options_btn = view.findViewById(R.id.options_btn);
+
+        options_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DynamicToast.makeWarning(v.getContext(),"Long press on the filename to open options menu",Toast.LENGTH_LONG).show();
+            }
+        });
 
 
         return view;

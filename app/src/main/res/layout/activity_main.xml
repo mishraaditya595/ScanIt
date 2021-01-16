@@ -10,13 +10,12 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?android:attr/actionBarSize"
         android:id="@+id/appBarLayout"
         >
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/main_toolbar"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorPrimaryDark"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
