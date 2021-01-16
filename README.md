@@ -1,41 +1,42 @@
 # ScanIt
 
 ScanIt is an Android application that aims to be your all in one scanner. The best part of the application is the fact that it is open source.
-### Note: The beta version of the app has been released on the Google Play Store.
+> Note: The beta version of the app has been released on the Google Play Store.
 
 <a href="https://play.google.com/store/apps/details?id=com.vob.scanit" target="_blank">
 <img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" alt="Get it on Google Play" height="90"/></a>
 
 
-# Features
-### Note: The beta release on the Google Play Store might not have all the features mentioned here. New features will eventually show up. You are requested to have patience.
+# Features ✨
+ >Note: The beta release on the Google Play Store might not have all the features mentioned here. New features will eventually show up. You are requested to have patience.
 1. Easily converts images into a PDF file.
 2. Automatically detects edges from the image, so you don't have to.
 3. Live scanning of documents.
 4. Quickly extract texts from image.
 5. Read and Generate QR codes.
 
-### No processing happens on any server other than your phone. 
-### There is no risk of data theft from this side.
+> Note: No processing happens on any server other than your phone and there is no risk of data theft from this side.
 
-## Screenshots
+## Screenshots 📱
 
 <img src="https://github.com/mishraaditya595/ScanIt/blob/master/Screenshots/1603558649389.png" alt="Screenshot" height="350" width="200"/></a>
 <img src="https://github.com/mishraaditya595/ScanIt/blob/master/Screenshots/1603558656662.png" alt="Screenshot" height="350" width="200"/></a>
 <img src="https://github.com/mishraaditya595/ScanIt/blob/master/Screenshots/1603558640202.png" alt="Screenshot" height="350" width="200"/></a>
 <img src="https://github.com/mishraaditya595/ScanIt/blob/master/Screenshots/1603558629214.png" alt="Screenshot" height="350" width="200"/></a>
 
-## Contributing
+## Contributing 💻
 
 If you have any idea, feel free to fork it and submit your changes back to me. Contributions are appreciated.
 
-Please check the contributing guidelines and the code of conduct [here](https://github.com/mishraaditya595/Scanner/blob/master/CONTRIBUTING.md) before making a pull request.
+Please check the contributing guidelines [here](https://github.com/mishraaditya595/Scanner/blob/master/CONTRIBUTING.md) before making a pull request.
 
-## License
+Do checkout code of conduct [here](https://github.com/mishraaditya595/Scanner/blob/master/CODE_OF_CONDUCT.md).
+
+## License ✅
 
 This project is licensed under BSD 3-Clause "New" or "Revised" License. Check it out [here](https://github.com/mishraaditya595/ScanIt/blob/master/LICENSE).
 
-## Credits
+## Credits 👨‍💼
 
 The following libraries/modules/resources are used in the project:
 
@@ -51,5 +52,10 @@ The following libraries/modules/resources are used in the project:
 - [Dynamic Toasts](https://github.com/pranavpandey/dynamic-toasts) by Pranav Pandey, licenced under Apache 2.0.
 
 - [Material.io](https://material.io/) 
+
+## Open-source Programs we are a part of 👨‍💻
+Winter of Code is an open-source program envisioned by DevScript that helps understand the paradigm of Open Source contribution. It aims to bring students into the world of open source development and see the power of unified problem solving in real time.<br>
+
+<img src="https://devscript.tech/woc/img/WOC-logo.png" width="25%">
 
 ### Thanks to every one.
