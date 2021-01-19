@@ -5,7 +5,7 @@ This documentation contains a set of guidelines to help you during the contribut
 We are happy to welcome all the contributions from anyone willing to improve/add new scripts to this project. Thank you for helping out and remember, **no contribution is too small.** 
 
 - Each participant/contributor will be assigned **2 issues (max)** at a time to work.
-- Participants/contributors have **7 days** to complete issues. After that issues will be assigned to others.
+- Participants/contributors have **3 days** to complete issues. After that issues will be assigned to others.
 - Participants/contributors have to **comment** on issues they would like to work on, and mentors will assign you.
 - Issues will be assigned on a **first-come, first-serve basis**.
 - Participants/contributors can also **open their issues**, but it needs to be verified and labelled by a mentor.
@@ -24,8 +24,6 @@ We are happy to welcome all the contributions from anyone willing to improve/add
   - You must **comment** on your code where necessary.
   - For **frontend changes** kindly share screenshots and work samples of your work before sending a PR.
   - Follow the proper [**style guides**](https://google.github.io/styleguide/) for your work.
-
-- For any queries or discussions, please drop a message in our **SWOC slack channel or DWOC discord server**
   
 # Submitting Contributions👩‍💻👨‍💻  
 Below you will find the process and workflow used to review and merge your changes.  
@@ -124,4 +122,4 @@ You can refer to the following articles on basics of Git and Github and also con
 - [Learn GitHub from Scratch](https://lab.github.com/githubtraining/introduction-to-github)  
   '
  
-It always takes {""time to understand and learn. So, do not worry at all. We know **you have got this**!💪
+It always takes time to understand and learn. So, do not worry at all. We know **you have got this**!💪
