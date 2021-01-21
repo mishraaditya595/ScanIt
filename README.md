@@ -1,6 +1,11 @@
 # ScanIt
 
 ScanIt is an Android application that aims to be your all in one scanner. The best part of the application is the fact that it is open source.
+</br></br>
+<p align = "center">
+<img src="https://github.com/mishraaditya595/ScanIt/blob/master/app/src/main/res/mipmap-xxxhdpi/scanit_icon_round.png" alt="Logo" height="200" width="200"></a>
+</p>
+
 > Note: The beta version of the app has been released on the Google Play Store.
 
 <a href="https://play.google.com/store/apps/details?id=com.vob.scanit" target="_blank">
@@ -8,7 +13,7 @@ ScanIt is an Android application that aims to be your all in one scanner. The be
 
 
 # Features ✨
- >Note: The beta release on the Google Play Store might not have all the features mentioned here. New features will eventually show up. You are requested to have patience.
+ > Note: The beta release on the Google Play Store might not have all the features mentioned here. New features will eventually show up. You are requested to have patience.
 1. Easily converts images into a PDF file.
 2. Automatically detects edges from the image, so you don't have to.
 3. Live scanning of documents.
@@ -56,6 +61,8 @@ The following libraries/modules/resources are used in the project:
 ## Open-source Programs we are a part of 👨‍💻
 Winter of Code is an open-source program envisioned by DevScript that helps understand the paradigm of Open Source contribution. It aims to bring students into the world of open source development and see the power of unified problem solving in real time.<br>
 
+<p align = "center">
 <img src="https://devscript.tech/woc/img/WOC-logo.png" width="25%">
+</p>
 
-### Thanks to every one.
+## Happy?? Star ⭐ this Repo. 🤩
