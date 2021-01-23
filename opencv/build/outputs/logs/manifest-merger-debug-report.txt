@@ -1,37 +1,37 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/aditya/Scanner2/opencv/AndroidManifest.xml:2:1-6:12
-INJECTED from /home/aditya/Scanner2/opencv/AndroidManifest.xml:2:1-6:12
-INJECTED from /home/aditya/Scanner2/opencv/AndroidManifest.xml:2:1-6:12
-INJECTED from /home/aditya/Scanner2/opencv/AndroidManifest.xml:2:1-6:12
-INJECTED from /home/aditya/Scanner2/opencv/AndroidManifest.xml:2:1-6:12
-INJECTED from /home/aditya/Scanner2/opencv/AndroidManifest.xml:2:1-6:12
-INJECTED from /home/aditya/Scanner2/opencv/AndroidManifest.xml:2:1-6:12
+ADDED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml:2:1-6:12
+INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml:2:1-6:12
+INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml:2:1-6:12
+INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml:2:1-6:12
+INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml:2:1-6:12
+INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml:2:1-6:12
+INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml:2:1-6:12
 	package
-		ADDED from /home/aditya/Scanner2/opencv/AndroidManifest.xml:3:7-27
-		INJECTED from /home/aditya/Scanner2/opencv/AndroidManifest.xml
-		INJECTED from /home/aditya/Scanner2/opencv/AndroidManifest.xml
+		ADDED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml:3:7-27
+		INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml
+		INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml
 	android:versionName
-		ADDED from /home/aditya/Scanner2/opencv/AndroidManifest.xml:5:7-34
-		INJECTED from /home/aditya/Scanner2/opencv/AndroidManifest.xml
-		INJECTED from /home/aditya/Scanner2/opencv/AndroidManifest.xml
+		ADDED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml:5:7-34
+		INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml
+		INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml
 	xmlns:android
-		ADDED from /home/aditya/Scanner2/opencv/AndroidManifest.xml:2:11-69
+		ADDED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml:2:11-69
 	android:versionCode
-		ADDED from /home/aditya/Scanner2/opencv/AndroidManifest.xml:4:7-33
-		INJECTED from /home/aditya/Scanner2/opencv/AndroidManifest.xml
-		INJECTED from /home/aditya/Scanner2/opencv/AndroidManifest.xml
+		ADDED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml:4:7-33
+		INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml
+		INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml
 uses-sdk
-INJECTED from /home/aditya/Scanner2/opencv/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /home/aditya/Scanner2/opencv/AndroidManifest.xml
-INJECTED from /home/aditya/Scanner2/opencv/AndroidManifest.xml
-INJECTED from /home/aditya/Scanner2/opencv/AndroidManifest.xml
-INJECTED from /home/aditya/Scanner2/opencv/AndroidManifest.xml
+INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml
+INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml
+INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml
+INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from /home/aditya/Scanner2/opencv/AndroidManifest.xml
-		ADDED from /home/aditya/Scanner2/opencv/AndroidManifest.xml
-		INJECTED from /home/aditya/Scanner2/opencv/AndroidManifest.xml
+		INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml
+		ADDED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml
+		INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /home/aditya/Scanner2/opencv/AndroidManifest.xml
-		ADDED from /home/aditya/Scanner2/opencv/AndroidManifest.xml
-		INJECTED from /home/aditya/Scanner2/opencv/AndroidManifest.xml
+		INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml
+		ADDED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml
+		INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/opencv/AndroidManifest.xml
