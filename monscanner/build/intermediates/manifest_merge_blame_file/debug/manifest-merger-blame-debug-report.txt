@@ -6,41 +6,41 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
-8-->/home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml
+8-->/home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml
 9        android:targetSdkVersion="29" />
-9-->/home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml
+9-->/home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml
 10
 11    <uses-permission android:name="android.permission.CAMERA" />
-11-->/home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:5:5-65
-11-->/home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:5:22-62
+11-->/home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:5:5-65
+11-->/home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:5:22-62
 12    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-12-->/home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:6:5-81
-12-->/home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:6:22-78
+12-->/home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:6:5-81
+12-->/home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:6:22-78
 13
 14    <application>
-14-->/home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:7:5-18:19
+14-->/home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:7:5-18:19
 15        <activity
-15-->/home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:8:9-11:50
+15-->/home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:8:9-11:50
 16            android:name="com.monscanner.CameraActivity"
-16-->/home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:8:19-49
+16-->/home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:8:19-49
 17            android:configChanges="orientation"
-17-->/home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:9:13-48
+17-->/home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:9:13-48
 18            android:screenOrientation="portrait"
-18-->/home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:10:13-49
+18-->/home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:10:13-49
 19            android:theme="@style/NoActionBar" />
-19-->/home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:11:13-47
+19-->/home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:11:13-47
 20        <activity
-20-->/home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:12:9-17:50
+20-->/home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:12:9-17:50
 21            android:name="com.monscanner.ScanActivity"
-21-->/home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:13:13-41
+21-->/home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:13:13-41
 22            android:configChanges="orientation"
-22-->/home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:14:13-48
+22-->/home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:14:13-48
 23            android:label="@string/lib_name"
-23-->/home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:15:13-45
+23-->/home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:15:13-45
 24            android:screenOrientation="portrait"
-24-->/home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:16:13-49
+24-->/home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:16:13-49
 25            android:theme="@style/NoActionBar" />
-25-->/home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:17:13-47
+25-->/home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:17:13-47
 26    </application>
 27
 28</manifest>

@@ -1,69 +1,69 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:2:1-20:12
-INJECTED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:2:1-20:12
-INJECTED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:2:1-20:12
-INJECTED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:2:1-20:12
-INJECTED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:2:1-20:12
-INJECTED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:2:1-20:12
-INJECTED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:2:1-20:12
+ADDED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:2:1-20:12
+INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:2:1-20:12
+INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:2:1-20:12
+INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:2:1-20:12
+INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:2:1-20:12
+INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:2:1-20:12
+INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:2:1-20:12
 	package
-		ADDED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:3:5-29
-		INJECTED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml
-		INJECTED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml
+		ADDED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:3:5-29
+		INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml
+		INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml
-		ADDED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:2:1-20:12
-		INJECTED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml
+		INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml
+		ADDED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:2:1-20:12
+		INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml
 	android:versionCode
-		INJECTED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml
-		ADDED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:2:1-20:12
-		INJECTED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml
+		INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml
+		ADDED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:2:1-20:12
+		INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:2:11-69
+		ADDED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:2:11-69
 uses-permission#android.permission.CAMERA
-ADDED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:5:5-65
+ADDED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:5:5-65
 	android:name
-		ADDED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:5:22-62
+		ADDED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:5:22-62
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:6:5-81
+ADDED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:6:5-81
 	android:name
-		ADDED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:6:22-78
+		ADDED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:6:22-78
 application
-ADDED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:7:5-18:19
+ADDED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:7:5-18:19
 activity#com.monscanner.CameraActivity
-ADDED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:8:9-11:50
+ADDED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:8:9-11:50
 	android:screenOrientation
-		ADDED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:10:13-49
+		ADDED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:10:13-49
 	android:configChanges
-		ADDED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:9:13-48
+		ADDED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:9:13-48
 	android:theme
-		ADDED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:11:13-47
+		ADDED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:11:13-47
 	android:name
-		ADDED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:8:19-49
+		ADDED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:8:19-49
 activity#com.monscanner.ScanActivity
-ADDED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:12:9-17:50
+ADDED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:12:9-17:50
 	android:screenOrientation
-		ADDED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:16:13-49
+		ADDED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:16:13-49
 	android:label
-		ADDED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:15:13-45
+		ADDED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:15:13-45
 	android:configChanges
-		ADDED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:14:13-48
+		ADDED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:14:13-48
 	android:theme
-		ADDED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:17:13-47
+		ADDED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:17:13-47
 	android:name
-		ADDED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml:13:13-41
+		ADDED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml:13:13-41
 uses-sdk
-INJECTED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml
-INJECTED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml
-INJECTED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml
-INJECTED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml
+INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml
+INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml
+INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml
+INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml
-		ADDED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml
-		INJECTED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml
+		INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml
+		ADDED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml
+		INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml
-		ADDED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml
-		INJECTED from /home/aditya/Scanner2/monscanner/src/main/AndroidManifest.xml
+		INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml
+		ADDED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml
+		INJECTED from /home/aditya/AndroidStudioProjects/Scanner2/monscanner/src/main/AndroidManifest.xml

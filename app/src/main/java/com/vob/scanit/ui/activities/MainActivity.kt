@@ -84,22 +84,22 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupToolbar() {
         var toolbar = findViewById<Toolbar>(R.id.main_toolbar)
-        toolbar.setTitle("ScanIt")
-        toolbar.setTitleTextAppearance(applicationContext, R.style.TextAppearance_AppCompat_Headline)
-        toolbar.setTitleTextColor(-0x1)
-        toolbar.inflateMenu(R.menu.toolbar_menu)
+        //toolbar.setTitle("ScanIt")
+        //toolbar.setTitleTextAppearance(applicationContext, R.style.TextAppearance_AppCompat_Headline)
+       // toolbar.setTitleTextColor(-0x1)
+       // toolbar.inflateMenu(R.menu.toolbar_menu)
 
-        toolbar.setOnMenuItemClickListener{
-            when(it.itemId)
-            {
-                R.id.about_item ->
-                {
-                    val intent = Intent(this, AboutAppActivity::class.java)
-                    startActivity(intent)
-                }
-            }
-            true
-        }
+//        toolbar.setOnMenuItemClickListener{
+//            when(it.itemId)
+//            {
+//                R.id.about_item ->
+//                {
+//                    val intent = Intent(this, AboutAppActivity::class.java)
+//                    startActivity(intent)
+//                }
+//            }
+//            true
+//        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

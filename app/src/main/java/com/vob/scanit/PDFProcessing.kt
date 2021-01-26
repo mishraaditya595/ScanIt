@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.pdf.PdfDocument
 import android.os.Environment
-import com.vob.scanit.ui.fragments.HomeFragment
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -18,12 +17,15 @@ public class PDFProcessing() {
 
     public fun makePDF(bitmap: Bitmap, filename: String) {
         pdfDocument = PdfDocument()
-        val pageInfo: PdfDocument.PageInfo = PdfDocument.PageInfo.Builder(bitmap.width, bitmap.height, 1).create()
+
+
+        val compressedBitmap = compressBitmap(bitmap)
+        val pageInfo: PdfDocument.PageInfo = PdfDocument.PageInfo.Builder(compressedBitmap.width, compressedBitmap.height, 1).create()
         val page: PdfDocument.Page = pdfDocument.startPage(pageInfo)
         val canvas: Canvas = page.getCanvas()
         val paint = Paint()
         paint.setColor(Color.parseColor("#FFFFFF"))
-        canvas.drawBitmap(bitmap, 0.0f, 0.0f, null)
+        canvas.drawBitmap(compressedBitmap, 0.0f, 0.0f, null)
         pdfDocument.finishPage(page)
         //if (fileName.getText().toString().isEmpty()) {
         //    Toast.makeText(context, "You need to enter file name as follow\nyour_fileName.pdf", Toast.LENGTH_SHORT).show()
@@ -34,6 +36,28 @@ public class PDFProcessing() {
         {
             saveFile("$filename.pdf")
         }
+    }
+
+    private fun compressBitmap(bitmap: Bitmap): Bitmap {
+        val originalHeight = bitmap.height
+        val originalWidth = bitmap.width
+
+        var height: Int
+        var width: Int
+
+        if (originalWidth>originalHeight){
+            height = 1080
+            width = 1920
+        } else if (originalHeight>originalWidth) {
+            height = 1920
+            width = 1080
+        } else {
+            height = 1200
+            width = 1200
+        }
+
+        val compressedBitmap = Bitmap.createScaledBitmap(bitmap, width, height, true)
+        return compressedBitmap
     }
 
 
