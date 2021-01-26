@@ -1,0 +1,88 @@
+org/opencv/core/Rect.java
+ org.opencv.core.Rect
+org/opencv/imgproc/Imgproc.java
+ org.opencv.imgproc.Imgproc
+org/opencv/core/DMatch.java
+ org.opencv.core.DMatch
+org/opencv/core/MatOfPoint2f.java
+ org.opencv.core.MatOfPoint2f
+org/opencv/core/Core.java
+ org.opencv.core.Core
+ org.opencv.core.Core$MinMaxLocResult
+org/opencv/core/MatOfFloat.java
+ org.opencv.core.MatOfFloat
+org/opencv/core/CvException.java
+ org.opencv.core.CvException
+org/opencv/core/MatOfPoint3.java
+ org.opencv.core.MatOfPoint3
+org/opencv/core/TermCriteria.java
+ org.opencv.core.TermCriteria
+org/opencv/imgproc/Moments.java
+ org.opencv.imgproc.Moments
+org/opencv/engine/OpenCVEngineInterface.java
+ org.opencv.engine.OpenCVEngineInterface
+ org.opencv.engine.OpenCVEngineInterface$Default
+ org.opencv.engine.OpenCVEngineInterface$Stub
+ org.opencv.engine.OpenCVEngineInterface$Stub$Proxy
+org/opencv/core/Scalar.java
+ org.opencv.core.Scalar
+org/opencv/core/MatOfPoint.java
+ org.opencv.core.MatOfPoint
+org/opencv/core/MatOfByte.java
+ org.opencv.core.MatOfByte
+org/opencv/core/MatOfDouble.java
+ org.opencv.core.MatOfDouble
+org/opencv/core/Point3.java
+ org.opencv.core.Point3
+org/opencv/core/Mat.java
+ org.opencv.core.Mat
+org/opencv/core/Algorithm.java
+ org.opencv.core.Algorithm
+org/opencv/core/CvType.java
+ org.opencv.core.CvType
+org/opencv/core/MatOfInt.java
+ org.opencv.core.MatOfInt
+org/opencv/core/MatOfFloat6.java
+ org.opencv.core.MatOfFloat6
+org/opencv/core/Rect2d.java
+ org.opencv.core.Rect2d
+org/opencv/core/MatOfPoint3f.java
+ org.opencv.core.MatOfPoint3f
+org/opencv/core/MatOfKeyPoint.java
+ org.opencv.core.MatOfKeyPoint
+org/opencv/imgcodecs/Imgcodecs.java
+ org.opencv.imgcodecs.Imgcodecs
+org/opencv/core/MatOfFloat4.java
+ org.opencv.core.MatOfFloat4
+org/opencv/core/MatOfRotatedRect.java
+ org.opencv.core.MatOfRotatedRect
+org/opencv/core/MatOfRect2d.java
+ org.opencv.core.MatOfRect2d
+org/opencv/core/TickMeter.java
+ org.opencv.core.TickMeter
+org/opencv/android/Utils.java
+ org.opencv.android.Utils
+org/opencv/core/Size.java
+ org.opencv.core.Size
+org/opencv/core/MatOfDMatch.java
+ org.opencv.core.MatOfDMatch
+org/opencv/BuildConfig.java
+ org.opencv.BuildConfig
+org/opencv/core/RotatedRect.java
+ org.opencv.core.RotatedRect
+org/opencv/imgproc/CLAHE.java
+ org.opencv.imgproc.CLAHE
+org/opencv/imgproc/LineSegmentDetector.java
+ org.opencv.imgproc.LineSegmentDetector
+org/opencv/core/MatOfRect.java
+ org.opencv.core.MatOfRect
+org/opencv/core/KeyPoint.java
+ org.opencv.core.KeyPoint
+org/opencv/core/Range.java
+ org.opencv.core.Range
+org/opencv/core/Point.java
+ org.opencv.core.Point
+org/opencv/utils/Converters.java
+ org.opencv.utils.Converters
+org/opencv/core/MatOfInt4.java
+ org.opencv.core.MatOfInt4
