@@ -14,8 +14,9 @@
         android:roundIcon="@mipmap/scanit_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activities.AboutAppActivity"></activity>
-        <activity android:name=".ui.activities.QRBarcodeScanResultActivity"></activity>
+        <activity android:name=".ui.activities.SettingsActivity"></activity>
+        <activity android:name=".ui.activities.AboutAppActivity" />
+        <activity android:name=".ui.activities.QRBarcodeScanResultActivity" />
         <activity android:name=".ui.activities.GenerateQRActivity" />
         <activity android:name=".ui.activities.SplashScreenActivity">
             <intent-filter>

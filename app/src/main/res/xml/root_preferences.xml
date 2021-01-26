@@ -1,0 +1,28 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="General"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="theme_toggle"
+            app:summaryOn="Dark"
+            app:summaryOff="Light"
+            app:title="Theme" />
+
+    </PreferenceCategory>
+    <PreferenceCategory app:title="About"
+        app:iconSpaceReserved="false">
+
+        <Preference app:title="Open-source licences"
+            app:key="licence"
+            app:summary="Licence details for open-source software"
+            app:iconSpaceReserved="false" />
+
+        <Preference app:title="Privacy Policy"
+            app:key="privacy"
+            app:summary="Read Privacy Policy"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+</PreferenceScreen>
