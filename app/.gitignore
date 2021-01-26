@@ -1,1 +1,7 @@
 /build
+
+# Built application files
+/release/*.apk
+/release/*.aar/release/
+/release/*.ap_
+/release/*.aab
