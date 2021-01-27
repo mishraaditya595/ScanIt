@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 29
     //buildToolsVersion "x.y.z" // not needed since com.android.tools.build:gradle:3.0.0
 
     defaultConfig {
@@ -23,7 +23,8 @@ android {
     sourceSets {
         main {
             jniLibs.srcDirs = ['../../jni']
-            java.srcDirs = ['src']  // TODO Use original files instead of copied into build directory
+            java.srcDirs = ['src']
+            // TODO Use original files instead of copied into build directory
             aidl.srcDirs = ['src']
             res.srcDirs = ['res']
             manifest.srcFile 'AndroidManifest.xml'

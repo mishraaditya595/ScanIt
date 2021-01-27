@@ -3,13 +3,12 @@
 //
 package org.opencv.imgcodecs;
 
-import java.lang.String;
-import java.util.ArrayList;
-import java.util.List;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
 import org.opencv.core.MatOfInt;
 import org.opencv.utils.Converters;
+
+import java.util.List;
 
 // C++: class Imgcodecs
 //javadoc: Imgcodecs
@@ -83,11 +82,10 @@ public class Imgcodecs {
     //
 
     //javadoc: imdecode(buf, flags)
-    public static Mat imdecode(Mat buf, int flags)
-    {
-        
+    public static Mat imdecode(Mat buf, int flags) {
+
         Mat retVal = new Mat(imdecode_0(buf.nativeObj, flags));
-        
+
         return retVal;
     }
 
@@ -97,20 +95,18 @@ public class Imgcodecs {
     //
 
     //javadoc: imread(filename, flags)
-    public static Mat imread(String filename, int flags)
-    {
-        
+    public static Mat imread(String filename, int flags) {
+
         Mat retVal = new Mat(imread_0(filename, flags));
-        
+
         return retVal;
     }
 
     //javadoc: imread(filename)
-    public static Mat imread(String filename)
-    {
-        
+    public static Mat imread(String filename) {
+
         Mat retVal = new Mat(imread_1(filename));
-        
+
         return retVal;
     }
 
@@ -120,11 +116,10 @@ public class Imgcodecs {
     //
 
     //javadoc: haveImageReader(filename)
-    public static boolean haveImageReader(String filename)
-    {
-        
+    public static boolean haveImageReader(String filename) {
+
         boolean retVal = haveImageReader_0(filename);
-        
+
         return retVal;
     }
 
@@ -134,11 +129,10 @@ public class Imgcodecs {
     //
 
     //javadoc: haveImageWriter(filename)
-    public static boolean haveImageWriter(String filename)
-    {
-        
+    public static boolean haveImageWriter(String filename) {
+
         boolean retVal = haveImageWriter_0(filename);
-        
+
         return retVal;
     }
 
@@ -148,21 +142,19 @@ public class Imgcodecs {
     //
 
     //javadoc: imencode(ext, img, buf, params)
-    public static boolean imencode(String ext, Mat img, MatOfByte buf, MatOfInt params)
-    {
+    public static boolean imencode(String ext, Mat img, MatOfByte buf, MatOfInt params) {
         Mat buf_mat = buf;
         Mat params_mat = params;
         boolean retVal = imencode_0(ext, img.nativeObj, buf_mat.nativeObj, params_mat.nativeObj);
-        
+
         return retVal;
     }
 
     //javadoc: imencode(ext, img, buf)
-    public static boolean imencode(String ext, Mat img, MatOfByte buf)
-    {
+    public static boolean imencode(String ext, Mat img, MatOfByte buf) {
         Mat buf_mat = buf;
         boolean retVal = imencode_1(ext, img.nativeObj, buf_mat.nativeObj);
-        
+
         return retVal;
     }
 
@@ -172,8 +164,7 @@ public class Imgcodecs {
     //
 
     //javadoc: imreadmulti(filename, mats, flags)
-    public static boolean imreadmulti(String filename, List<Mat> mats, int flags)
-    {
+    public static boolean imreadmulti(String filename, List<Mat> mats, int flags) {
         Mat mats_mat = new Mat();
         boolean retVal = imreadmulti_0(filename, mats_mat.nativeObj, flags);
         Converters.Mat_to_vector_Mat(mats_mat, mats);
@@ -182,8 +173,7 @@ public class Imgcodecs {
     }
 
     //javadoc: imreadmulti(filename, mats)
-    public static boolean imreadmulti(String filename, List<Mat> mats)
-    {
+    public static boolean imreadmulti(String filename, List<Mat> mats) {
         Mat mats_mat = new Mat();
         boolean retVal = imreadmulti_1(filename, mats_mat.nativeObj);
         Converters.Mat_to_vector_Mat(mats_mat, mats);
@@ -197,24 +187,20 @@ public class Imgcodecs {
     //
 
     //javadoc: imwrite(filename, img, params)
-    public static boolean imwrite(String filename, Mat img, MatOfInt params)
-    {
+    public static boolean imwrite(String filename, Mat img, MatOfInt params) {
         Mat params_mat = params;
         boolean retVal = imwrite_0(filename, img.nativeObj, params_mat.nativeObj);
-        
+
         return retVal;
     }
 
     //javadoc: imwrite(filename, img)
-    public static boolean imwrite(String filename, Mat img)
-    {
-        
+    public static boolean imwrite(String filename, Mat img) {
+
         boolean retVal = imwrite_1(filename, img.nativeObj);
-        
+
         return retVal;
     }
-
-
 
 
     // C++:  Mat cv::imdecode(Mat buf, int flags)
@@ -222,6 +208,7 @@ public class Imgcodecs {
 
     // C++:  Mat cv::imread(String filename, int flags = IMREAD_COLOR)
     private static native long imread_0(String filename, int flags);
+
     private static native long imread_1(String filename);
 
     // C++:  bool cv::haveImageReader(String filename)
@@ -232,14 +219,17 @@ public class Imgcodecs {
 
     // C++:  bool cv::imencode(String ext, Mat img, vector_uchar& buf, vector_int params = std::vector<int>())
     private static native boolean imencode_0(String ext, long img_nativeObj, long buf_mat_nativeObj, long params_mat_nativeObj);
+
     private static native boolean imencode_1(String ext, long img_nativeObj, long buf_mat_nativeObj);
 
     // C++:  bool cv::imreadmulti(String filename, vector_Mat& mats, int flags = IMREAD_ANYCOLOR)
     private static native boolean imreadmulti_0(String filename, long mats_mat_nativeObj, int flags);
+
     private static native boolean imreadmulti_1(String filename, long mats_mat_nativeObj);
 
     // C++:  bool cv::imwrite(String filename, Mat img, vector_int params = std::vector<int>())
     private static native boolean imwrite_0(String filename, long img_nativeObj, long params_mat_nativeObj);
+
     private static native boolean imwrite_1(String filename, long img_nativeObj);
 
 }

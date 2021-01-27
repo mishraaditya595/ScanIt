@@ -1,44 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#121212"
     android:padding="16dp">
 
     <Button
-        android:layout_margin="10dp"
         android:id="@+id/share_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="#121212"
+        android:drawableStart="@drawable/ic_baseline_share_24"
         android:text="     Share this file"
-        android:textColor="@color/white"
         android:textAlignment="viewStart"
-        android:drawableLeft="@drawable/ic_baseline_share_24"
-        android:background="#121212"/>
+        android:textColor="@color/white"
+        tools:ignore="HardcodedText" />
 
     <Button
-        android:layout_margin="10dp"
         android:id="@+id/rename_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/share_btn"
+        android:layout_margin="10dp"
+        android:background="#121212"
+        android:drawableStart="@drawable/ic_text_cursor"
         android:text="     Rename"
-        android:textColor="@color/white"
         android:textAlignment="viewStart"
-        android:drawableLeft="@drawable/ic_text_cursor"
-        android:background="#121212"/>
+        android:textColor="@color/white"
+        tools:ignore="HardcodedText" />
 
     <Button
-        android:layout_margin="10dp"
         android:id="@+id/delete_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rename_btn"
+        android:layout_margin="10dp"
+        android:background="#121212"
+        android:drawableStart="@drawable/ic_baseline_delete_24"
         android:text="     Delete"
-        android:textColor="@color/white"
         android:textAlignment="viewStart"
-        android:drawableLeft="@drawable/ic_baseline_delete_24"
-        android:background="#121212"/>
+        android:textColor="@color/white"
+        tools:ignore="HardcodedText" />
 
 </RelativeLayout>

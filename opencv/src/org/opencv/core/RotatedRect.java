@@ -26,11 +26,11 @@ public class RotatedRect {
 
     public void set(double[] vals) {
         if (vals != null) {
-            center.x = vals.length > 0 ? (double) vals[0] : 0;
-            center.y = vals.length > 1 ? (double) vals[1] : 0;
-            size.width = vals.length > 2 ? (double) vals[2] : 0;
-            size.height = vals.length > 3 ? (double) vals[3] : 0;
-            angle = vals.length > 4 ? (double) vals[4] : 0;
+            center.x = vals.length > 0 ? vals[0] : 0;
+            center.y = vals.length > 1 ? vals[1] : 0;
+            size.width = vals.length > 2 ? vals[2] : 0;
+            size.height = vals.length > 3 ? vals[3] : 0;
+            angle = vals.length > 4 ? vals[4] : 0;
         } else {
             center.x = 0;
             center.x = 0;
@@ -40,11 +40,10 @@ public class RotatedRect {
         }
     }
 
-    public void points(Point pt[])
-    {
+    public void points(Point[] pt) {
         double _angle = angle * Math.PI / 180.0;
-        double b = (double) Math.cos(_angle) * 0.5f;
-        double a = (double) Math.sin(_angle) * 0.5f;
+        double b = Math.cos(_angle) * 0.5f;
+        double a = Math.sin(_angle) * 0.5f;
 
         pt[0] = new Point(
                 center.x - a * size.height - b * size.width,
@@ -63,9 +62,8 @@ public class RotatedRect {
                 2 * center.y - pt[1].y);
     }
 
-    public Rect boundingRect()
-    {
-        Point pt[] = new Point[4];
+    public Rect boundingRect() {
+        Point[] pt = new Point[4];
         points(pt);
         Rect r = new Rect((int) Math.floor(Math.min(Math.min(Math.min(pt[0].x, pt[1].x), pt[2].x), pt[3].x)),
                 (int) Math.floor(Math.min(Math.min(Math.min(pt[0].y, pt[1].y), pt[2].y), pt[3].y)),

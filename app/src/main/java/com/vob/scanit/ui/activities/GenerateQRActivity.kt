@@ -25,11 +25,11 @@ import java.util.*
 
 class GenerateQRActivity : AppCompatActivity() {
 
-    lateinit var url_et: EditText
-    lateinit var qr_iv: ImageView
-    lateinit var generateBtn: Button
-    lateinit var shareBtn: Button
-    lateinit var saveBtn: Button
+    private lateinit var urlEditText: EditText
+    private lateinit var qrImageView: ImageView
+    private lateinit var generateBtn: Button
+    private lateinit var shareBtn: Button
+    private lateinit var saveBtn: Button
     lateinit var file: File
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,27 +43,21 @@ class GenerateQRActivity : AppCompatActivity() {
         var bitmap: Bitmap? = null
 
         generateBtn.setOnClickListener {
-            var inputValue = url_et.text.toString()
+            val inputValue = urlEditText.text.toString()
 
-            if (inputValue.isNotEmpty())
-            {
+            if (inputValue.isNotEmpty()) {
                 val qrgEncoder = QRGEncoder(inputValue, null, QRGContents.Type.TEXT, 300)
                 qrgEncoder.colorBlack = Color.BLACK
                 qrgEncoder.colorWhite = Color.WHITE
-                try
-                {
+                try {
                     // Getting QR-Code as Bitmap
                     bitmap = qrgEncoder.bitmap
                     // Setting Bitmap to ImageView
-                    qr_iv.setImageBitmap(bitmap)
-                }
-                catch (e: WriterException)
-                {
+                    qrImageView.setImageBitmap(bitmap)
+                } catch (e: WriterException) {
                     //Log.v(TAG, e.toString())
                 }
-            }
-            else
-            {
+            } else {
                 DynamicToast.makeError(applicationContext, "Cannot generate QR for null input", Toast.LENGTH_SHORT).show()
             }
 
@@ -95,52 +89,50 @@ class GenerateQRActivity : AppCompatActivity() {
     }
 
     private fun saveQR(bitmap: Bitmap?) {
-        if (bitmap != null)
-        {
+        if (bitmap != null) {
             val root = File(Environment.getExternalStorageDirectory().absolutePath, "Scanner")
             val folder = File(root, "QR Code")
             //val file = File(folder, "${url_et.toString()} $currentDateTimeString .png")
-            var isDirectoryCreated: Boolean = folder.exists()
-            if (!isDirectoryCreated) {
-                isDirectoryCreated = folder.mkdirs()
-            }
+//            val isDirectoryCreated: Boolean = if (folder.exists()) {
+//                folder.exists()
+//            } else {
+//                folder.mkdirs()
+//            }
 
             val currentDateTimeString = DateFormat.getDateTimeInstance().format(Date()).toString()
-            val filename = url_et.text.toString() +"_"+ currentDateTimeString + ".jpeg"
+            val filename = urlEditText.text.toString() + "_" + currentDateTimeString + ".jpeg"
             file = File(folder, filename)
             try {
                 val fileOutputStream = FileOutputStream(file)
-                bitmap!!.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream)
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream)
                 fileOutputStream.close()
                 fileOutputStream.flush()
                 DynamicToast.makeSuccess(applicationContext, "Saved in storage.").show()
             } catch (e: IOException) {
                 DynamicToast.makeError(applicationContext, "Error: ${e.message}", Toast.LENGTH_LONG).show()
             }
-        }
-        else
-        {
+        } else {
             DynamicToast.makeError(applicationContext, "Generate a QR first", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun initialiseFields() {
-        url_et = findViewById(R.id.url_et)
-        qr_iv = findViewById(R.id.qr_IV)
+        urlEditText = findViewById(R.id.url_et)
+        qrImageView = findViewById(R.id.qr_IV)
         generateBtn = findViewById(R.id.generate_btn)
         shareBtn = findViewById(R.id.share_qr_button)
         saveBtn = findViewById(R.id.save_qr_button)
     }
 
     private fun setupToolbar() {
-        var toolbar = findViewById<Toolbar>(R.id.generate_qr_toolbar)
+        val toolbar = findViewById<Toolbar>(R.id.generate_qr_toolbar)
         toolbar.title = "Generate QR"
         toolbar.setTitleTextAppearance(applicationContext, R.style.TextAppearance_AppCompat_Title)
         toolbar.setTitleTextColor(-0x1)
         setSupportActionBar(toolbar)
 
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
-        getSupportActionBar()?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
     override fun onSupportNavigateUp(): Boolean {

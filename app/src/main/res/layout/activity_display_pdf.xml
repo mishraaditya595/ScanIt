@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#121212"
+    android:orientation="vertical"
     tools:context=".ui.activities.DisplayPDFActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/appBarLayout"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/pdf_view_toolbar"
-            android:background="@color/colorPrimary"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:background="@color/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -29,10 +26,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="5dp"
-        android:padding="3dp"
-        />
+        android:padding="3dp" />
     <!--<com.joanzapata.pdfview.PDFView
-        android:id="@+id/newpdfview"
+        android:id="@+id/new_pdf_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />-->

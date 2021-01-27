@@ -23,12 +23,9 @@ public class TermCriteria {
     /**
      * Termination criteria for iterative algorithms.
      *
-     * @param type
-     *            the type of termination criteria: COUNT, EPS or COUNT + EPS.
-     * @param maxCount
-     *            the maximum number of iterations/elements.
-     * @param epsilon
-     *            the desired accuracy.
+     * @param type     the type of termination criteria: COUNT, EPS or COUNT + EPS.
+     * @param maxCount the maximum number of iterations/elements.
+     * @param epsilon  the desired accuracy.
      */
     public TermCriteria(int type, int maxCount, double epsilon) {
         this.type = type;
@@ -51,7 +48,7 @@ public class TermCriteria {
         if (vals != null) {
             type = vals.length > 0 ? (int) vals[0] : 0;
             maxCount = vals.length > 1 ? (int) vals[1] : 0;
-            epsilon = vals.length > 2 ? (double) vals[2] : 0;
+            epsilon = vals.length > 2 ? vals[2] : 0;
         } else {
             type = 0;
             maxCount = 0;

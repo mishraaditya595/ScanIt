@@ -1,5 +1,29 @@
 <resources>
     <string name="app_name" translatable="false">ScanIt</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="about_settings">About Settings</string>
+    <string name="version_1_0">Version 1.0</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="news_market_republic_of_india">News Market: Republic of India</string>
+    <string name="new_features_coming_soon_in_an_update">*New features coming soon in an update*</string>
+    <string name="trending_news_gets_updated_every_hour_automatically">Trending news gets updated every hour automatically.</string>
+    <string name="made_in_india">Made in India</string>
+    <string name="generate">Generate</string>
+    <string name="enter_the_url_here_for_which_qr_has_to_be_generated">Enter the url here for which QR has to be generated</string>
+    <string name="save">Save</string>
+    <string name="open_in_browser">"  Open In Browser   "</string>
+    <string name="share">Share</string>
+    <string name="filename_pdf">filename.pdf</string>
+    <string name="save_as">Save As</string>
+    <string name="enter_file_name_here">Enter file name here</string>
+    <string name="error_file_name_already_taken">Error: File name already taken.</string>
+    <string name="cancel">Cancel</string>
+    <string name="save_as_pdf">Save as PDF</string>
+    <string name="search">Search</string>
+    <string name="click_on_the_icon_to_start_extracting_texts_from_the_images">Click on the \'+\' icon to start extracting texts from the images.</string>
+    <string name="copy_to_clipboard">Copy to clipboard</string>
+    <string name="generate_qr">Generate QR</string>
+    <string name="home">Home</string>
+    <string name="ocr">OCR</string>
+    <string name="scan_code">Scan Code</string>
 </resources>

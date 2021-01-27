@@ -3,18 +3,15 @@
     <item
         android:id="@+id/home"
         android:icon="@drawable/ic_baseline_home_24"
-        android:title="Home"
-        />
+        android:title="@string/home" />
 
     <item
         android:id="@+id/ocr"
         android:icon="@drawable/ic_baseline_scatter_plot_24"
-        android:title="OCR"
-        />
+        android:title="@string/ocr" />
 
     <item
         android:id="@+id/qr"
         android:icon="@drawable/ic_qr_code_black_24dp"
-        android:title="Scan Code"
-        />
+        android:title="@string/scan_code" />
 </menu>

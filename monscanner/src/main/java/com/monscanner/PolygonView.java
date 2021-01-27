@@ -103,6 +103,12 @@ public class PolygonView extends FrameLayout {
         return getOrderedPoints(points);
     }
 
+    public void setPoints(SparseArray<PointF> pointFMap) {
+        if (pointFMap.size() == 4) {
+            setPointsCoordinates(pointFMap);
+        }
+    }
+
     public SparseArray<PointF> getOrderedPoints(List<PointF> points) {
         SparseArray<PointF> orderedPoints = new SparseArray<>();
         PointF gauche1 = null;
@@ -110,21 +116,19 @@ public class PolygonView extends FrameLayout {
         PointF haut1 = null;
         PointF haut2 = null;
         for (PointF point : points) {
-            if (gauche1==null || gauche1.x>point.x) {
+            if (gauche1 == null || gauche1.x > point.x) {
                 gauche2 = gauche1;
                 gauche1 = point;
-            }
-            else if (gauche2==null || gauche2.x>point.x) {
+            } else if (gauche2 == null || gauche2.x > point.x) {
                 gauche2 = point;
             }
         }
         for (PointF point : points) {
-            if (point!=gauche1 && point!=gauche2) {
-                if (haut1==null || haut1.y>point.y) {
+            if (point != gauche1 && point != gauche2) {
+                if (haut1 == null || haut1.y > point.y) {
                     haut2 = haut1;
                     haut1 = point;
-                }
-                else {
+                } else {
                     haut2 = point;
                 }
             }
@@ -135,22 +139,14 @@ public class PolygonView extends FrameLayout {
         assert gauche2 != null;
         orderedPoints.put(1, haut1);
         orderedPoints.put(3, haut2);
-        if (gauche1.y>gauche2.y) {
-            orderedPoints.put(2,gauche1);
-            orderedPoints.put(0,gauche2);
-        }
-        else {
-            orderedPoints.put(0,gauche1);
-            orderedPoints.put(2,gauche2);
+        if (gauche1.y > gauche2.y) {
+            orderedPoints.put(2, gauche1);
+            orderedPoints.put(0, gauche2);
+        } else {
+            orderedPoints.put(0, gauche1);
+            orderedPoints.put(2, gauche2);
         }
         return orderedPoints;
-    }
-
-
-    public void setPoints(SparseArray<PointF> pointFMap) {
-        if (pointFMap.size() == 4) {
-            setPointsCoordinates(pointFMap);
-        }
     }
 
     private void setPointsCoordinates(SparseArray<PointF> pointFMap) {
@@ -195,13 +191,22 @@ public class PolygonView extends FrameLayout {
         return imageView;
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return super.onTouchEvent(event);
+    }
+
+    public boolean isValidShape(SparseArray<PointF> pointFMap) {
+        return pointFMap.size() == 4;
+    }
+
     private class MidPointTouchListenerImpl implements OnTouchListener {
 
         PointF DownPT = new PointF(); // Record Mouse Position When Pressed Down
         PointF StartPT = new PointF(); // Record Start Position of 'img'
 
-        private ImageView mainPointer1;
-        private ImageView mainPointer2;
+        private final ImageView mainPointer1;
+        private final ImageView mainPointer2;
 
         MidPointTouchListenerImpl(ImageView mainPointer1, ImageView mainPointer2) {
             this.mainPointer1 = mainPointer1;
@@ -260,15 +265,6 @@ public class PolygonView extends FrameLayout {
             polygonView.invalidate();
             return true;
         }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        return super.onTouchEvent(event);
-    }
-
-    public boolean isValidShape(SparseArray< PointF> pointFMap) {
-        return pointFMap.size() == 4;
     }
 
     private class TouchListenerImpl implements OnTouchListener {

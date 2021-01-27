@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/grey"
+    android:orientation="vertical"
     tools:context=".EditionFragment">
 
     <LinearLayout
@@ -103,12 +102,11 @@
             android:id="@+id/validationButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:background="@drawable/round_rectangle_button"
-            android:layout_marginEnd="8dp"
             android:text="Next"
-            android:textColor="#FFFFFF"
-            />
+            android:textColor="#FFFFFF" />
     </LinearLayout>
 
 </LinearLayout>

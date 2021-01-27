@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#121212"
     tools:context=".ui.fragments.OCRFragment">
 
@@ -12,59 +12,56 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:gravity="center"
-        android:text="Click on the '+' icon to start extracting texts fromt the images."
-        android:textSize="15dp"
-        android:textStyle="bold"
         android:layout_margin="10dp"
+        android:gravity="center"
         android:padding="4dp"
-        android:visibility="invisible"
-        />
+        android:text="@string/click_on_the_icon_to_start_extracting_texts_from_the_images"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/ocr_tv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="18dp"
-        android:layout_centerInParent="true"
-        android:textColor="#FFFFFF"
-        android:layout_margin="15dp"
         android:layout_above="@+id/copy_button"
         android:layout_below="@+id/ocr_instruction_tv"
+        android:layout_centerInParent="true"
+        android:layout_margin="15dp"
+        android:textColor="#FFFFFF"
         android:textIsSelectable="true"
-        />
+        android:textSize="18sp" />
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_margin="15dp"
         app:fab_addButtonColorNormal="@color/colorAccent"
         app:fab_addButtonPlusIconColor="@color/white"
-        app:fab_labelStyle="@style/customFAB">
+        app:fab_labelStyle="@style/customFAB"
+        tools:ignore="RelativeOverlap">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/openCameraButton_ocr"
-            app:fab_title="Open Camera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_colorNormal="@color/white"
             app:fab_colorPressed="@color/grey"
-            app:fab_size="mini"
             app:fab_icon="@drawable/ic_baseline_camera_24"
-            />
+            app:fab_size="mini"
+            app:fab_title="Open Camera" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/openFilesButton_ocr"
-            app:fab_title="Open Files"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_colorNormal="@color/white"
             app:fab_colorPressed="@color/grey"
-            app:fab_size="mini"
             app:fab_icon="@drawable/ic_baseline_image_24"
-            />
+            app:fab_size="mini"
+            app:fab_title="Open Files" />
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
     <Button
@@ -74,11 +71,10 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_margin="14dp"
-        android:padding="10dp"
-        android:drawableRight="@drawable/ic_content_copy_black_24dp"
-        android:background="@drawable/rounded__button_colorprimary"
-        android:text="Copy to clipboard"
+        android:background="@drawable/rounded__button_color_primary"
+        android:drawableEnd="@drawable/ic_content_copy_black_24dp"
         android:elevation="10dp"
-        />
+        android:padding="10dp"
+        android:text="@string/copy_to_clipboard" />
 
 </RelativeLayout>

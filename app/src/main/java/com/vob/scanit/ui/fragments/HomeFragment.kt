@@ -6,56 +6,48 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.pdf.PdfDocument
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
-import androidx.core.view.MenuItemCompat
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.getbase.floatingactionbutton.FloatingActionButton
 import com.monscanner.ScanActivity
 import com.monscanner.ScanConstants
 import com.pranavpandey.android.dynamic.toasts.DynamicToast
-import com.vob.scanit.ui.BottomSheetDialog
 import com.vob.scanit.BuildConfig
 import com.vob.scanit.PDFProcessing
 import com.vob.scanit.R
 import com.vob.scanit.adapters.PDFAdapter
+import com.vob.scanit.ui.BottomSheetDialog
 import com.vob.scanit.ui.activities.DisplayPDFActivity
-import com.vob.scanit.ui.activities.MainActivity
 import org.jetbrains.annotations.Nullable
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.InputStream
-import java.util.*
-import kotlin.collections.ArrayList
+import java.util.Objects.requireNonNull
 
 
 class HomeFragment : Fragment() {
 
 
-    lateinit var openCameraButton: FloatingActionButton
-    lateinit var openFilesButton: FloatingActionButton
+    private lateinit var openCameraButton: FloatingActionButton
+    private lateinit var openFilesButton: FloatingActionButton
     private val REQUEST_CODE = 7
-    lateinit var listView: ListView
+    private lateinit var listView: ListView
     lateinit var pdfAdapter: PDFAdapter
-    lateinit var dir: File
-    lateinit var listOfFiles: ArrayList<File>
-    lateinit var searchBar: EditText
+    private lateinit var dir: File
+    private lateinit var listOfFiles: ArrayList<File>
+    private lateinit var searchBar: EditText
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onResume() {
         super.onResume()
@@ -76,9 +68,9 @@ class HomeFragment : Fragment() {
         openCameraButton.setOnClickListener { openCamera(view) }
         openFilesButton.setOnClickListener { openGallery(view) }
 
-        listView.setOnItemClickListener { parent, view, position, id ->
+        listView.setOnItemClickListener { parent, lView, position, id ->
 
-            val file = listOfFiles.get(position)
+            val file = listOfFiles[position]
 
             val intent = Intent(context?.applicationContext, DisplayPDFActivity::class.java)
             intent.putExtra("uri", file.toURI().toString())
@@ -87,7 +79,7 @@ class HomeFragment : Fragment() {
 
         }
 
-        listView.onItemLongClickListener = AdapterView.OnItemLongClickListener { parent, view, position, id ->
+        listView.onItemLongClickListener = AdapterView.OnItemLongClickListener { parent, lView, position, id ->
             openBottomSheet(position)
             true
         }
@@ -111,7 +103,7 @@ class HomeFragment : Fragment() {
     private fun checkForStoragePermissions() {
         //camera permissions
         if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), 2)
         }
 
@@ -125,7 +117,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    public fun initialiseFields(view: View?) {
+    private fun initialiseFields(view: View?) {
         openCameraButton = view?.findViewById(R.id.openCameraButton)!!
         openFilesButton = view.findViewById(R.id.openFilesButton)!!
         listView = view.findViewById(R.id.listView)
@@ -133,7 +125,7 @@ class HomeFragment : Fragment() {
         searchBar = view.findViewById(R.id.search_bar_HF)
     }
 
-    fun updateListView() {
+    private fun updateListView() {
         dir = File(Environment.getExternalStorageDirectory().absolutePath, "Scanner")
         listOfFiles = getFiles(dir)
         listOfFiles.sort()
@@ -141,8 +133,8 @@ class HomeFragment : Fragment() {
         listView.adapter = pdfAdapter
     }
 
-    public fun openBottomSheet(position: Int) {
-        val file = listOfFiles.get(position)
+    private fun openBottomSheet(position: Int) {
+        val file = listOfFiles[position]
 
         val bottomSheetDialog = BottomSheetDialog(file)
         bottomSheetDialog.show(activity!!.supportFragmentManager, "Modal Bottom Sheet")
@@ -153,25 +145,23 @@ class HomeFragment : Fragment() {
         }, 2000)
     }
 
-    fun getFiles(dir: File): ArrayList<File> {
+    private fun getFiles(dir: File): ArrayList<File> {
         val listFiles: Array<File>? = dir.listFiles()
-        var fileList: ArrayList<File> = ArrayList()
+        val fileList: ArrayList<File> = ArrayList()
 
-        if (listFiles != null && listFiles.size > 0) {
+        if (listFiles != null && listFiles.isNotEmpty()) {
             for (item in listFiles) {
                 if (item.isDirectory) {
                     getFiles(item)
                 } else {
-                    var flag: Boolean = false
+                    var flag = false
                     if (item.name.endsWith(".pdf")) {
                         for (element in fileList) {
-                            if (element.name.equals(item.name)) {
+                            if (element.name == item.name) {
                                 flag = true
                             }
                         }
-                        if (flag) {
-                            flag = false
-                        } else {
+                        if (!flag) {
                             fileList.add(item)
                         }
                     }
@@ -181,16 +171,16 @@ class HomeFragment : Fragment() {
         return fileList
     }
 
-    fun openCamera(view: View?) {
+    private fun openCamera(view: View?) {
         if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), 2)
         } else {
             startScan(ScanConstants.OPEN_CAMERA)
         }
     }
 
-    fun openGallery(view: View?) {
+    private fun openGallery(view: View?) {
         if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
         } else {
@@ -198,8 +188,8 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun startScan(preference: Int) {
-        val intent: Intent = Intent(context!!, ScanActivity::class.java)
+    private fun startScan(preference: Int) {
+        val intent = Intent(context!!, ScanActivity::class.java)
         intent.putExtra(ScanConstants.OPEN_INTENT_PREFERENCE, preference)
         startActivityForResult(intent, REQUEST_CODE)
     }
@@ -212,7 +202,7 @@ class HomeFragment : Fragment() {
                     if (BuildConfig.DEBUG && data == null) {
                         error("Assertion failed")
                     }
-                    val imageUri: Uri = Objects.requireNonNull(data!!.extras)?.getParcelable(ScanActivity.SCAN_RESULT)!!
+                    val imageUri: Uri = requireNonNull(data!!.extras)?.getParcelable(ScanActivity.SCAN_RESULT)!!
                     val imageStream: InputStream = activity!!.contentResolver.openInputStream(imageUri)!!
                     val scannedImage = BitmapFactory.decodeStream(imageStream)
                     activity!!.contentResolver.delete(imageUri, null, null)
@@ -230,31 +220,31 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun getNameAndSavePDF(scannedImage: Bitmap) {
-        var name: String = ""
+    private fun getNameAndSavePDF(scannedImage: Bitmap) {
+        var name: String
         val alert: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(context)
         val mView: View = layoutInflater.inflate(R.layout.filename_dialog, null)
-        val txt_inputText: EditText = mView.findViewById<View>(R.id.txt_input) as EditText
-        val btn_cancel: Button = mView.findViewById<View>(R.id.btn_cancel) as Button
-        val btn_okay: Button = mView.findViewById<View>(R.id.btn_okay) as Button
-        val error_msg: TextView = mView.findViewById(R.id.error_msg)
+        val txtInputText: EditText = mView.findViewById<View>(R.id.txt_input) as EditText
+        val btnCancel: Button = mView.findViewById<View>(R.id.btn_cancel) as Button
+        val btnOkay: Button = mView.findViewById<View>(R.id.btn_okay) as Button
+        val errorMsg: TextView = mView.findViewById(R.id.error_msg)
 
-        var errorCode: Boolean = true
+        var errorCode = true
         alert.setView(mView)
         val alertDialog: android.app.AlertDialog? = alert.create()
         alertDialog?.setCanceledOnTouchOutside(false)
-        btn_cancel.setOnClickListener(View.OnClickListener {
+        btnCancel.setOnClickListener {
             name = "#123#..456"
             alertDialog?.dismiss()
-        })
-        btn_okay.setOnClickListener(View.OnClickListener {
-            name = txt_inputText.text.toString()
-            val filelist = getFiles(dir)
-            for (file in filelist) {
-                if (file.name.equals("$name.pdf")) {
+        }
+        btnOkay.setOnClickListener {
+            name = txtInputText.text.toString()
+            val fileList = getFiles(dir)
+            for (file in fileList) {
+                if (file.name == "$name.pdf") {
                     DynamicToast.makeWarning(context!!, "File with the given name already exists.", Toast.LENGTH_LONG).show()
                     //Toast.makeText(context, "Error: File with the given name already exists.", Toast.LENGTH_SHORT).show()
-                    error_msg.visibility = View.VISIBLE
+                    errorMsg.visibility = View.VISIBLE
                     errorCode = false
                 }
             }
@@ -268,7 +258,7 @@ class HomeFragment : Fragment() {
             handler.postDelayed({
                 updateListView()
             }, 1000)
-        })
+        }
         alertDialog?.show()
     }
 

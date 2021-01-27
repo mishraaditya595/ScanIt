@@ -44,8 +44,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:srcCompat="@color/colorPrimary"
-                android:contentDescription="@string/image_selectionnee" />
+                android:contentDescription="@string/image_selectionnee"
+                app:srcCompat="@color/colorPrimary" />
         </FrameLayout>
 
         <com.monscanner.PolygonView
@@ -73,11 +73,11 @@
             android:id="@+id/scanButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:layout_weight="4"
             android:background="@drawable/round_rectangle_button"
             android:text="@string/valider"
-            android:textColor="#FFFFFF"
-            android:layout_margin="8dp"/>
+            android:textColor="#FFFFFF" />
     </LinearLayout>
 
 </LinearLayout>

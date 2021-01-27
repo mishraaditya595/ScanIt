@@ -22,9 +22,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.util.Size;
 import android.util.SparseIntArray;
@@ -39,6 +36,10 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -49,10 +50,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 /**
- CAUTION: only the display resolution can be changed in order to avoid
+ * CAUTION: only the display resolution can be changed in order to avoid
  * lags due to too high image quality. The image obtained when capturing it
  * will always be of the highest quality (to be checked but I believe)
  */
@@ -61,6 +60,14 @@ public class CameraActivity extends AppCompatActivity {
     private static final String TAG = "CameraActivityDebug";
     private static final String SETTINGS = "Settings";
     private static final String FORMAT = "idFormat";
+    private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
+
+    static {
+        ORIENTATIONS.append(Surface.ROTATION_0, 90);
+        ORIENTATIONS.append(Surface.ROTATION_90, 0);
+        ORIENTATIONS.append(Surface.ROTATION_180, 270);
+        ORIENTATIONS.append(Surface.ROTATION_270, 180);
+    }
 
     private ImageButton settingsButton;
     private int selectedFormat;
@@ -73,16 +80,54 @@ public class CameraActivity extends AppCompatActivity {
     private HandlerThread handlerThread;
     private FrameLayout frameLayout;
     private TextureView textureView;
+    CameraDevice.StateCallback stateCallBack = new CameraDevice.StateCallback() {
+        @Override
+        public void onOpened(@NonNull CameraDevice camera) {
+            cameraDevice = camera;
+            try {
+                startCameraPreview();
+            } catch (CameraAccessException e) {
+                e.printStackTrace();
+            }
+        }
 
+        @Override
+        public void onDisconnected(@NonNull CameraDevice camera) {
+            cameraDevice.close();
+        }
+
+        @Override
+        public void onError(@NonNull CameraDevice camera, int error) {
+            cameraDevice.close();
+            cameraDevice = null;
+        }
+    };
     private List<Integer> indicesFormat;
+    TextureView.SurfaceTextureListener surfaceTextureListener = new TextureView.SurfaceTextureListener() {
+        @Override
+        public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
+            try {
+                openCamera();
+            } catch (CameraAccessException e) {
+                e.printStackTrace();
+            }
+        }
 
-    private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
-    static {
-        ORIENTATIONS.append(Surface.ROTATION_0, 90);
-        ORIENTATIONS.append(Surface.ROTATION_90, 0);
-        ORIENTATIONS.append(Surface.ROTATION_180, 270);
-        ORIENTATIONS.append(Surface.ROTATION_270, 180);
-    }
+        @Override
+        public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
+
+        }
+
+        @Override
+        public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
+            return false;
+        }
+
+        @Override
+        public void onSurfaceTextureUpdated(SurfaceTexture surface) {
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +135,7 @@ public class CameraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_camera);
 
         SharedPreferences preferences = getSharedPreferences(SETTINGS, MODE_PRIVATE);
-        selectedFormat = preferences.getInt(FORMAT,1);
+        selectedFormat = preferences.getInt(FORMAT, 1);
 
         ImageButton infosButton = findViewById(R.id.infosButton);
         infosButton.setOnClickListener(new View.OnClickListener() {
@@ -118,7 +163,7 @@ public class CameraActivity extends AppCompatActivity {
 
     private void openInfos(View v) {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        View content = inflater.inflate(R.layout.popup_camera_infos,null);
+        View content = inflater.inflate(R.layout.popup_camera_infos, null);
         PopupWindow popupInfos = new PopupWindow(content, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
         popupInfos.showAsDropDown(v);
     }
@@ -132,14 +177,14 @@ public class CameraActivity extends AppCompatActivity {
 
         // Addition of different options according to those available on the device
         PopupMenu menu = new PopupMenu(this, v);
-        for (int i=0; i<indicesFormat.size(); i++) {
+        for (int i = 0; i < indicesFormat.size(); i++) {
             assert map != null;
             int width = map.getOutputSizes(SurfaceTexture.class)[indicesFormat.get(i)].getWidth();
             int height = map.getOutputSizes(SurfaceTexture.class)[indicesFormat.get(i)].getHeight();
-            if (i==selectedFormat)
-                menu.getMenu().add(0, i, i, width+"x"+height+" (active)");
+            if (i == selectedFormat)
+                menu.getMenu().add(0, i, i, width + "x" + height + " (active)");
             else
-                menu.getMenu().add(0, i, i, width+"x"+height);
+                menu.getMenu().add(0, i, i, width + "x" + height);
         }
 
         // Processing the selection of an option
@@ -165,8 +210,7 @@ public class CameraActivity extends AppCompatActivity {
                     } catch (CameraAccessException e) {
                         e.printStackTrace();
                     }
-                }
-                else {
+                } else {
                     textureView.setSurfaceTextureListener(surfaceTextureListener);
                 }
                 return true;
@@ -186,33 +230,33 @@ public class CameraActivity extends AppCompatActivity {
         StreamConfigurationMap map = cc.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
 
         assert map != null;
-        float rapport = ((float) map.getOutputSizes(ImageFormat.JPEG)[0].getWidth())/((float) map.getOutputSizes(ImageFormat.JPEG)[0].getHeight());
+        float rapport = ((float) map.getOutputSizes(ImageFormat.JPEG)[0].getWidth()) / ((float) map.getOutputSizes(ImageFormat.JPEG)[0].getHeight());
 
-        for (int i=0; i < map.getOutputSizes(SurfaceTexture.class).length; i++) {
-            float rapport2 = ((float) map.getOutputSizes(SurfaceTexture.class)[i].getWidth())/((float) map.getOutputSizes(SurfaceTexture.class)[i].getHeight());
+        for (int i = 0; i < map.getOutputSizes(SurfaceTexture.class).length; i++) {
+            float rapport2 = ((float) map.getOutputSizes(SurfaceTexture.class)[i].getWidth()) / ((float) map.getOutputSizes(SurfaceTexture.class)[i].getHeight());
             if (rapport == rapport2)
                 indicesFormat.add(i);
         }
     }
 
     // Image display area resize be the same as the format
-    private void setAspectRatioTextureView(int resolutionWidth , int resolutionHeight ) {
-        if(resolutionWidth > resolutionHeight) {
+    private void setAspectRatioTextureView(int resolutionWidth, int resolutionHeight) {
+        if (resolutionWidth > resolutionHeight) {
             int newWidth = frameLayout.getWidth();
-            int newHeight = (frameLayout.getWidth()*resolutionHeight)/resolutionWidth;
+            int newHeight = (frameLayout.getWidth() * resolutionHeight) / resolutionWidth;
             if (newHeight > frameLayout.getHeight()) {
                 newHeight = frameLayout.getHeight();
-                newWidth = (frameLayout.getHeight()*resolutionWidth)/resolutionHeight;
+                newWidth = (frameLayout.getHeight() * resolutionWidth) / resolutionHeight;
             }
-            updateTextureViewSize(newWidth,newHeight);
+            updateTextureViewSize(newWidth, newHeight);
         } else {
             int newHeight = frameLayout.getHeight();
-            int newWidth = (frameLayout.getHeight()*resolutionWidth)/resolutionHeight;
+            int newWidth = (frameLayout.getHeight() * resolutionWidth) / resolutionHeight;
             if (newWidth > frameLayout.getWidth()) {
                 newWidth = frameLayout.getWidth();
-                newHeight = (frameLayout.getWidth()*resolutionHeight)/resolutionWidth;
+                newHeight = (frameLayout.getWidth() * resolutionHeight) / resolutionWidth;
             }
-            updateTextureViewSize(newWidth,newHeight);
+            updateTextureViewSize(newWidth, newHeight);
         }
     }
 
@@ -224,9 +268,8 @@ public class CameraActivity extends AppCompatActivity {
     // Processing when pressing the image capture button
     private void takePicture() throws CameraAccessException {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},2);
-        }
-        else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
+        } else {
             if (cameraDevice == null)
                 return;
 
@@ -240,7 +283,7 @@ public class CameraActivity extends AppCompatActivity {
             int width = map.getOutputSizes(ImageFormat.JPEG)[0].getWidth();
             int height = map.getOutputSizes(ImageFormat.JPEG)[0].getHeight();
 
-            ImageReader reader = ImageReader.newInstance(width, height,ImageFormat.JPEG,1);
+            ImageReader reader = ImageReader.newInstance(width, height, ImageFormat.JPEG, 1);
             List<Surface> outputSurfaces = new ArrayList<>(2);
             outputSurfaces.add(reader.getSurface());
             outputSurfaces.add(new Surface(textureView.getSurfaceTexture()));
@@ -314,32 +357,6 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
-    TextureView.SurfaceTextureListener surfaceTextureListener = new TextureView.SurfaceTextureListener() {
-        @Override
-        public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
-            try {
-                openCamera();
-            } catch (CameraAccessException e) {
-                e.printStackTrace();
-            }
-        }
-
-        @Override
-        public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
-
-        }
-
-        @Override
-        public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
-            return false;
-        }
-
-        @Override
-        public void onSurfaceTextureUpdated(SurfaceTexture surface) {
-
-        }
-    };
-
     // Open the camera as soon as the TextureView is ready
     private void openCamera() throws CameraAccessException {
         CameraManager cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
@@ -365,43 +382,19 @@ public class CameraActivity extends AppCompatActivity {
         assert map != null;
         imageDimension = map.getOutputSizes(SurfaceTexture.class)[indice];
 
-        setAspectRatioTextureView(imageDimension.getHeight(),imageDimension.getWidth());
+        setAspectRatioTextureView(imageDimension.getHeight(), imageDimension.getWidth());
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA},1);
-        }
-        else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1);
+        } else {
             cameraManager.openCamera(cameraId, stateCallBack, null);
         }
     }
 
-    CameraDevice.StateCallback stateCallBack = new CameraDevice.StateCallback() {
-        @Override
-        public void onOpened(@NonNull CameraDevice camera) {
-            cameraDevice = camera;
-            try {
-                startCameraPreview();
-            } catch (CameraAccessException e) {
-                e.printStackTrace();
-            }
-        }
-
-        @Override
-        public void onDisconnected(@NonNull CameraDevice camera) {
-            cameraDevice.close();
-        }
-
-        @Override
-        public void onError(@NonNull CameraDevice camera, int error) {
-            cameraDevice.close();
-            cameraDevice = null;
-        }
-    };
-
     // Starts displaying the image on the surface
     private void startCameraPreview() throws CameraAccessException {
         SurfaceTexture texture = textureView.getSurfaceTexture();
-        texture.setDefaultBufferSize(imageDimension.getWidth(),imageDimension.getHeight());
+        texture.setDefaultBufferSize(imageDimension.getWidth(), imageDimension.getHeight());
 
         Surface surface = new Surface(texture);
 
@@ -436,7 +429,7 @@ public class CameraActivity extends AppCompatActivity {
             return;
 
         captureRequestBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
-        cameraSession.setRepeatingRequest(captureRequestBuilder.build(),null, backgroundHandler);
+        cameraSession.setRepeatingRequest(captureRequestBuilder.build(), null, backgroundHandler);
     }
 
     @Override
@@ -450,8 +443,7 @@ public class CameraActivity extends AppCompatActivity {
             } catch (CameraAccessException e) {
                 e.printStackTrace();
             }
-        }
-        else {
+        } else {
             textureView.setSurfaceTextureListener(surfaceTextureListener);
         }
     }

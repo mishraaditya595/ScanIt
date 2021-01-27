@@ -4,8 +4,10 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application>
-        <activity android:name=".CameraActivity"
+        <activity
+            android:name=".CameraActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar" />

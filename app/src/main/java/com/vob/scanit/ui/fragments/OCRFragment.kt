@@ -9,10 +9,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
-import android.text.ClipboardManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,18 +37,13 @@ class OCRFragment : Fragment() {
     //private val TAG: String? = getActivity()?.javaClass?.simpleName
     //public val TESS_DATA: String = "/tessdata"
     //lateinit var button: Button
-    lateinit var textView: TextView
-    lateinit var copyToClipboardBtn: Button
-    lateinit var instruction_text: TextView
-    lateinit var openCameraButton: FloatingActionButton
-    lateinit var openFilesButton: FloatingActionButton
-    lateinit var outputFileDir: Uri
-    val DATA_PATH: String = android.os.Environment.getExternalStorageDirectory().absolutePath + "/Scanner/Tess"
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    private lateinit var textView: TextView
+    private lateinit var copyToClipboardBtn: Button
+    private lateinit var instructionText: TextView
+    private lateinit var openCameraButton: FloatingActionButton
+    private lateinit var openFilesButton: FloatingActionButton
+    private lateinit var outputFileDir: Uri
+    private val DATA_PATH: String = android.os.Environment.getExternalStorageDirectory().absolutePath + "/Scanner/Tess"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -63,9 +55,8 @@ class OCRFragment : Fragment() {
         openCameraButton.setOnClickListener { openCamera(view) }
         openFilesButton.setOnClickListener { openGallery(view) }
 
-        if (textView.text.isEmpty())
-        {
-            instruction_text.visibility = View.VISIBLE
+        if (textView.text.isEmpty()) {
+            instructionText.visibility = View.VISIBLE
         }
 
         copyToClipboardBtn.setOnClickListener { copyTextToClipboard() }
@@ -77,71 +68,63 @@ class OCRFragment : Fragment() {
         textView = view.findViewById(R.id.ocr_tv)
         openCameraButton = view.findViewById(R.id.openCameraButton_ocr)!!
         openFilesButton = view.findViewById(R.id.openFilesButton_ocr)!!
-        instruction_text = view.findViewById(R.id.ocr_instruction_tv)
+        instructionText = view.findViewById(R.id.ocr_instruction_tv)
         copyToClipboardBtn = view.findViewById(R.id.copy_button)
     }
 
-    fun openCamera(view: View?) {
+    private fun openCamera(view: View?) {
         if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(context!!, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-        {
+            ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+            ContextCompat.checkSelfPermission(context!!, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE),
-                    2)
-        }
-        else
-        {
+                2)
+        } else {
             startScan(ScanConstants.OPEN_CAMERA)
         }
     }
 
-    fun openGallery(view: View?) {
+    private fun openGallery(view: View?) {
         if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(context!!, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-        {
+            ContextCompat.checkSelfPermission(context!!, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE), 2)
-        }
-        else
-        {
+        } else {
             startScan(ScanConstants.OPEN_GALERIE)
         }
     }
 
-    fun startScan(preference: Int) {
-        val imagePath = DATA_PATH + "/image"
+    private fun startScan(preference: Int) {
+        val imagePath = "$DATA_PATH/image"
         val dir = File(imagePath)
         if (!dir.exists())
             dir.mkdirs()
-        val imageFilePath = imagePath + "/ocr.jpg"
+        val imageFilePath = "$imagePath/ocr.jpg"
         outputFileDir = Uri.fromFile(File(imageFilePath))
-        val intent: Intent = Intent(context!!, ScanActivity::class.java)
+        val intent = Intent(context!!, ScanActivity::class.java)
         intent.putExtra(ScanConstants.OPEN_INTENT_PREFERENCE, preference)
         startActivityForResult(intent, 100)
     }
 
-    private fun startCameraActivity() {
-        try {
-            val imagePath = DATA_PATH + "/image"
-            val dir = File(imagePath)
-            if (!dir.exists())
-                dir.mkdirs()
-            val imageFilePath = imagePath + "/ocr.jpg"
-            outputFileDir = Uri.fromFile(File(imageFilePath))
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileDir)
-            //if (intent.resolveActivity(activity!!.packageManager) != null)
-                //startActivityForResult(intent, 100)
-        }
-        catch (e: Exception) {
-            Toast.makeText(activity, "Error: ${e.message}", Toast.LENGTH_LONG).show()
-        }
-
-    }
+//    private fun startCameraActivity() {
+//        try {
+//            val imagePath = "$DATA_PATH/image"
+//            val dir = File(imagePath)
+//            if (!dir.exists())
+//                dir.mkdirs()
+//            val imageFilePath = "$imagePath/ocr.jpg"
+//            outputFileDir = Uri.fromFile(File(imageFilePath))
+//            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//            intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileDir)
+//            //if (intent.resolveActivity(activity!!.packageManager) != null)
+//            //startActivityForResult(intent, 100)
+//        } catch (e: Exception) {
+//            Toast.makeText(activity, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+//        }
+//
+//    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 100 && resultCode == Activity.RESULT_OK)
-        {
+        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
             //prepareTessData()
             //startOCR(outputFileDir)
             val imageUri: Uri = Objects.requireNonNull(data!!.extras)?.getParcelable(ScanActivity.SCAN_RESULT)!!
@@ -149,48 +132,39 @@ class OCRFragment : Fragment() {
             val scannedImage = BitmapFactory.decodeStream(imageStream)
             activity!!.contentResolver.delete(imageUri, null, null)
             detectText(scannedImage)
-        }
-        else
-        {
+        } else {
             Toast.makeText(activity, "Error while analysing image.", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun detectText(scannedImage: Bitmap?)
-    {
-        var firebaseVisionImage: FirebaseVisionImage = FirebaseVisionImage.fromBitmap(scannedImage!!)
-        var firebaseApp = FirebaseApp.initializeApp(context)
-        var firebaseVisionTextDetector = FirebaseVision.getInstance().visionTextDetector
+    private fun detectText(scannedImage: Bitmap?) {
+        val firebaseVisionImage: FirebaseVisionImage = FirebaseVisionImage.fromBitmap(scannedImage!!)
+        FirebaseApp.initializeApp(context)
+        val firebaseVisionTextDetector = FirebaseVision.getInstance().visionTextDetector
         firebaseVisionTextDetector.detectInImage(firebaseVisionImage)
-                .addOnSuccessListener {
-                    displayTextFromImage(it)
-                }
-                .addOnFailureListener {
-                    Toast.makeText(activity, "Error: ${it.message}", Toast.LENGTH_LONG).show()
-                }
+            .addOnSuccessListener {
+                displayTextFromImage(it)
+            }
+            .addOnFailureListener {
+                Toast.makeText(activity, "Error: ${it.message}", Toast.LENGTH_LONG).show()
+            }
     }
 
     private fun displayTextFromImage(firebaseVisionText: FirebaseVisionText) {
         textView.text = ""
-        var blockList: List<FirebaseVisionText.Block> = firebaseVisionText.blocks
-        if (blockList.size == 0)
-        {
+        val blockList: List<FirebaseVisionText.Block> = firebaseVisionText.blocks
+        if (blockList.isEmpty()) {
             Toast.makeText(activity, "No text found", Toast.LENGTH_SHORT).show()
-        }
-        else
-        {
+        } else {
             blockList.forEach {
                 /*var text = it.text
                 textView.text = text*/
-                var lines = it.lines
+                val lines = it.lines
                 lines.forEach { line ->
-                    if (textView.text.toString() == "")
-                    {
+                    if (textView.text.toString() == "") {
                         textView.text = line.text
                         textView.append("\n")
-                    }
-                    else
-                    {
+                    } else {
                         textView.append(line.text)
                         textView.append("\n")
                     }
@@ -199,21 +173,19 @@ class OCRFragment : Fragment() {
                 }
             }
         }
-        if (textView.text.isNotEmpty())
-        {
-            instruction_text.visibility = View.INVISIBLE
+        if (textView.text.isNotEmpty()) {
+            instructionText.visibility = View.INVISIBLE
         }
     }
 
     private fun copyTextToClipboard() {
-        if (textView.text.isEmpty())
-        {
+        if (textView.text.isEmpty()) {
             DynamicToast.makeError(context!!, "Error: No text found.", Toast.LENGTH_LONG).show()
             return
         }
 
-        var clipboard = context!!.getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
-        var clip = ClipData.newPlainText("Copied Text", textView.text)
+        context!!.getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
+        ClipData.newPlainText("Copied Text", textView.text)
 
         //clipboard.primaryClip = clip
         DynamicToast.makeSuccess(context!!, "Text copied to clipboard", Toast.LENGTH_SHORT).show()

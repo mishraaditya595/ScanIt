@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#121212"
@@ -16,11 +16,11 @@
         app:autoFocusButtonVisible="true"
         app:flashButtonColor="@color/colorAccent"
         app:flashButtonVisible="true"
-        app:frameColor="@color/colorAccent"
-        app:frameCornersSize="50dp"
-        app:frameCornersRadius="0dp"
-        app:frameAspectRatioWidth="1"
         app:frameAspectRatioHeight="1"
+        app:frameAspectRatioWidth="1"
+        app:frameColor="@color/colorAccent"
+        app:frameCornersRadius="0dp"
+        app:frameCornersSize="50dp"
         app:frameSize="0.75"
         app:frameThickness="2dp"
         app:maskColor="#77000000"
@@ -31,12 +31,11 @@
         android:id="@+id/generate_qr_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Generate QR"
-        android:textAllCaps="false"
         android:layout_alignParentBottom="true"
         android:layout_margin="18dp"
+        android:background="@drawable/rounded_button_color_accent"
         android:padding="15dp"
-        android:background="@drawable/rounded_button_coloraccent"
-        />
+        android:text="@string/generate_qr"
+        android:textAllCaps="false" />
 
 </RelativeLayout>

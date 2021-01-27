@@ -5,24 +5,24 @@
 
 newIssueWelcomeComment: >
   Hello there!👋 Welcome to the project!🚀⚡
-  
-  
+
+
   Thank you and congrats🎉 for opening your very first issue in this project. ScanIt is an Android application that aims to be your all in one scanner. The best part of the application is the fact that it is open source.
   Please adhere to our [Code of Conduct](https://github.com/mishraaditya595/ScanIt/blob/master/CODE_OF_CONDUCT.md).🙌
   Please make sure not to start working on the issue, unless you get assigned to it.😄
-  
-  
+
+
 # Configuration for new-pr-welcome - https://github.com/behaviorbot/new-pr-welcome
 # Comment to be posted to on PRs from first time contributors in your repository
 
 newPRWelcomeComment: >
   Hello there!👋 Welcome to the project!💖
-  
-  
+
+
   Thank you and congrats🎉 for opening your first pull request. ScanIt is an Android application that aims to be your all in one scanner. The best part of the application is the fact that it is open source.
   Please make sure you have fololowed [contributing guidlines](https://github.com/mishraaditya595/ScanIt/blob/master/CONTRIBUTING.md).🙌🙌 We will get back to you as soon as we can 😄.
-  
-  
+
+
 # Configuration for first-pr-merge - https://github.com/behaviorbot/first-pr-merge
 # Comment to be posted to on pull requests merged by a first time user
 

@@ -11,8 +11,9 @@ import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.opencv.android.Utils;
 import org.opencv.core.Mat;
@@ -25,20 +26,32 @@ import java.io.IOException;
 import java.util.Objects;
 
 /*
-        * This class is the only activity in the library.
-        * This is the case in order to facilitate data resending during data recovery
-        * in the onActivityResult of the external application.
-        * This activity is filled with fragments, however this causes a blank screen if the user presses several
-        * times on the "return" key when processing images.
+ * This class is the only activity in the library.
+ * This is the case in order to facilitate data resending during data recovery
+ * in the onActivityResult of the external application.
+ * This activity is filled with fragments, however this causes a blank screen if the user presses several
+ * times on the "return" key when processing images.
  */
 public class ScanActivity extends AppCompatActivity implements ComponentCallbacks2 {
 
-    private final String TAG = "ScanActivityDebug";
-
     public static final String SCAN_RESULT = "scan_result";
-    private boolean onEditionFragment;
+
     static {
-       System.loadLibrary("opencv_java4");
+        System.loadLibrary("opencv_java4");
+    }
+
+    private final String TAG = "ScanActivityDebug";
+    private boolean onEditionFragment;
+
+    // Save the Bitmap and return its Uri
+    public static Uri getUri(Bitmap bitmap) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        Mat mat = new Mat();
+        Utils.bitmapToMat(bitmap, mat);
+        Imgproc.cvtColor(mat, mat, Imgproc.COLOR_BGR2RGB);
+        Imgcodecs.imwrite(ScanConstants.IMAGE_PATH + "/originale.jpg", mat);
+        return Uri.parse(ScanConstants.IMAGE_PATH + "/originale.jpg");
     }
 
     @Override
@@ -143,18 +156,7 @@ public class ScanActivity extends AppCompatActivity implements ComponentCallback
         fileDescriptor = getContentResolver().openAssetFileDescriptor(selectedimg, "r");
         assert fileDescriptor != null;
         return BitmapFactory.decodeFileDescriptor(
-        fileDescriptor.getFileDescriptor(), null, options);
-    }
-
-    // Save the Bitmap and return its Uri
-    public static Uri getUri(Bitmap bitmap) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        Mat mat = new Mat();
-        Utils.bitmapToMat(bitmap,mat);
-        Imgproc.cvtColor(mat, mat, Imgproc.COLOR_BGR2RGB);
-        Imgcodecs.imwrite(ScanConstants.IMAGE_PATH+"/originale.jpg",mat);
-        return Uri.parse(ScanConstants.IMAGE_PATH+"/originale.jpg");
+                fileDescriptor.getFileDescriptor(), null, options);
     }
 
     // After validating the form, set the document edit fragment
@@ -229,7 +231,7 @@ public class ScanActivity extends AppCompatActivity implements ComponentCallback
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         if (!onEditionFragment)
             finish();
         else {

@@ -31,6 +31,7 @@ import java.util.Objects;
 import static org.opencv.core.Core.ROTATE_90_CLOCKWISE;
 import static org.opencv.core.Core.ROTATE_90_COUNTERCLOCKWISE;
 import static org.opencv.core.Core.rotate;
+
 /**
  * CAUTION: in order to increase performance, modifications are only applied to
  * the image resized so that the user quickly has a visual of them.
@@ -40,20 +41,19 @@ import static org.opencv.core.Core.rotate;
 public class EditionFragment extends Fragment {
 
     private static final String TAG = "EditionFragmentDebug";
-
+    private static ProgressDialogFragment progressDialogFragment;
     private final int ORIGINAL = 0;
     private final int MAGIC = 1;
     private final int GRAY = 2;
     private final int BW = 3;
+    Bitmap original;
+    Bitmap bmScaled;
     private int couleur;
     private int angleFinal;
     private ImageView imageView;
     private View view;
-    private static ProgressDialogFragment progressDialogFragment;
     private Mat edited;
     private Mat scaled;
-    Bitmap original;
-    Bitmap bmScaled;
     private ScanActivity scanner;
 
     @Override
@@ -99,7 +99,7 @@ public class EditionFragment extends Fragment {
                 @Override
                 public void run() {
                     scaled = new Mat();
-                    bmScaled = scanner.scaledBitmap(original,imageView.getWidth(), imageView.getHeight());
+                    bmScaled = scanner.scaledBitmap(original, imageView.getWidth(), imageView.getHeight());
                     imageView.setImageBitmap(bmScaled);
                     Utils.bitmapToMat(bmScaled, scaled);
                     edited = scaled.clone();
@@ -210,7 +210,7 @@ public class EditionFragment extends Fragment {
                 @Override
                 public void run() {
                     Imgproc.cvtColor(scaled, edited, Imgproc.COLOR_BGR2GRAY);
-                    Imgproc.threshold(edited,edited,0,255,Imgproc.THRESH_BINARY | Imgproc.THRESH_OTSU);
+                    Imgproc.threshold(edited, edited, 0, 255, Imgproc.THRESH_BINARY | Imgproc.THRESH_OTSU);
                     updateImage();
                     couleur = BW;
                 }
@@ -221,7 +221,7 @@ public class EditionFragment extends Fragment {
 
     // rotate the image 90 ° or -90 °
     private class RotationListener implements View.OnClickListener {
-        private int angle;
+        private final int angle;
 
         RotationListener(int i) {
             this.angle = i;
@@ -234,14 +234,14 @@ public class EditionFragment extends Fragment {
                 @Override
                 public void run() {
                     if (angle == ROTATE_90_CLOCKWISE)
-                        angleFinal+=90;
+                        angleFinal += 90;
                     else
-                        angleFinal-=90;
+                        angleFinal -= 90;
                     Matrix matrix = new Matrix();
                     matrix.postRotate(90);
                     bmScaled = Bitmap.createBitmap(bmScaled, 0, 0, bmScaled.getWidth(), bmScaled.getHeight(), matrix, true);
                     rotate(edited, edited, angle);
-                    rotate(scaled,scaled,angle);
+                    rotate(scaled, scaled, angle);
                     updateImage();
                 }
             });
@@ -262,8 +262,8 @@ public class EditionFragment extends Fragment {
                     matrix.postRotate(angleFinal);
                     original = Bitmap.createBitmap(original, 0, 0, original.getWidth(), original.getHeight(), matrix, true);
                     Mat finie = new Mat();
-                    Utils.bitmapToMat(original,finie);
-                    switch(couleur) {
+                    Utils.bitmapToMat(original, finie);
+                    switch (couleur) {
                         case ORIGINAL:
                             break;
 
@@ -281,7 +281,7 @@ public class EditionFragment extends Fragment {
 
                         case BW:
                             Imgproc.cvtColor(finie, finie, Imgproc.COLOR_BGR2GRAY);
-                            Imgproc.threshold(finie,finie,0,255,Imgproc.THRESH_BINARY | Imgproc.THRESH_OTSU);
+                            Imgproc.threshold(finie, finie, 0, 255, Imgproc.THRESH_BINARY | Imgproc.THRESH_OTSU);
                             Utils.matToBitmap(finie, original);
                             break;
                     }

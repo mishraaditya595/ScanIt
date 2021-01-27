@@ -14,10 +14,10 @@ import java.io.File
 
 class DisplayPDFActivity : AppCompatActivity(), OnPageChangeListener, OnLoadCompleteListener {
 
-    lateinit var pdfView: PDFView
-    var pageNumber: Int = 0
-    lateinit var fileName: String
-    var position: Int = -1
+    private lateinit var pdfView: PDFView
+    private var pageNumber: Int = 0
+    private lateinit var fileName: String
+//    var position: Int = -1
     //lateinit var file: File
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,47 +38,46 @@ class DisplayPDFActivity : AppCompatActivity(), OnPageChangeListener, OnLoadComp
     }
 
     private fun setupToolbar() {
-        var toolbar = findViewById<Toolbar>(R.id.pdf_view_toolbar)
-        toolbar.setTitle(fileName)
+        val toolbar = findViewById<Toolbar>(R.id.pdf_view_toolbar)
+        toolbar.title = fileName
         toolbar.setTitleTextAppearance(applicationContext, R.style.TextAppearance_AppCompat_Title)
         toolbar.setTitleTextColor(-0x1)
 
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true);
-        supportActionBar?.setDisplayShowHomeEnabled(true);
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
     private fun initialiseFields() {
-       pdfView = findViewById(R.id.pdf_viewer)
+        pdfView = findViewById(R.id.pdf_viewer)
     }
 
     private fun displayPDF(file: File) {
         pdfView.fromFile(file)
-                .defaultPage(pageNumber)
-                .enableSwipe(true)
-                .swipeHorizontal(false)
-                .onPageChange(this)
-                .enableAnnotationRendering(true)
-                .onLoad(this)
-                .scrollHandle(DefaultScrollHandle(this))
-                .load()
+            .defaultPage(pageNumber)
+            .enableSwipe(true)
+            .swipeHorizontal(false)
+            .onPageChange(this)
+            .enableAnnotationRendering(true)
+            .onLoad(this)
+            .scrollHandle(DefaultScrollHandle(this))
+            .load()
     }
 
     override fun onPageChanged(page: Int, pageCount: Int) {
-        val pageNum = page
-        setTitle(String.format("%s %s / %s", fileName, page+1, pageCount))
+//        val pageNum = page
+        title = String.format("%s %s / %s", fileName, page + 1, pageCount)
     }
 
     override fun loadComplete(nbPages: Int) {
-        val meta = pdfView.documentMeta
-        printBookmarksTree(pdfView.tableOfContents,"-")
+//        val meta = pdfView.documentMeta
+        printBookmarksTree(pdfView.tableOfContents, "-")
     }
 
     private fun printBookmarksTree(tableOfContents: List<com.shockwave.pdfium.PdfDocument.Bookmark>, s: String) {
-        for (item: com.shockwave.pdfium.PdfDocument.Bookmark  in tableOfContents) {
-            if (item.hasChildren())
-            {
-                printBookmarksTree(item.children, s+"-")
+        for (item: com.shockwave.pdfium.PdfDocument.Bookmark in tableOfContents) {
+            if (item.hasChildren()) {
+                printBookmarksTree(item.children, "$s-")
             }
         }
     }

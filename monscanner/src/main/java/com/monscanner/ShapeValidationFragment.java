@@ -60,8 +60,8 @@ import static org.opencv.core.CvType.CV_8UC3;
  */
 public class ShapeValidationFragment extends Fragment {
 
+    private static ProgressDialogFragment progressDialogFragment;
     private final String TAG = "ShapeValidationDebug";
-
     private ImageView imageView;
     private Mat srcGray;
     private Mat src;
@@ -69,7 +69,6 @@ public class ShapeValidationFragment extends Fragment {
     private File folder;
     private PolygonView polygonView;
     private float rapport;
-    private static ProgressDialogFragment progressDialogFragment;
     private View view;
     private ScanActivity scanner;
     private FrameLayout sourceframe;
@@ -116,7 +115,7 @@ public class ShapeValidationFragment extends Fragment {
         folder = Environment.getExternalStorageDirectory();
         folder = new File(ScanConstants.IMAGE_PATH);
         if (!folder.exists()) {
-            if(!folder.mkdir())
+            if (!folder.mkdir())
                 Log.d(TAG, "onCreate: impossible de créer le dossier temp");
         }
 
@@ -134,7 +133,7 @@ public class ShapeValidationFragment extends Fragment {
 
     private void openInfos(View v) {
         LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View content = inflater.inflate(R.layout.popup_shape_infos,null);
+        View content = inflater.inflate(R.layout.popup_shape_infos, null);
         PopupWindow popupInfos = new PopupWindow(content, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
         popupInfos.showAsDropDown(v);
     }
@@ -147,10 +146,10 @@ public class ShapeValidationFragment extends Fragment {
             Bitmap original = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), fileUri);
             scaledBmp = scanner.scaledBitmap(original, sourceframe.getWidth(), sourceframe.getHeight());
             scaled = new Mat();
-            Utils.bitmapToMat(scaledBmp,scaled);
+            Utils.bitmapToMat(scaledBmp, scaled);
             Utils.bitmapToMat(original, src);
             Imgproc.cvtColor(src, src, Imgproc.COLOR_BGR2RGB);
-            rapport  = (float) (src.size().height / scaled.size().height);
+            rapport = (float) (src.size().height / scaled.size().height);
             MatOfPoint points = getPoints();
             setPoints(points);
         } catch (IOException e) {
@@ -182,18 +181,18 @@ public class ShapeValidationFragment extends Fragment {
             lblurred.add(blurred);
             List<Mat> loutput = new ArrayList<>();
             loutput.add(threshOutput);
-            Core.mixChannels(lblurred,loutput,cmat);
+            Core.mixChannels(lblurred, loutput, cmat);
 
             // tests de differents threshold
             int threshold_level = 3;
             for (int l = 0; l < threshold_level; l++) {
                 if (l == 0) {
 
-                    for (int t=10; t<=60; t+=10) {
+                    for (int t = 10; t <= 60; t += 10) {
                         Imgproc.Canny(threshOutput, srcGray, t, t * 2);
                         Imgproc.dilate(srcGray, srcGray, new Mat(), new Point(-1, -1), 2);
 
-                        findCannySquares(srcGray,cannySquares,c+t);
+                        findCannySquares(srcGray, cannySquares, c + t);
                     }
 
                 } else {
@@ -214,19 +213,19 @@ public class ShapeValidationFragment extends Fragment {
         List<MatOfPoint> squaresProba = new ArrayList<>();
         MatOfPoint pointsProba;
         List<Point> pointsList;
-        int marge = (int) (srcGray.size().width*0.01f);
+        int marge = (int) (srcGray.size().width * 0.01f);
         boolean probable;
-        for(int i=0;i<threshSquares.size();i++) {
+        for (int i = 0; i < threshSquares.size(); i++) {
             probable = true;
             pointsProba = threshSquares.get(i);
             pointsList = pointsProba.toList();
             for (Point p : pointsList) {
-                if (p.x<marge || p.x>=srcGray.size().width-marge || p.y<marge || p.y>=srcGray.size().height-marge) {
+                if (p.x < marge || p.x >= srcGray.size().width - marge || p.y < marge || p.y >= srcGray.size().height - marge) {
                     probable = false;
                     break;
                 }
             }
-            if(probable) {
+            if (probable) {
                 squaresProba.add(pointsProba);
             }
         }
@@ -234,7 +233,7 @@ public class ShapeValidationFragment extends Fragment {
         // selection of the largest quadrilateral
         int largest_contour_index = 0;
         MatOfPoint points = new MatOfPoint();
-        if (squaresProba.size()!=0) {
+        if (squaresProba.size() != 0) {
             double largest_area = -1;
             for (int i = 0; i < squaresProba.size(); i++) {
                 double a = Imgproc.contourArea(squaresProba.get(i), false);
@@ -254,8 +253,7 @@ public class ShapeValidationFragment extends Fragment {
                 pts.add(new Point(scaled.size().width, scaled.size().height));
                 points.fromList(pts);
             }
-        }
-        else {
+        } else {
             double largest_area = -1;
             for (int i = 0; i < threshSquares.size(); i++) {
                 double a = Imgproc.contourArea(threshSquares.get(i), false);
@@ -280,11 +278,11 @@ public class ShapeValidationFragment extends Fragment {
 
         // Addition of other contours after the 2 most important
         for (int id : indices) {
-            if (id!=indiceMax)
+            if (id != indiceMax)
                 squares.add(cannySquares.get(id));
         }
-        for (int id=0; id<threshSquares.size(); id++) {
-            if (id!=largest_contour_index) {
+        for (int id = 0; id < threshSquares.size(); id++) {
+            if (id != largest_contour_index) {
                 squares.add(threshSquares.get(id));
             }
         }
@@ -292,15 +290,38 @@ public class ShapeValidationFragment extends Fragment {
         return squares.get(0);
     }
 
+    // Set of PolygonView points used to delimit the contours of the document
+    private void setPoints(MatOfPoint points) {
+        Point[] pts = points.toArray();
+        List<PointF> pointsf = new ArrayList<>();
+
+        pointsf.add(new PointF((float) pts[0].x, (float) pts[0].y));
+        pointsf.add(new PointF((float) pts[1].x, (float) pts[1].y));
+        pointsf.add(new PointF((float) pts[2].x, (float) pts[2].y));
+        pointsf.add(new PointF((float) pts[3].x, (float) pts[3].y));
+        SparseArray<PointF> orderedPoints = polygonView.getOrderedPoints(pointsf);
+        polygonView.setPoints(orderedPoints);
+        int padding = (int) getResources().getDimension(R.dimen.scanPadding);
+        final FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(scaledBmp.getWidth() + 2 * padding, scaledBmp.getHeight() + 2 * padding);
+        layoutParams.gravity = Gravity.CENTER;
+
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                afficheimage(scaledBmp);
+                polygonView.setLayoutParams(layoutParams);
+            }
+        });
+    }
+
     private int maxi(List<Integer> indices) {
         int max = -1;
         for (int i : indices) {
-            if (i>max)
+            if (i > max)
                 max = i;
         }
         return max;
     }
-
 
     private void findCannySquares(Mat srcGray, SparseArray<MatOfPoint> cannySquares, int indice) {
         // contours search
@@ -324,7 +345,7 @@ public class ShapeValidationFragment extends Fragment {
                 }
                 // selection of quadrilaterals with large enough angles
                 if (maxCosine < 0.5) {
-                    cannySquares.put(indice,approx1f);
+                    cannySquares.put(indice, approx1f);
                     indices.add(indice);
                 }
             }
@@ -359,37 +380,13 @@ public class ShapeValidationFragment extends Fragment {
         }
     }
 
-    // Set of PolygonView points used to delimit the contours of the document
-    private void setPoints(MatOfPoint points) {
-        Point[] pts = points.toArray();
-        List<PointF> pointsf = new ArrayList<>();
-
-        pointsf.add(new PointF((float) pts[0].x, (float) pts[0].y));
-        pointsf.add(new PointF((float) pts[1].x, (float) pts[1].y));
-        pointsf.add(new PointF((float) pts[2].x, (float) pts[2].y));
-        pointsf.add(new PointF((float) pts[3].x, (float) pts[3].y));
-        SparseArray<PointF> orderedPoints = polygonView.getOrderedPoints(pointsf);
-        polygonView.setPoints(orderedPoints);
-        int padding = (int) getResources().getDimension(R.dimen.scanPadding);
-        final FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(scaledBmp.getWidth() + 2 * padding, scaledBmp.getHeight() + 2 * padding);
-        layoutParams.gravity = Gravity.CENTER;
-
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                afficheimage(scaledBmp);
-                polygonView.setLayoutParams(layoutParams);
-            }
-        });
-    }
-
     // calculation of an angle value as a function of 3 points
-    private double angle( Point pt1, Point pt2, Point pt0 ) {
+    private double angle(Point pt1, Point pt2, Point pt0) {
         double dx1 = pt1.x - pt0.x;
         double dy1 = pt1.y - pt0.y;
         double dx2 = pt2.x - pt0.x;
         double dy2 = pt2.y - pt0.y;
-        return (dx1*dx2 + dy1*dy2)/sqrt((dx1*dx1 + dy1*dy1)*(dx2*dx2 + dy2*dy2) + 1e-10);
+        return (dx1 * dx2 + dy1 * dy2) / sqrt((dx1 * dx1 + dy1 * dy1) * (dx2 * dx2 + dy2 * dy2) + 1e-10);
     }
 
     //picture display
@@ -399,10 +396,10 @@ public class ShapeValidationFragment extends Fragment {
 
     // after validation, cropping of the document to make a rectangle
     private void scan(Mat src, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
-        double w1 = sqrt( pow(x4 - x3 , 2) + pow(x4 - x3, 2));
-        double w2 = sqrt( pow(x2 - x1 , 2) + pow(x2-x1, 2));
-        double h1 = sqrt( pow(y2 - y4 , 2) + pow(y2 - y4, 2));
-        double h2 = sqrt( pow(y1 - y3 , 2) + pow(y1-y3, 2));
+        double w1 = sqrt(pow(x4 - x3, 2) + pow(x4 - x3, 2));
+        double w2 = sqrt(pow(x2 - x1, 2) + pow(x2 - x1, 2));
+        double h1 = sqrt(pow(y2 - y4, 2) + pow(y2 - y4, 2));
+        double h2 = sqrt(pow(y1 - y3, 2) + pow(y1 - y3, 2));
 
         int maxWidth = (int) ((w1 < w2) ? w1 : w2);
         int maxHeight = (int) ((h1 < h2) ? h1 : h2);
@@ -417,10 +414,10 @@ public class ShapeValidationFragment extends Fragment {
         dst_pts.add(new Point(0, maxHeight - 1));
         dst_pts.add(new Point(maxWidth - 1, maxHeight - 1));
 
-        img_pts.add(new Point(x1,y1));
-        img_pts.add(new Point(x2,y2));
-        img_pts.add(new Point(x3,y3));
-        img_pts.add(new Point(x4,y4));
+        img_pts.add(new Point(x1, y1));
+        img_pts.add(new Point(x2, y2));
+        img_pts.add(new Point(x3, y3));
+        img_pts.add(new Point(x4, y4));
 
         MatOfPoint2f mdst = new MatOfPoint2f();
         mdst.fromList(dst_pts);
@@ -431,7 +428,7 @@ public class ShapeValidationFragment extends Fragment {
         // apply perspective transformation
         Imgproc.warpPerspective(src, dst, transmtx, dst.size());
 
-        Imgcodecs.imwrite(folder.getAbsolutePath()+"/scanned.jpg", dst);
+        Imgcodecs.imwrite(folder.getAbsolutePath() + "/scanned.jpg", dst);
     }
 
     // brings up the waiting dialogue

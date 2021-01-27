@@ -17,14 +17,14 @@ public class Rect2d {
     }
 
     public Rect2d(Point p1, Point p2) {
-        x = (double) (p1.x < p2.x ? p1.x : p2.x);
-        y = (double) (p1.y < p2.y ? p1.y : p2.y);
-        width = (double) (p1.x > p2.x ? p1.x : p2.x) - x;
-        height = (double) (p1.y > p2.y ? p1.y : p2.y) - y;
+        x = p1.x < p2.x ? p1.x : p2.x;
+        y = p1.y < p2.y ? p1.y : p2.y;
+        width = (p1.x > p2.x ? p1.x : p2.x) - x;
+        height = (p1.y > p2.y ? p1.y : p2.y) - y;
     }
 
     public Rect2d(Point p, Size s) {
-        this((double) p.x, (double) p.y, (double) s.width, (double) s.height);
+        this(p.x, p.y, s.width, s.height);
     }
 
     public Rect2d(double[] vals) {
@@ -33,10 +33,10 @@ public class Rect2d {
 
     public void set(double[] vals) {
         if (vals != null) {
-            x = vals.length > 0 ? (double) vals[0] : 0;
-            y = vals.length > 1 ? (double) vals[1] : 0;
-            width = vals.length > 2 ? (double) vals[2] : 0;
-            height = vals.length > 3 ? (double) vals[3] : 0;
+            x = vals.length > 0 ? vals[0] : 0;
+            y = vals.length > 1 ? vals[1] : 0;
+            width = vals.length > 2 ? vals[2] : 0;
+            height = vals.length > 3 ? vals[3] : 0;
         } else {
             x = 0;
             y = 0;

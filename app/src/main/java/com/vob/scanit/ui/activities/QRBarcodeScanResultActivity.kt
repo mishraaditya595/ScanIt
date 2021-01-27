@@ -1,5 +1,6 @@
 package com.vob.scanit.ui.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -14,10 +15,10 @@ import com.vob.scanit.R
 
 class QRBarcodeScanResultActivity : AppCompatActivity() {
 
-    lateinit var scanData: String
-    lateinit var openInBrowserBtn: Button
-    lateinit var shareBtn: Button
-    lateinit var scanResultTV: TextView
+    private lateinit var scanData: String
+    private lateinit var openInBrowserBtn: Button
+    private lateinit var shareBtn: Button
+    private lateinit var scanResultTV: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +32,7 @@ class QRBarcodeScanResultActivity : AppCompatActivity() {
 
         scanResultTV.text = scanData
 
-        openInBrowserBtn.setOnClickListener {openInBrowser()}
+        openInBrowserBtn.setOnClickListener { openInBrowser() }
         shareBtn.setOnClickListener { share() }
     }
 
@@ -43,14 +44,11 @@ class QRBarcodeScanResultActivity : AppCompatActivity() {
 
     private fun openInBrowser() {
         val isUrl: Boolean = URLUtil.isValidUrl(scanData)
-        if (isUrl)
-        {
+        if (isUrl) {
             val openURL = Intent(Intent.ACTION_VIEW)
             openURL.data = Uri.parse(scanData)
             startActivity(openURL)
-        }
-        else
-        {
+        } else {
             showAlertDialog()
         }
     }
@@ -66,36 +64,37 @@ class QRBarcodeScanResultActivity : AppCompatActivity() {
         startActivity(shareIntent)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun showAlertDialog() {
         val alert: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
         val mView: View = layoutInflater.inflate(R.layout.filename_dialog, null)
 
-        val txt_inputText: EditText = mView.findViewById<View>(R.id.txt_input) as EditText
-        val btn_cancel: Button = mView.findViewById<View>(R.id.btn_cancel) as Button
-        val btn_okay: Button = mView.findViewById<View>(R.id.btn_okay) as Button
+        val txtInputText: EditText = mView.findViewById<View>(R.id.txt_input) as EditText
+        val btnCancel: Button = mView.findViewById<View>(R.id.btn_cancel) as Button
+        val btnOkay: Button = mView.findViewById<View>(R.id.btn_okay) as Button
         val header = mView.findViewById<View>(R.id.heading) as TextView
 
         header.text = "The data extracted seems not to be URL"
-        txt_inputText.visibility = View.GONE
-        btn_okay.text = "Open URL"
-        btn_cancel.text = "Close"
+        txtInputText.visibility = View.GONE
+        btnOkay.text = "Open URL"
+        btnCancel.text = "Close"
 
         alert.setView(mView)
         val alertDialog: android.app.AlertDialog? = alert.create()
         alertDialog?.setCanceledOnTouchOutside(false)
-        btn_cancel.setOnClickListener(View.OnClickListener {
+        btnCancel.setOnClickListener {
             alertDialog?.dismiss()
-        })
-        btn_okay.setOnClickListener(View.OnClickListener {
+        }
+        btnOkay.setOnClickListener {
             val openURL = Intent(Intent.ACTION_VIEW)
             openURL.data = Uri.parse("https://$scanData")
             startActivity(openURL)
-        })
+        }
         alertDialog?.show()
     }
 
     private fun setupToolbar() {
-        var toolbar = findViewById<Toolbar>(R.id.showdata_toolbar)
+        val toolbar = findViewById<Toolbar>(R.id.show_data_toolbar)
         toolbar.title = "Scan Result"
         toolbar.setTitleTextAppearance(applicationContext, R.style.TextAppearance_AppCompat_Title)
         toolbar.setTitleTextColor(-0x1)

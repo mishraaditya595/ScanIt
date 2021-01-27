@@ -3,19 +3,19 @@
     android:shape="oval">
 
     <size
-        android:height="70dp"
-        android:width="70dp"/>
+        android:width="70dp"
+        android:height="70dp" />
 
     <gradient
-        android:startColor="#006B61"
         android:endColor="#005049"
-        android:type="radial"
-        android:gradientRadius="50dp"/>
+        android:gradientRadius="50dp"
+        android:startColor="#006B61"
+        android:type="radial" />
 
     <padding
-        android:top="10dp"
-        android:right="10dp"
+        android:bottom="10dp"
         android:left="10dp"
-        android:bottom="10dp"/>
+        android:right="10dp"
+        android:top="10dp" />
 
 </shape>

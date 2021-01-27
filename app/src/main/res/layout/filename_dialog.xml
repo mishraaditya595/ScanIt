@@ -1,52 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
+    android:orientation="vertical"
     android:padding="15dp">
+
     <TextView
         android:id="@+id/heading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save As"
-        android:textSize="22sp"
-        android:textAlignment="center" />
+        android:text="@string/save_as"
+        android:textAlignment="center"
+        android:textSize="22sp" />
+
     <EditText
         android:id="@+id/txt_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:hint="Enter file name here"
-        android:textSize="20sp" />
+        android:hint="@string/enter_file_name_here"
+        android:textSize="20sp"
+        tools:ignore="Autofill,TextFields" />
+
     <TextView
         android:id="@+id/error_msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Error: File name already taken."
+        android:text="@string/error_file_name_already_taken"
         android:textColor="@color/Red"
-        android:visibility="gone"
-        />
+        android:visibility="gone" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp">
+
         <Button
+            android:id="@+id/btn_cancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:backgroundTint="@color/colorPrimary"
-            android:text="Cancel"
+            android:text="@string/cancel"
             android:textColor="#ffffff"
             android:textSize="18sp"
-            android:layout_weight="1"
-            android:id="@+id/btn_cancel"/>
+            tools:ignore="ButtonStyle" />
+
         <Button
+            android:id="@+id/btn_okay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:backgroundTint="@color/colorPrimary"
-            android:text="Save as PDF"
+            android:text="@string/save_as_pdf"
             android:textColor="#ffffff"
             android:textSize="18sp"
-            android:layout_weight="1"
-            android:id="@+id/btn_okay"/>
+            tools:ignore="ButtonStyle" />
     </LinearLayout>
 </LinearLayout>
