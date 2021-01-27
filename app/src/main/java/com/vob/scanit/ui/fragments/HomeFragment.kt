@@ -250,7 +250,7 @@ class HomeFragment : Fragment() {
             }
             if (errorCode) {
                 Toast.makeText(context, "Generating PDF...", Toast.LENGTH_SHORT).show()
-                PDFProcessing().makePDF(scannedImage, name)
+                PDFProcessing(requireContext()).makePDF(scannedImage, name)
             }
             alertDialog?.dismiss()
 

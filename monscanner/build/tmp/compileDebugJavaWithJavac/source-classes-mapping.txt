@@ -1,0 +1,53 @@
+com/monscanner/CameraActivity.java
+ com.monscanner.CameraActivity
+ com.monscanner.CameraActivity$1
+ com.monscanner.CameraActivity$10
+ com.monscanner.CameraActivity$2
+ com.monscanner.CameraActivity$3
+ com.monscanner.CameraActivity$4
+ com.monscanner.CameraActivity$5
+ com.monscanner.CameraActivity$6
+ com.monscanner.CameraActivity$7
+ com.monscanner.CameraActivity$8
+ com.monscanner.CameraActivity$9
+com/monscanner/ProgressDialogFragment.java
+ com.monscanner.ProgressDialogFragment
+ com.monscanner.ProgressDialogFragment$1
+com/monscanner/BuildConfig.java
+ com.monscanner.BuildConfig
+com/monscanner/ShapeValidationFragment.java
+ com.monscanner.ShapeValidationFragment
+ com.monscanner.ShapeValidationFragment$1
+ com.monscanner.ShapeValidationFragment$2
+ com.monscanner.ShapeValidationFragment$3
+ com.monscanner.ShapeValidationFragment$ScanButtonListener
+ com.monscanner.ShapeValidationFragment$ScanButtonListener$1
+ com.monscanner.ShapeValidationFragment$SwitchListener
+ com.monscanner.ShapeValidationFragment$SwitchListener$1
+ com.monscanner.ShapeValidationFragment$SwitchListener$1$1
+com/monscanner/ScanConstants.java
+ com.monscanner.ScanConstants
+com/monscanner/PolygonView.java
+ com.monscanner.PolygonView
+ com.monscanner.PolygonView$1
+ com.monscanner.PolygonView$MidPointTouchListenerImpl
+ com.monscanner.PolygonView$TouchListenerImpl
+com/monscanner/EditionFragment.java
+ com.monscanner.EditionFragment
+ com.monscanner.EditionFragment$1
+ com.monscanner.EditionFragment$2
+ com.monscanner.EditionFragment$BWListener
+ com.monscanner.EditionFragment$BWListener$1
+ com.monscanner.EditionFragment$GrayListener
+ com.monscanner.EditionFragment$GrayListener$1
+ com.monscanner.EditionFragment$MagicListener
+ com.monscanner.EditionFragment$MagicListener$1
+ com.monscanner.EditionFragment$OriginalListener
+ com.monscanner.EditionFragment$OriginalListener$1
+ com.monscanner.EditionFragment$RotationListener
+ com.monscanner.EditionFragment$RotationListener$1
+ com.monscanner.EditionFragment$ValidationListener
+ com.monscanner.EditionFragment$ValidationListener$1
+ com.monscanner.EditionFragment$ValidationListener$1$1
+com/monscanner/ScanActivity.java
+ com.monscanner.ScanActivity
