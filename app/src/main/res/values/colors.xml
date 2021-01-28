@@ -6,4 +6,7 @@
     <color name="NavyBlue">#141d26</color>
     <color name="Red">#FF0000</color>
     <color name="colorBackground">#FFF</color>
+    <color name="colorBackgroundLight">#FFF</color>
+    <color name="colorText">#000</color>
+
 </resources>

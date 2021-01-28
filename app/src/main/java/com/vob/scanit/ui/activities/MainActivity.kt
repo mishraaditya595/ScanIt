@@ -1,6 +1,8 @@
 package com.vob.scanit.ui.activities
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -13,6 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.FirebaseApp
 import com.rbddevs.splashy.Splashy
 import com.vob.scanit.R
+import com.vob.scanit.setAppTheme
 import com.vob.scanit.ui.fragments.HomeFragment
 import com.vob.scanit.ui.fragments.OCRFragment
 import com.vob.scanit.ui.fragments.QRFragment
@@ -23,13 +26,21 @@ class MainActivity : AppCompatActivity() {
     private var imageView: ImageView? = null
     private lateinit var bottomNavigationView: BottomNavigationView
 
+    var sharedPreferences: SharedPreferences? = null
+    private val SHARED_PREF = "APP_SHARED_PREF"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
         //setSplashScreen()
+
+        sharedPreferences = getSharedPreferences(
+                SHARED_PREF,
+                Context.MODE_PRIVATE
+        )
+        setAppTheme(sharedPreferences?.getInt("theme_mode", 0)?:0)
+        setContentView(R.layout.activity_main)
 
         FirebaseApp.initializeApp(applicationContext)
 

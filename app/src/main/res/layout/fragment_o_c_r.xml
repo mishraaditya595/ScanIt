@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#121212"
+    android:background="@color/colorBackground"
     tools:context=".ui.fragments.OCRFragment">
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:gravity="center"
         android:text="Click on the '+' icon to start extracting texts fromt the images."
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:textStyle="bold"
         android:layout_margin="10dp"
         android:padding="4dp"
@@ -25,9 +25,8 @@
         android:id="@+id/ocr_tv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:layout_centerInParent="true"
-        android:textColor="#FFFFFF"
         android:layout_margin="15dp"
         android:layout_above="@+id/copy_button"
         android:layout_below="@+id/ocr_instruction_tv"
@@ -38,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_margin="15dp"
         app:fab_addButtonColorNormal="@color/colorAccent"
         app:fab_addButtonPlusIconColor="@color/white"

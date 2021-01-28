@@ -5,5 +5,7 @@
     <color name="colorAccent">#009688</color>
     <color name="NavyBlue">#141d26</color>
     <color name="Red">#FF0000</color>
-    <color name="colorBackground">#121212</color>
+    <color name="colorBackground">@color/black</color>
+    <color name="colorBackgroundLight">#121212</color>
+    <color name="colorText">@color/white</color>
 </resources>

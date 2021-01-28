@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context=".ui.activities.MainActivity" >
 
-
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
@@ -29,17 +28,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/appBarLayout"
-        android:layout_above="@+id/bottom_nav_view"
+        android:layout_above="@+id/line"
         />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+
+        android:background="#121212"
+        android:layout_above="@id/bottom_nav_view"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_view"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:menu="@menu/bottom_nav_menu"
         app:labelVisibilityMode="unlabeled"
-        android:background="#1B1B1B"
         android:elevation="2dp"
         />
 
