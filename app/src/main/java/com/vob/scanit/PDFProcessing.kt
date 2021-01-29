@@ -1,18 +1,23 @@
 package com.vob.scanit
 
+import android.content.ContentValues
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.pdf.PdfDocument
 import android.os.Environment
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
+import android.provider.MediaStore
+import android.widget.Toast
+import com.vob.scanit.ui.fragments.HomeFragment
+import java.io.*
+import java.util.*
 
-public class PDFProcessing() {
+public class PDFProcessing(context: Context) {
 
     lateinit var pdfDocument: PdfDocument
+    val context = context
 
 
     public fun makePDF(bitmap: Bitmap, filename: String) {
@@ -31,10 +36,15 @@ public class PDFProcessing() {
         //    Toast.makeText(context, "You need to enter file name as follow\nyour_fileName.pdf", Toast.LENGTH_SHORT).show()
         //}
         if (filename.endsWith(".pdf"))
-            saveFile(filename)
+        {
+        //saveFile(filename)
+            saveFileToScopedStorage(filename)
+        }
+
         else
         {
-            saveFile("$filename.pdf")
+            //saveFile("$filename.pdf")
+            saveFileToScopedStorage("$filename.pdf")
         }
     }
 
@@ -67,6 +77,7 @@ public class PDFProcessing() {
         }
         val root = File(Environment.getExternalStorageDirectory().absolutePath, "Scanner")
 
+
         var isDirectoryCreated: Boolean = root.exists()
         if (!isDirectoryCreated) {
             isDirectoryCreated = root.mkdir()
@@ -88,5 +99,49 @@ public class PDFProcessing() {
 
     private fun checkFileName(): Boolean {
         return true
+    }
+
+    fun saveFileToScopedStorage(filename: String) {
+        val fos: FileOutputStream
+        try {
+            val resolver = context.contentResolver
+            val contentValues = ContentValues()
+            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, "$filename")
+            contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "application/pdf")
+            contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOCUMENTS + File.separator + "ScanIt")
+            val documentUri = resolver!!.insert(MediaStore.Files.getContentUri("external"), contentValues)
+
+//            val pfd = context.contentResolver.openFileDescriptor(documentUri!!, "w")
+//            fos = FileOutputStream(pfd!!.fileDescriptor)
+//
+//            val `in`: InputStream = context.assets.open("eliza.pdf")
+//
+//            val buf = ByteArray(4 * 1024)
+//            var len: Int
+//            while (`in`.read(buf).also { len = it } > 0) {
+//                fos.write(buf, 0, len)
+//            }
+//            fos.close()
+//            `in`.close()
+//            pfd.close()
+
+            val outputStream = context.contentResolver.openOutputStream(documentUri!!)
+
+            if (outputStream != null)
+            {
+                pdfDocument.writeTo(outputStream)
+            }
+            else
+            {
+                Toast.makeText(context,"Null output stream", Toast.LENGTH_LONG).show()
+            }
+
+            pdfDocument.close()
+
+
+        } catch (e: Exception) {
+            Toast.makeText(context, "SS Error", Toast.LENGTH_LONG).show()
+        }
+        pdfDocument.close()
     }
 }
