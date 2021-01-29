@@ -2,4 +2,5 @@
     <string name="app_name" translatable="false">ScanIt</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="settings" translatable="false">Settings</string>
 </resources>

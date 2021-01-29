@@ -1,26 +1,22 @@
 package com.vob.scanit.ui.activities
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.AdapterView
 import android.widget.ImageView
-import android.widget.SearchView
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.MenuCompat
-import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.FirebaseApp
 import com.rbddevs.splashy.Splashy
 import com.vob.scanit.R
+
 import com.vob.scanit.adapters.PDFAdapter
 import com.vob.scanit.ui.fragments.DocumentFragment
+
 import com.vob.scanit.ui.fragments.HomeFragment
 import com.vob.scanit.ui.fragments.OCRFragment
 import com.vob.scanit.ui.fragments.QRFragment
@@ -88,23 +84,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupToolbar() {
-        var toolbar = findViewById<Toolbar>(R.id.main_toolbar)
+        val toolbar = findViewById<Toolbar>(R.id.main_toolbar)
         //toolbar.setTitle("ScanIt")
         //toolbar.setTitleTextAppearance(applicationContext, R.style.TextAppearance_AppCompat_Headline)
        // toolbar.setTitleTextColor(-0x1)
-       // toolbar.inflateMenu(R.menu.toolbar_menu)
+        toolbar.inflateMenu(R.menu.toolbar_menu)
 
-//        toolbar.setOnMenuItemClickListener{
-//            when(it.itemId)
-//            {
-//                R.id.about_item ->
-//                {
-//                    val intent = Intent(this, AboutAppActivity::class.java)
-//                    startActivity(intent)
-//                }
-//            }
-//            true
-//        }
+        toolbar.setOnMenuItemClickListener{
+            when(it.itemId)
+            {
+                /*R.id.about_item ->
+                {
+                    val intent = Intent(this, AboutAppActivity::class.java)
+                    startActivity(intent)
+                }*/
+                R.id.settings_item -> {
+                    val intent = Intent(this, SettingsActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+            true
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -118,6 +119,4 @@ class MainActivity : AppCompatActivity() {
         transaction.addToBackStack(null)
         transaction.commit()
     }
-
-
 }
