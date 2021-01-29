@@ -7,6 +7,12 @@
         />
 
     <item
+        android:id="@+id/documents"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Documents"
+        />
+
+    <item
         android:id="@+id/ocr"
         android:icon="@drawable/ic_baseline_scatter_plot_24"
         android:title="OCR"

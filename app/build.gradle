@@ -3,14 +3,12 @@ apply plugin: 'kotlin-android'
 
 
 android {
-    //noinspection GradleCompatible
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.vob.scanit"
         minSdkVersion 21
-        //noinspection OldTargetApi
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 3
         versionName "0.2"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
@@ -31,6 +29,9 @@ android {
         }
     }
 
+    buildFeatures {
+        viewBinding true
+    }
 
     configurations {
         cleanedAnnotations
@@ -42,19 +43,25 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'org.jetbrains:annotations-java5:15.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
     implementation 'androidx.preference:preference:1.1.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+
+    testImplementation 'junit:junit:4.13.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
     implementation project(':monscanner')
-    implementation "androidx.core:core-ktx:+"
+    implementation "androidx.core:core-ktx:1.3.2"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.2.1'
 
     implementation 'com.getbase:floatingactionbutton:1.10.1'
 
@@ -74,7 +81,11 @@ dependencies {
 
     implementation 'com.pranavpandey.android:dynamic-toasts:3.2.0'
 
-    implementation 'id.zelory:compressor:3.0.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
+
 }
 apply plugin: 'com.google.gms.google-services'
 repositories {

@@ -13,6 +13,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.FirebaseApp
 import com.rbddevs.splashy.Splashy
 import com.vob.scanit.R
+
+import com.vob.scanit.adapters.PDFAdapter
+import com.vob.scanit.ui.fragments.DocumentFragment
+
 import com.vob.scanit.ui.fragments.HomeFragment
 import com.vob.scanit.ui.fragments.OCRFragment
 import com.vob.scanit.ui.fragments.QRFragment
@@ -48,6 +52,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.qr -> {
                     loadFragment(QRFragment())
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.documents -> {
+                    loadFragment(DocumentFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
                 else ->
