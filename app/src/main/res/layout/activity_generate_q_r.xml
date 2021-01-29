@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/colorBackground"
     tools:context=".ui.activities.GenerateQRActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -34,6 +34,7 @@
         android:layout_marginRight="2dp"
         android:layout_below="@+id/appBarLayout_generate_qr"
         android:background="@drawable/rounded_edit_text"
+        android:backgroundTint="@color/colorBackground"
         />
 
     <Button
@@ -57,6 +58,7 @@
         android:layout_margin="10dp"
         android:layout_centerInParent="true"
         android:src="@color/NavyBlue"
+        android:background="@color/colorBackground"
         />
 
     <RelativeLayout

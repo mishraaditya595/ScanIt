@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121212"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/colorBackground">
 
     <Button
         android:layout_margin="10dp"
@@ -12,10 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="     Share this file"
-        android:textColor="@color/white"
+        android:textColor="@color/colorText"
         android:textAlignment="viewStart"
         android:drawableLeft="@drawable/ic_baseline_share_24"
-        android:background="#121212"/>
+        android:drawableTint="@color/colorText"
+        android:background="@color/colorBackground"
+        android:padding="5dp"/>
 
     <Button
         android:layout_margin="10dp"
@@ -24,10 +26,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/share_btn"
         android:text="     Rename"
-        android:textColor="@color/white"
+        android:textColor="@color/colorText"
         android:textAlignment="viewStart"
         android:drawableLeft="@drawable/ic_text_cursor"
-        android:background="#121212"/>
+        android:drawableTint="@color/colorText"
+        android:padding="5dp"
+        android:background="@color/colorBackground"/>
 
     <Button
         android:layout_margin="10dp"
@@ -36,9 +40,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/rename_btn"
         android:text="     Delete"
-        android:textColor="@color/white"
+        android:textColor="@color/colorText"
         android:textAlignment="viewStart"
         android:drawableLeft="@drawable/ic_baseline_delete_24"
-        android:background="#121212"/>
+        android:padding="5dp"
+        android:drawableTint="@color/colorText"
+        android:background="@color/colorBackground"
+        />
 
 </RelativeLayout>
