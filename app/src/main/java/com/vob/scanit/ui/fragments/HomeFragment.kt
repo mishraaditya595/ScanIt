@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.pdf.PdfDocument
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -15,13 +14,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
 import android.widget.*
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
-import androidx.core.view.MenuItemCompat
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.getbase.floatingactionbutton.FloatingActionButton
 import com.monscanner.ScanActivity
 import com.monscanner.ScanConstants
@@ -30,9 +27,8 @@ import com.vob.scanit.ui.BottomSheetDialog
 import com.vob.scanit.BuildConfig
 import com.vob.scanit.PDFProcessing
 import com.vob.scanit.R
-import com.vob.scanit.adapters.PDFAdapter
+import com.vob.scanit.adapters.PdfAdapterRv
 import com.vob.scanit.ui.activities.DisplayPDFActivity
-import com.vob.scanit.ui.activities.MainActivity
 import org.jetbrains.annotations.Nullable
 import java.io.File
 import java.io.FileNotFoundException
@@ -41,18 +37,17 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(),PdfAdapterRv.PdfAdapterInterface {
 
 
     lateinit var openCameraButton: FloatingActionButton
     lateinit var openFilesButton: FloatingActionButton
     private val REQUEST_CODE = 7
-    lateinit var listView: ListView
-    lateinit var pdfAdapter: PDFAdapter
+    lateinit var pdfAdapterRv:PdfAdapterRv
+    lateinit var recyclerView: RecyclerView
     lateinit var dir: File
     lateinit var listOfFiles: ArrayList<File>
     lateinit var searchBar: EditText
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +57,6 @@ class HomeFragment : Fragment() {
         super.onResume()
         initialiseFields(view)
     }
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -77,22 +71,6 @@ class HomeFragment : Fragment() {
         openCameraButton.setOnClickListener { openCamera(view) }
         openFilesButton.setOnClickListener { openGallery(view) }
 
-        listView.setOnItemClickListener { parent, view, position, id ->
-
-            val file = listOfFiles.get(position)
-
-            val intent = Intent(context?.applicationContext, DisplayPDFActivity::class.java)
-            intent.putExtra("uri", file.toURI().toString())
-            intent.putExtra("filename", file.name)
-            startActivity(intent)
-
-        }
-
-        listView.onItemLongClickListener = AdapterView.OnItemLongClickListener { parent, view, position, id ->
-            openBottomSheet(position)
-            true
-        }
-
         searchBar.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
@@ -102,7 +80,7 @@ class HomeFragment : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val string = s.toString()
-                pdfAdapter.filter(string)
+                pdfAdapterRv.filter(string)
             }
         })
 
@@ -126,10 +104,10 @@ class HomeFragment : Fragment() {
         }
     }
 
-    public fun initialiseFields(view: View?) {
+   fun initialiseFields(view: View?) {
         openCameraButton = view?.findViewById(R.id.openCameraButton)!!
         openFilesButton = view.findViewById(R.id.openFilesButton)!!
-        listView = view.findViewById(R.id.listView)
+        recyclerView = view.findViewById(R.id.recycler_view)
         dir = File(Environment.getExternalStorageDirectory().absolutePath, "Scanner")
         searchBar = view.findViewById(R.id.search_bar_HF)
     }
@@ -138,11 +116,13 @@ class HomeFragment : Fragment() {
         dir = File(Environment.getExternalStorageDirectory().absolutePath, "Scanner")
         listOfFiles = getFiles(dir)
         listOfFiles.sort()
-        pdfAdapter = PDFAdapter(activity?.applicationContext, listOfFiles, activity)
-        listView.adapter = pdfAdapter
+
+        pdfAdapterRv = activity?.let { context?.let { it1 -> PdfAdapterRv(it1, it,listOfFiles,this) } }!!
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = pdfAdapterRv
     }
 
-    public fun openBottomSheet(position: Int) {
+    private fun openBottomSheet(position: Int) {
         val file = listOfFiles.get(position)
 
         val bottomSheetDialog = BottomSheetDialog(file)
@@ -271,6 +251,19 @@ class HomeFragment : Fragment() {
             }, 1000)
         })
         alertDialog?.show()
+    }
+
+    override fun onItemClicked(position: Int) {
+        val file = listOfFiles[position]
+
+        val intent = Intent(context?.applicationContext, DisplayPDFActivity::class.java)
+        intent.putExtra("uri", file.toURI().toString())
+        intent.putExtra("filename", file.name)
+        startActivity(intent)
+    }
+
+    override fun onItemLongClicked(position: Int) {
+        openBottomSheet(position)
     }
 
 }
