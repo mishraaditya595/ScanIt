@@ -80,11 +80,14 @@ The following libraries/modules/resources are used in the project:
 - [Material.io](https://material.io/) 
 
 ## Open-source Programs we are a part of 👨‍💻
-Winter of Code is an open-source program envisioned by DevScript that helps understand the paradigm of Open Source contribution. It aims to bring students into the world of open source development and see the power of unified problem solving in real time.<br>
+**DevScript Winter of Code** is an open-source program envisioned by DevScript that helps understand the paradigm of Open Source contribution. It aims to bring students into the world of open source development and see the power of unified problem solving in real time.<br>
 
 <p align = "center">
 <img src="https://devscript.tech/woc/img/WOC-logo.png" width="25%">
-</p>
+<img src="https://repository-images.githubusercontent.com/331823142/9764a900-5c8e-11eb-9f94-da2a01385e83" width="25%">
+</p><br/>
+
+**GirlScript Summer of Code** is the 3 month long Open Source program with an aim to help beginners get started with Open Source Development while encouraging diversity. <br/>
 
 ## Happy?? Star ⭐ this Repo. 🤩
 
