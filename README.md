@@ -3,6 +3,15 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 
+[contributors-shield]: https://img.shields.io/github/contributors/mishraaditya595/ScanIt?style=flat-square
+[contributors-url]: https://github.com/mishraaditya595/ScanIt/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/mishraaditya595/ScanIt?style=flat-square
+[forks-url]: https://github.com/mishraaditya595/ScanIt/network/members
+[stars-shield]: https://img.shields.io/github/stars/mishraaditya595/ScanIt?color=red&style=flat-square
+[stars-url]: https://github.com/mishraaditya595/ScanIt/stargazers
+[issues-shield]: https://img.shields.io/github/issues/mishraaditya595/ScanIt?color=orange&style=flat-square
+[issues-url]: https://github.com/mishraaditya595/ScanIt/issues
+
 <p align="center">
   <a href=" https://www.hackerrank.com/domains/tutorials/30-days-of-code">
    <img src="https://github.com/mishraaditya595/ScanIt/blob/master/app/src/main/res/mipmap-xxxhdpi/scanit_icon_round.png" alt="Logo" height="200" width="200"></a>
@@ -81,25 +90,21 @@ The following libraries/modules/resources are used in the project:
 
 ## Open-source Programs we are a part of 👨‍💻
 
+<p align = "center">
+<img src="https://devscript.tech/woc/img/WOC-logo.png" alt="devscript-transparent-logo" border="0" width="25%">
+<br/>
+
 **DevScript Winter of Code** is an open-source program envisioned by DevScript that helps understand the paradigm of Open Source contribution. It aims to bring students into the world of open source development and see the power of unified problem solving in real time.<br>
+</p>
 
 <p align = "center">
-<img src="https://devscript.tech/woc/img/WOC-logo.png" width="25%">
-<img src=".\gssoc_trans_logo.png" width="25%">
-</p><br/>
+<img src="https://i.ibb.co/2gTFf7K/gssoc-trans-logo.png" alt="gssoc-transparent-logo" border="0" width="25%">
+<br/>
 
 **GirlScript Summer of Code** is the 3 month long Open Source program with an aim to help beginners get started with Open Source Development while encouraging diversity. <br/>
+</p>
 
-## Happy?? Star ⭐ this Repo. 🤩
-
-[contributors-shield]: https://img.shields.io/github/contributors/mishraaditya595/ScanIt?style=flat-square
-[contributors-url]: https://github.com/mishraaditya595/ScanIt/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/mishraaditya595/ScanIt?style=flat-square
-[forks-url]: https://github.com/mishraaditya595/ScanIt/network/members
-[stars-shield]: https://img.shields.io/github/stars/mishraaditya595/ScanIt?color=red&style=flat-square
-[stars-url]: https://github.com/mishraaditya595/ScanIt/stargazers
-[issues-shield]: https://img.shields.io/github/issues/mishraaditya595/ScanIt?color=orange&style=flat-square
-[issues-url]: https://github.com/mishraaditya595/ScanIt/issues
+### Show some ❤️ by starring the repository!
 
 [![Stargazers repo roster for @mishraaditya595/ScanIt](https://reporoster.com/stars/mishraaditya595/ScanIt)](https://github.com/mishraaditya595/ScanIt/stargazers)
 
