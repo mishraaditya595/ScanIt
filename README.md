@@ -92,8 +92,6 @@ The following libraries/modules/resources are used in the project:
   </div>
 </div>
 
-<br/>
-
 <div style="clear: both;">
   <div style="float: left; margin-right 1em;">
     <p align="center">
