@@ -32,7 +32,7 @@ Below you will find the process and workflow used to review and merge your chang
 - Take a look at the Existing Issues or create your **own** Issues!  
 - Wait for the Issue to be assigned to you after which you can start working on it.  
 - Note : Every change in this project should/must have an associated issue.   
-![issue](https://github.com/kanishkaa24/ScanIt/blob/master/Untitled%20design%20(8).png)  
+![issue](https://github.com/kanishkaa24/ScanIt/blob/master/Screenshots/issue.png)  
   
 ## Step 1 : Fork the Project 🍴
 - Fork this Repository. This will create a Local Copy of this Repository on your Github Profile. Keep a reference to the original project in `upstream` remote.  
@@ -41,7 +41,7 @@ $ git clone https://github.com/<your-username>/Community-Website
 $ cd <repo-name>  
 $ git remote add upstream https://github.com/HITK-TECH-Community/Community-Website 
 ```  
-![fork](https://github.com/kanishkaa24/ScanIt/blob/master/Untitled%20design%20(7).png)  
+![fork](https://github.com/kanishkaa24/ScanIt/blob/master/Screenshots/fork.png)  
   
 - Update your forked repo before working.  
 ```  
@@ -107,7 +107,7 @@ A good rule of thumb for the commit message is to have a present tense verb, fol
 $ git push -u origin <branch_name>  
 ```  
 - Here is how your branch will look.  
-![br](https://github.com/kanishkaa24/ScanIt/blob/master/Untitled%20design%20(9).png)  
+![br](https://github.com/kanishkaa24/ScanIt/blob/master/Screenshots/branch.png)  
   
 ## Step 6 : Pull Request  🎣
 - Go to your repository in browser and click on compare and pull requests. Then add a title and description to your pull request that explains your contribution.  
