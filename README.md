@@ -25,9 +25,9 @@
     <a href="https://github.com/mishraaditya595/ScanIt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>
   </p>
 </p>
-</br>
 
 > Note: The beta version of the app has been released on the Google Play Store.
+
 <p align="center">
 <a href="https://play.google.com/store/apps/details?id=com.vob.scanit" target="_blank">
 <img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" alt="Get it on Google Play" height="90"/></a>
@@ -80,6 +80,7 @@ The following libraries/modules/resources are used in the project:
 - [Material.io](https://material.io/) 
 
 ## Open-source Programs we are a part of 👨‍💻
+
 **DevScript Winter of Code** is an open-source program envisioned by DevScript that helps understand the paradigm of Open Source contribution. It aims to bring students into the world of open source development and see the power of unified problem solving in real time.<br>
 
 <p align = "center">
