@@ -1,10 +1,31 @@
-# ScanIt
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
 
-ScanIt is an Android application that aims to be your all in one scanner. The best part of the application is the fact that it is open source.
-</br></br>
-<p align = "center">
-<img src="https://github.com/mishraaditya595/ScanIt/blob/master/app/src/main/res/mipmap-xxxhdpi/scanit_icon_round.png" alt="Logo" height="200" width="200"></a>
+<p align="center">
+  <a href=" https://www.hackerrank.com/domains/tutorials/30-days-of-code">
+   <img src="https://github.com/mishraaditya595/ScanIt/blob/master/app/src/main/res/mipmap-xxxhdpi/scanit_icon_round.png" alt="Logo" height="200" width="200"></a>
+  </a>
+
+  <h3 align="center">ScanIt</h3>
+
+  <p align="center">
+    Repository for ScanIt
+    <br />
+    <a href="https://github.com/mishraaditya595/ScanIt"><strong>View the Repo</strong></a>
+    <br />
+    ScanIt is an Android application that aims to be your all in one scanner. The best part is the fact that this app is open source.
+    <br />
+    <br />
+    <a href="https://github.com/mishraaditya595/ScanIt/blob/master/CONTRIBUTING.md">How to Contribute</a>
+    ·
+    <a href="https://github.com/mishraaditya595/ScanIt/issues">Contribute Here</a>
+    ·
+    <a href="https://github.com/mishraaditya595/ScanIt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>
+  </p>
 </p>
+</br>
 
 > Note: The beta version of the app has been released on the Google Play Store.
 
@@ -66,3 +87,17 @@ Winter of Code is an open-source program envisioned by DevScript that helps unde
 </p>
 
 ## Happy?? Star ⭐ this Repo. 🤩
+
+[contributors-shield]: https://img.shields.io/github/contributors/mishraaditya595/ScanIt?style=flat-square
+[contributors-url]: https://github.com/mishraaditya595/ScanIt/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/mishraaditya595/ScanIt?style=flat-square
+[forks-url]: https://github.com/mishraaditya595/ScanIt/network/members
+[stars-shield]: https://img.shields.io/github/stars/mishraaditya595/ScanIt?color=red&style=flat-square
+[stars-url]: https://github.com/mishraaditya595/ScanIt/stargazers
+[issues-shield]: https://img.shields.io/github/issues/mishraaditya595/ScanIt?color=orange&style=flat-square
+[issues-url]: https://github.com/mishraaditya595/ScanIt/issues
+
+
+[![Stargazers repo roster for @mishraaditya595/ScanIt](https://reporoster.com/stars/mishraaditya595/ScanIt)](https://github.com/mishraaditya595/ScanIt/stargazers)
+
+[![Forkers repo roster for @mishraaditya595/ScanIt](https://reporoster.com/forks/mishraaditya595/ScanIt)](https://github.com/mishraaditya595/ScanIt/network/members)
