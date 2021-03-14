@@ -15,6 +15,7 @@
     <br />
     <a href="https://github.com/mishraaditya595/ScanIt"><strong>View the Repo</strong></a>
     <br />
+    <br />
     ScanIt is an Android application that aims to be your all in one scanner. The best part is the fact that this app is open source.
     <br />
     <br />
