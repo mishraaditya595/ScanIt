@@ -77,7 +77,7 @@ The following libraries/modules/resources are used in the project:
 - [ZXing Core](https://mvnrepository.com/artifact/com.google.zxing/core/3.3.2) by Google.
 - [Dynamic Toasts](https://github.com/pranavpandey/dynamic-toasts) by Pranav Pandey, licenced under Apache 2.0.
 
-- [Material.io](https://material.io/) 
+- [Material.io](https://material.io/)
 
 ## Open-source Programs we are a part of 👨‍💻
 
@@ -85,7 +85,7 @@ The following libraries/modules/resources are used in the project:
 
 <p align = "center">
 <img src="https://devscript.tech/woc/img/WOC-logo.png" width="25%">
-<img src="https://repository-images.githubusercontent.com/331823142/9764a900-5c8e-11eb-9f94-da2a01385e83" width="25%">
+<img src=".\gssoc_trans_logo.png" width="25%">
 </p><br/>
 
 **GirlScript Summer of Code** is the 3 month long Open Source program with an aim to help beginners get started with Open Source Development while encouraging diversity. <br/>
@@ -100,7 +100,6 @@ The following libraries/modules/resources are used in the project:
 [stars-url]: https://github.com/mishraaditya595/ScanIt/stargazers
 [issues-shield]: https://img.shields.io/github/issues/mishraaditya595/ScanIt?color=orange&style=flat-square
 [issues-url]: https://github.com/mishraaditya595/ScanIt/issues
-
 
 [![Stargazers repo roster for @mishraaditya595/ScanIt](https://reporoster.com/stars/mishraaditya595/ScanIt)](https://github.com/mishraaditya595/ScanIt/stargazers)
 
