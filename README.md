@@ -4,9 +4,8 @@
 [![Issues][issues-shield]][issues-url]
 
 <p align="center">
-  <a href=" https://www.hackerrank.com/domains/tutorials/30-days-of-code">
+  <a href="https://play.google.com/store/apps/details?id=com.vob.scanit">
    <img src="https://github.com/mishraaditya595/ScanIt/blob/master/app/src/main/res/mipmap-xxxhdpi/scanit_icon_round.png" alt="Logo" height="200" width="200"></a>
-  </a>
 
   <h3 align="center">ScanIt</h3>
 
@@ -83,7 +82,9 @@ The following libraries/modules/resources are used in the project:
 
 <div style="clear: both;">
   <div style="float: left; margin-right 1em;">
+    <p align="center">
     <img src="https://i.ibb.co/kXtZL52/devscript-trans-logo.png" alt="devscript-transparent-logo" width="25%">
+    </p>
   </div>
   <div>
     <h2>DevScript Winter of Code</h2>
@@ -95,7 +96,9 @@ The following libraries/modules/resources are used in the project:
 
 <div style="clear: both;">
   <div style="float: left; margin-right 1em;">
+    <p align="center">
     <img src="https://i.ibb.co/2gTFf7K/gssoc-trans-logo.png" alt="gssoc-transparent-logo" width="25%">
+    </p>
   </div>
   <div>
     <h2>GirlScript Summer of Code</h2>
