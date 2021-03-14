@@ -28,10 +28,10 @@
 </br>
 
 > Note: The beta version of the app has been released on the Google Play Store.
-
+<p align="center">
 <a href="https://play.google.com/store/apps/details?id=com.vob.scanit" target="_blank">
 <img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" alt="Get it on Google Play" height="90"/></a>
-
+</p>
 
 # Features ✨
  > Note: The beta release on the Google Play Store might not have all the features mentioned here. New features will eventually show up. You are requested to have patience.
