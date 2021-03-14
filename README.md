@@ -1,16 +1,46 @@
-# ScanIt
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
 
-ScanIt is an Android application that aims to be your all in one scanner. The best part of the application is the fact that it is open source.
-</br></br>
-<p align = "center">
-<img src="https://github.com/mishraaditya595/ScanIt/blob/master/app/src/main/res/mipmap-xxxhdpi/scanit_icon_round.png" alt="Logo" height="200" width="200"></a>
+[contributors-shield]: https://img.shields.io/github/contributors/mishraaditya595/ScanIt?style=flat-square
+[contributors-url]: https://github.com/mishraaditya595/ScanIt/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/mishraaditya595/ScanIt?style=flat-square
+[forks-url]: https://github.com/mishraaditya595/ScanIt/network/members
+[stars-shield]: https://img.shields.io/github/stars/mishraaditya595/ScanIt?color=red&style=flat-square
+[stars-url]: https://github.com/mishraaditya595/ScanIt/stargazers
+[issues-shield]: https://img.shields.io/github/issues/mishraaditya595/ScanIt?color=orange&style=flat-square
+[issues-url]: https://github.com/mishraaditya595/ScanIt/issues
+
+<p align="center">
+  <a href=" https://www.hackerrank.com/domains/tutorials/30-days-of-code">
+   <img src="https://github.com/mishraaditya595/ScanIt/blob/master/app/src/main/res/mipmap-xxxhdpi/scanit_icon_round.png" alt="Logo" height="200" width="200"></a>
+  </a>
+
+  <h3 align="center">ScanIt</h3>
+
+  <p align="center">
+    Repository for ScanIt
+    <br />
+    <a href="https://github.com/mishraaditya595/ScanIt"><strong>View the Repo</strong></a>
+    <br />
+    <br />
+    ScanIt is an Android application that aims to be your all in one scanner. The best part is the fact that this app is open source.
+    <br />
+    <a href="https://github.com/mishraaditya595/ScanIt/blob/master/CONTRIBUTING.md">How to Contribute</a>
+    ·
+    <a href="https://github.com/mishraaditya595/ScanIt/issues">Contribute Here</a>
+    ·
+    <a href="https://github.com/mishraaditya595/ScanIt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>
+  </p>
 </p>
 
 > Note: The beta version of the app has been released on the Google Play Store.
 
+<p align="center">
 <a href="https://play.google.com/store/apps/details?id=com.vob.scanit" target="_blank">
 <img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" alt="Get it on Google Play" height="90"/></a>
-
+</p>
 
 # Features ✨
  > Note: The beta release on the Google Play Store might not have all the features mentioned here. New features will eventually show up. You are requested to have patience.
@@ -56,13 +86,26 @@ The following libraries/modules/resources are used in the project:
 - [ZXing Core](https://mvnrepository.com/artifact/com.google.zxing/core/3.3.2) by Google.
 - [Dynamic Toasts](https://github.com/pranavpandey/dynamic-toasts) by Pranav Pandey, licenced under Apache 2.0.
 
-- [Material.io](https://material.io/) 
+- [Material.io](https://material.io/)
 
 ## Open-source Programs we are a part of 👨‍💻
-Winter of Code is an open-source program envisioned by DevScript that helps understand the paradigm of Open Source contribution. It aims to bring students into the world of open source development and see the power of unified problem solving in real time.<br>
 
 <p align = "center">
-<img src="https://devscript.tech/woc/img/WOC-logo.png" width="25%">
+<img src="https://devscript.tech/woc/img/WOC-logo.png" alt="devscript-transparent-logo" border="0" width="25%">
+<br/>
+
+**DevScript Winter of Code** is an open-source program envisioned by DevScript that helps understand the paradigm of Open Source contribution. It aims to bring students into the world of open source development and see the power of unified problem solving in real time.<br>
 </p>
 
-## Happy?? Star ⭐ this Repo. 🤩
+<p align = "center">
+<img src="https://i.ibb.co/2gTFf7K/gssoc-trans-logo.png" alt="gssoc-transparent-logo" border="0" width="25%">
+<br/>
+
+**GirlScript Summer of Code** is the 3 month long Open Source program with an aim to help beginners get started with Open Source Development while encouraging diversity. <br/>
+</p>
+
+### Show some ❤️ by starring the repository!
+
+[![Stargazers repo roster for @mishraaditya595/ScanIt](https://reporoster.com/stars/mishraaditya595/ScanIt)](https://github.com/mishraaditya595/ScanIt/stargazers)
+
+[![Forkers repo roster for @mishraaditya595/ScanIt](https://reporoster.com/forks/mishraaditya595/ScanIt)](https://github.com/mishraaditya595/ScanIt/network/members)
