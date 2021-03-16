@@ -1,3 +1,9 @@
+[//]: <> (Comments)
+<p align="center">
+  <a href=" https://www.hackerrank.com/domains/tutorials/30-days-of-code">
+   <img src = "https://raw.githubusercontent.com/ArshpreetS/ScanIt/master/app/src/main/res/mipmap-xxxhdpi/Scan%20it%20.jpg" alt = "Scan it logo" />
+  </a>
+
 [//]: <> (Badges)
 [![forthebadge](https://forthebadge.com/images/badges/built-by-developers.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/built-for-android.svg)](https://forthebadge.com)
@@ -5,16 +11,10 @@
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/open-source.svg)](https://forthebadge.com)
 
-[//]: <> (Comments)
-<p align="center">
-  <a href=" https://www.hackerrank.com/domains/tutorials/30-days-of-code">
-   <img src = "https://raw.githubusercontent.com/ArshpreetS/ScanIt/master/app/src/main/res/mipmap-xxxhdpi/Scan%20it%20.jpg" alt = "Scan it logo" />
-  </a>
 
   <p align="center">
-    Repository for ScanIt
     <br />
-    <a href="https://github.com/mishraaditya595/ScanIt"><strong>View the Repo</strong></a>
+    <a href="https://github.com/mishraaditya595/ScanIt"><strong> Repository </strong></a>
     <br />
     <br />
     ScanIt is an Android application that aims to be your all in one scanner. The best part is the fact that this app is open source.
