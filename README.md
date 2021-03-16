@@ -7,7 +7,7 @@
 
 <p align="center">
   <a href=" https://www.hackerrank.com/domains/tutorials/30-days-of-code">
-   ![Scan-It logo](https://github.com/ArshpreetS/ScanIt/blob/master/app/src/main/res/mipmap-xxxhdpi/Scan%20it%20.jpg?raw=true)
+   <img src = "https://raw.githubusercontent.com/ArshpreetS/ScanIt/master/app/src/main/res/mipmap-xxxhdpi/Scan%20it%20.jpg" alt = "Scan it logo" />
   </a>
 
   <h3 align="center">ScanIt</h3>
