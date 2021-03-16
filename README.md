@@ -49,7 +49,6 @@
 <p align = "center">  
 If you have any idea, feel free to fork it and submit your changes back to me. Contributions are appreciated.
 </p>
-<br/>
 <p align = "center">
   <a href="https://github.com/mishraaditya595/ScanIt/blob/master/CONTRIBUTING.md">How to Contribute</a>
     ·
