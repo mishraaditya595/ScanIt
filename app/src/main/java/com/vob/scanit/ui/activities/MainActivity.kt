@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.FirebaseApp
+import com.ismaeldivita.chipnavigation.ChipNavigationBar
 import com.rbddevs.splashy.Splashy
 import com.vob.scanit.R
 
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     var sharedPreferences: SharedPreferences? = null
     private val SHARED_PREF = "APP_SHARED_PREF"
 
+    private val menu by lazy { findViewById<ChipNavigationBar>(R.id.bottom_nav_view)}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,35 +52,66 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         FirebaseApp.initializeApp(applicationContext)
-
-        bottomNavigationView = findViewById(R.id.bottom_nav_view)
+       //bottomNavigationView = findViewById(R.id.bottom_nav_view)
         loadFragment(HomeFragment())
-        bottomNavigationView.setOnNavigationItemSelectedListener {
-            when(it.itemId)
-            {
-                R.id.home -> {
-                    loadFragment(HomeFragment())
-                    return@setOnNavigationItemSelectedListener true
-                }
-                R.id.ocr -> {
-                    loadFragment(OCRFragment())
-                    return@setOnNavigationItemSelectedListener true
-                }
-                R.id.qr -> {
-                    loadFragment(QRFragment())
-                    return@setOnNavigationItemSelectedListener true
-                }
-                R.id.documents -> {
-                    loadFragment(DocumentFragment())
-                    return@setOnNavigationItemSelectedListener true
-                }
-                else ->
+
+        menu.setOnItemSelectedListener {id ->
+            when(id) {
+                R.id.home ->
                 {
+                    R.color.home to "Home"
                     loadFragment(HomeFragment())
-                    return@setOnNavigationItemSelectedListener true
+                    return@setOnItemSelectedListener
+                }
+                R.id.like -> {
+                    R.color.like to "Like"
+                    loadFragment(OCRFragment())
+                    return@setOnItemSelectedListener
+                }
+                R.id.search -> {
+                    R.color.serach to "Search"
+                    loadFragment(QRFragment())
+                    return@setOnItemSelectedListener
+                }
+                R.id.profile -> {
+                    R.color.profile to "Profile"
+                    loadFragment(DocumentFragment())
+                    return@setOnItemSelectedListener
+                }
+                else -> {
+                    R.color.white to ""
+                    loadFragment(HomeFragment())
+                    return@setOnItemSelectedListener
                 }
             }
+
         }
+//        bottomNavigationView.setOnNavigationItemSelectedListener {
+//            when(it.itemId)
+//            {
+//                R.id.home -> {
+//                    loadFragment(HomeFragment())
+//                    return@setOnNavigationItemSelectedListener true
+//                }
+//                R.id.ocr -> {
+//                    loadFragment(OCRFragment())
+//                    return@setOnNavigationItemSelectedListener true
+//                }
+//                R.id.qr -> {
+//                    loadFragment(QRFragment())
+//                    return@setOnNavigationItemSelectedListener true
+//                }
+//                R.id.documents -> {
+//                    loadFragment(DocumentFragment())
+//                    return@setOnNavigationItemSelectedListener true
+//                }
+//                else ->
+//                {
+//                    loadFragment(HomeFragment())
+//                    return@setOnNavigationItemSelectedListener true
+//                }
+//            }
+//        }
 
         setupToolbar()
     }

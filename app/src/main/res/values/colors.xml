@@ -9,4 +9,8 @@
     <color name="colorBackgroundLight">#FFF</color>
     <color name="colorText">#000</color>
 
+    <color name="home">#5B37B7</color>
+    <color name="like">#C9379D</color>
+    <color name="serach">#E6A919</color>
+    <color name="profile">#1194AA</color>
 </resources>
