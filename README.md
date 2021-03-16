@@ -2,6 +2,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
+[![forthebadge](https://forthebadge.com/images/badges/built-for-android.svg)](https://forthebadge.com)
 
 [contributors-shield]: https://img.shields.io/github/contributors/mishraaditya595/ScanIt?style=flat-square
 [contributors-url]: https://github.com/mishraaditya595/ScanIt/graphs/contributors
