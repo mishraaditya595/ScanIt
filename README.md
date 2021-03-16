@@ -5,12 +5,11 @@
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/open-source.svg)](https://forthebadge.com)
 
+[//]: <> (Comments)
 <p align="center">
   <a href=" https://www.hackerrank.com/domains/tutorials/30-days-of-code">
    <img src = "https://raw.githubusercontent.com/ArshpreetS/ScanIt/master/app/src/main/res/mipmap-xxxhdpi/Scan%20it%20.jpg" alt = "Scan it logo" />
   </a>
-
-  <h3 align="center">ScanIt</h3>
 
   <p align="center">
     Repository for ScanIt
