@@ -45,17 +45,18 @@
 
 ## Contributing 💻
 
-If you have any idea, feel free to fork it and submit your changes back to me. Contributions are appreciated. 
-
-### <a href="https://github.com/mishraaditya595/ScanIt/blob/master/CONTRIBUTING.md">How to Contribute</a>
-    ·
-### <a href="https://github.com/mishraaditya595/Scanner/blob/master/CONTRIBUTING.md">Contributing Guidlines</a>
-    ·
-### <a href="https://github.com/mishraaditya595/ScanIt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>
+<p align = "center">
+  
+If you have any idea, feel free to fork it and submit your changes back to me. Contributions are appreciated.
 <br/>
-
-  <center/>### <a href="https://github.com/mishraaditya595/ScanIt/issues">Contribute here</a>
-
+  <a href="https://github.com/mishraaditya595/ScanIt/blob/master/CONTRIBUTING.md">How to Contribute</a>
+    ·
+  <a href="https://github.com/mishraaditya595/Scanner/blob/master/CONTRIBUTING.md">Contributing Guidlines</a>
+    ·
+  <a href="https://github.com/mishraaditya595/ScanIt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>
+  <br/>
+  <a href="https://github.com/mishraaditya595/ScanIt/issues">Contribute here</a>
+</p>
 
 ## License ✅
 
