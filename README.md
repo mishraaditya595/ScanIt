@@ -1,17 +1,9 @@
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
+[//]: <> (Badges)
+[![forthebadge](https://forthebadge.com/images/badges/built-by-developers.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/built-for-android.svg)](https://forthebadge.com)
-
-[contributors-shield]: https://img.shields.io/github/contributors/mishraaditya595/ScanIt?style=flat-square
-[contributors-url]: https://github.com/mishraaditya595/ScanIt/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/mishraaditya595/ScanIt?style=flat-square
-[forks-url]: https://github.com/mishraaditya595/ScanIt/network/members
-[stars-shield]: https://img.shields.io/github/stars/mishraaditya595/ScanIt?color=red&style=flat-square
-[stars-url]: https://github.com/mishraaditya595/ScanIt/stargazers
-[issues-shield]: https://img.shields.io/github/issues/mishraaditya595/ScanIt?color=orange&style=flat-square
-[issues-url]: https://github.com/mishraaditya595/ScanIt/issues
+[![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/open-source.svg)](https://forthebadge.com)
 
 <p align="center">
   <a href=" https://www.hackerrank.com/domains/tutorials/30-days-of-code">
