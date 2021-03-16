@@ -26,18 +26,15 @@
         android:layout_marginVertical="10dp"
         />
 
-    <ListView
-        android:id="@+id/listView"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/search_bar_HF"
-        android:divider="#6F6C6C"
+        android:id="@+id/recycler_view"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="2dp"
-        android:dividerHeight="1pt"
-        />
+        android:layout_below="@+id/search_bar_HF"/>
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:layout_width="wrap_content"
