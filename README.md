@@ -14,16 +14,11 @@
 
   <p align="center">
     <br />
-    <a href="https://github.com/mishraaditya595/ScanIt"><strong> Repository </strong></a>
     <br />
     <br />
     ScanIt is an Android application that aims to be your all in one scanner. The best part is the fact that this app is open source.
     <br />
-    <a href="https://github.com/mishraaditya595/ScanIt/blob/master/CONTRIBUTING.md">How to Contribute</a>
-    ·
-    <a href="https://github.com/mishraaditya595/ScanIt/issues">Contribute Here</a>
-    ·
-    <a href="https://github.com/mishraaditya595/ScanIt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>
+    <a href="https://github.com/mishraaditya595/ScanIt"><strong> Repository </strong></a>
   </p>
 </p>
 
@@ -53,11 +48,17 @@
 
 ## Contributing 💻
 
-If you have any idea, feel free to fork it and submit your changes back to me. Contributions are appreciated.
+If you have any idea, feel free to fork it and submit your changes back to me. Contributions are appreciated. 
 
-Please check the contributing guidelines [here](https://github.com/mishraaditya595/Scanner/blob/master/CONTRIBUTING.md) before making a pull request.
+### <a href="https://github.com/mishraaditya595/ScanIt/blob/master/CONTRIBUTING.md">How to Contribute</a>
+    ·
+### <a href="https://github.com/mishraaditya595/Scanner/blob/master/CONTRIBUTING.md">Contributing Guidlines</a>
+    ·
+### <a href="https://github.com/mishraaditya595/ScanIt/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>
+<br/>
 
-Do checkout code of conduct [here](https://github.com/mishraaditya595/Scanner/blob/master/CODE_OF_CONDUCT.md).
+  <center/>### <a href="https://github.com/mishraaditya595/ScanIt/issues">Contribute here</a>
+
 
 ## License ✅
 
