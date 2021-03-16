@@ -1,7 +1,7 @@
 [//]: <> (Comments)
 <p align="center">
   <a href=" https://www.hackerrank.com/domains/tutorials/30-days-of-code">
-   <img src = "https://raw.githubusercontent.com/ArshpreetS/ScanIt/master/app/src/main/res/mipmap-xxxhdpi/Scan%20it%20.jpg" alt = "Scan it logo" />
+   <img src = "https://github.com/ArshpreetS/ScanIt/blob/master/app/src/main/res/mipmap-xxxhdpi/Scanit.png" alt = "Scan it logo" />
   </a>
 
 [//]: <> (Badges)
