@@ -63,6 +63,9 @@ If you have any idea, feel free to fork it and submit your changes back to me. C
 
 This project is licensed under BSD 3-Clause "New" or "Revised" License. Check it out [here](https://github.com/mishraaditya595/ScanIt/blob/master/LICENSE).
 
+<br/>
+<br/>
+
 ## Credits 👨‍💼
 
 The following libraries/modules/resources are used in the project:
@@ -77,7 +80,7 @@ The following libraries/modules/resources are used in the project:
 - [QR Generator](https://github.com/androidmads/QRGenerator) by Mushtaq M A, licenced under MIT.
 - [ZXing Core](https://mvnrepository.com/artifact/com.google.zxing/core/3.3.2) by Google.
 - [Dynamic Toasts](https://github.com/pranavpandey/dynamic-toasts) by Pranav Pandey, licenced under Apache 2.0.
-
+- [Forthebadge](https://forthebadge.com/)
 - [Material.io](https://material.io/)
 
 ## Open-source Programs we are a part of 👨‍💻
