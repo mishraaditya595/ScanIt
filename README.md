@@ -10,6 +10,10 @@
 [![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/open-source.svg)](https://forthebadge.com)
+<br/>
+![GitHub forks](https://img.shields.io/github/forks/mishraaditya595/ScanIt?style=for-the-badge)
+![GitHub Repo stars](https://img.shields.io/github/stars/mishraaditya595/ScanIt?style=for-the-badge)
+
 
 
   <p align="center">
@@ -40,8 +44,7 @@
 
 <img src="https://github.com/mishraaditya595/ScanIt/blob/master/Screenshots/1603558649389.png" alt="Screenshot" height="350" width="200"/></a>
 <img src="https://github.com/mishraaditya595/ScanIt/blob/master/Screenshots/1603558656662.png" alt="Screenshot" height="350" width="200"/></a>
-<img src="https://github.com/mishraaditya595/ScanIt/blob/master/Screenshots/1603558640202.png" alt="Screenshot" height="350" width="200"/></a>
-<img src="https://github.com/mishraaditya595/ScanIt/blob/master/Screenshots/1603558629214.png" alt="Screenshot" height="350" width="200"/></a>
+<img src="https://github.com/mishraaditya595/ScanIt/blob/master/Screenshots/1603558640202.png" alt="Screenshot" height="350" width="200"/></a><img src="https://github.com/mishraaditya595/ScanIt/blob/master/Screenshots/1603558629214.png" alt="Screenshot" height="350" width="200"/></a>
 
 ## Contributing 💻
 
