@@ -65,7 +65,6 @@ If you have any idea, feel free to fork it and submit your changes back to me. C
 This project is licensed under BSD 3-Clause "New" or "Revised" License. Check it out [here](https://github.com/mishraaditya595/ScanIt/blob/master/LICENSE).
 
 <br/>
-<br/>
 
 ## Credits 👨‍💼
 
