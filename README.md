@@ -82,6 +82,7 @@ The following libraries/modules/resources are used in the project:
 - [ZXing Core](https://mvnrepository.com/artifact/com.google.zxing/core/3.3.2) by Google.
 - [Dynamic Toasts](https://github.com/pranavpandey/dynamic-toasts) by Pranav Pandey, licenced under Apache 2.0.
 - [Forthebadge](https://forthebadge.com/)
+- [Shields](https://shields.io/)
 - [Material.io](https://material.io/)
 
 ## Open-source Programs we are a part of 👨‍💻
