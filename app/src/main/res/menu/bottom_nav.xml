@@ -11,14 +11,14 @@
 
     <item
         android:id="@+id/like"
-        android:icon="@drawable/ic_love"
-        android:title="Like"
+        android:icon="@drawable/ic_oc_2"
+        android:title="O C R"
         app:cnb_iconColor="@color/like"/>
 
     <item
         android:id="@+id/search"
-        android:icon="@drawable/ic_settings"
-        android:title="Search"
+        android:icon="@drawable/ic_qr"
+        android:title="QR Result"
         app:cnb_iconColor="@color/serach"/>
 
     <item
