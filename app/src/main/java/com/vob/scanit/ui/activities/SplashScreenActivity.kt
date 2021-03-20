@@ -18,9 +18,10 @@ class SplashScreenActivity : AppCompatActivity() {
 
         Splashy(this)
                 .setLogo(R.mipmap.scanit_icon_round)
-                .setTitle("ScanIt")
+                .setTitle("SCAN IT")
                 .setTitleColor("#FFFFFF")
-                .setSubTitle("Your All-In-One Scanner")
+                .setSubTitle("All-In-One Scanner")
+                .setSubTitleItalic(false)
                 .setSubTitleColor("#FFFFFF")
                 .setProgressColor(R.color.white)
                 .setBackgroundColor(R.color.colorPrimaryDark)
@@ -34,6 +35,6 @@ class SplashScreenActivity : AppCompatActivity() {
         handler.postDelayed({
             startActivity(Intent(this, MainActivity::class.java))
             finish()
-        },3000)
+        },6000)
     }
 }

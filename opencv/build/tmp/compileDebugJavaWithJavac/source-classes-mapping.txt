@@ -40,10 +40,10 @@ org/opencv/core/Algorithm.java
  org.opencv.core.Algorithm
 org/opencv/core/CvType.java
  org.opencv.core.CvType
-org/opencv/core/MatOfInt.java
- org.opencv.core.MatOfInt
 org/opencv/core/MatOfFloat6.java
  org.opencv.core.MatOfFloat6
+org/opencv/core/MatOfInt.java
+ org.opencv.core.MatOfInt
 org/opencv/core/Rect2d.java
  org.opencv.core.Rect2d
 org/opencv/core/MatOfPoint3f.java

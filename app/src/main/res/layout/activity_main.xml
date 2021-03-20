@@ -10,15 +10,23 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:id="@+id/appBarLayout"
-        >
+        android:id="@+id/appBarLayout">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/main_toolbar"
             android:background="@color/colorPrimaryDark"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="SCAN - IT"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textAlignment="center"/>
+
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -35,19 +43,26 @@
         android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
-
         android:background="#121212"
         android:layout_above="@id/bottom_nav_view"/>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav_view"
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:id="@+id/bottom_nav_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        app:menu="@menu/bottom_nav_menu"-->
+<!--        app:labelVisibilityMode="unlabeled"-->
+<!--        android:elevation="2dp"-->
+<!--        />-->
 
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+        android:id="@+id/bottom_nav_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_alignParentBottom="true"
-        app:menu="@menu/bottom_nav_menu"
-        app:labelVisibilityMode="unlabeled"
-        android:elevation="2dp"
-        />
+        app:cnb_menuResource="@menu/bottom_nav"
+        android:elevation="16dp"
+        android:background="#fff"/>
 
 </RelativeLayout>
