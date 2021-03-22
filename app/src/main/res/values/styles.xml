@@ -29,4 +29,8 @@
     <style name="SettingsTheme" parent="AppTheme">
         <item name="android:windowBackground">@color/colorBackground</item>
     </style>
+    
+    <style name="ToolbarTitle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20sp</item>
+    </style>
 </resources>
