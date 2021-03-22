@@ -6,8 +6,8 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
-8-->/home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml
+8-->F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml
 9        android:targetSdkVersion="29" />
-9-->/home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml
+9-->F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml
 10
 11</manifest>

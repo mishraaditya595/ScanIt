@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@android:color/transparent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        card_view:cardBackgroundColor="@android:color/white"
+        card_view:cardElevation="3dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/first_layer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="15dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Choose Source"
+                    android:textColor="@android:color/secondary_text_light"
+                    android:textSize="17sp" />
+
+                <LinearLayout
+                    android:id="@+id/buttons_holder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left|center_vertical"
+                    android:minWidth="250dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/camera_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/camera">
+
+                        </ImageView>
+
+                        <TextView
+
+                            style="@style/option"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="0.5"
+                            android:drawablePadding="10dp"
+                            android:gravity="left|center_vertical"
+                            android:text="Camera" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/gallery_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/gallery">
+
+                        </ImageView>
+
+                        <TextView
+                            style="@style/option"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="0.5"
+                            android:drawablePadding="10dp"
+                            android:gravity="left|center_vertical"
+                            android:text="Gallery"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@android:color/darker_gray">
+
+                </ImageView>
+
+              <TextView
+                  style="@style/option"
+                  android:id="@+id/cancel"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="Cancel"
+                  android:textSize="15dp"
+                  android:padding="5dp"
+                  android:layout_gravity="center">
+              </TextView>
+            </LinearLayout>
+
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+</FrameLayout>

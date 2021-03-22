@@ -37,6 +37,10 @@ import java.util.*
 
 class OCRFragment : Fragment() {
 
+    companion object{
+        const val REQUEST_CODE = 52525
+    }
+
     //private val TAG: String? = getActivity()?.javaClass?.simpleName
     //public val TESS_DATA: String = "/tessdata"
     //lateinit var button: Button
@@ -46,6 +50,7 @@ class OCRFragment : Fragment() {
     lateinit var openCameraButton: FloatingActionButton
     lateinit var openFilesButton: FloatingActionButton
     lateinit var outputFileDir: Uri
+    private var isAuthorised = false
     val DATA_PATH: String = android.os.Environment.getExternalStorageDirectory().absolutePath + "/Scanner/Tess"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,7 +63,7 @@ class OCRFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_o_c_r, container, false)
 
         initialiseFields(view)
-        FirebaseApp.initializeApp(context)
+        FirebaseApp.initializeApp(requireContext())
 
         openCameraButton.setOnClickListener { openCamera(view) }
         openFilesButton.setOnClickListener { openGallery(view) }
@@ -81,29 +86,46 @@ class OCRFragment : Fragment() {
         copyToClipboardBtn = view.findViewById(R.id.copy_button)
     }
 
-    fun openCamera(view: View?) {
-        if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(context!!, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+    private fun openCamera(view: View){
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
         {
-            ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE),
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE),
+                    2)
+        }
+        else{
+            val intent = Intent(activity, com.vob.scanit.ui.activities.ScanActivity::class.java)
+            intent.putExtra("Source","Camera")
+            startActivityForResult(intent, REQUEST_CODE)
+        }
+    }
+    /*private fun openCamera(view: View?) {
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE),
                     2)
         }
         else
         {
             startScan(ScanConstants.OPEN_CAMERA)
         }
-    }
+    }*/
 
-    fun openGallery(view: View?) {
-        if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(context!!, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+    private fun openGallery(view: View?) {
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
         {
-            ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE), 2)
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE), 2)
         }
         else
         {
-            startScan(ScanConstants.OPEN_GALERIE)
+            val intent = Intent(activity, com.vob.scanit.ui.activities.ScanActivity::class.java)
+            intent.putExtra("Source","Gallery")
+            startActivityForResult(intent, REQUEST_CODE)
+            //startScan(ScanConstants.OPEN_GALERIE)
         }
     }
 
@@ -114,7 +136,7 @@ class OCRFragment : Fragment() {
             dir.mkdirs()
         val imageFilePath = imagePath + "/ocr.jpg"
         outputFileDir = Uri.fromFile(File(imageFilePath))
-        val intent: Intent = Intent(context!!, ScanActivity::class.java)
+        val intent: Intent = Intent(requireContext(), ScanActivity::class.java)
         intent.putExtra(ScanConstants.OPEN_INTENT_PREFERENCE, preference)
         startActivityForResult(intent, 100)
     }
@@ -140,28 +162,27 @@ class OCRFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 100 && resultCode == Activity.RESULT_OK)
-        {
-            //prepareTessData()
-            //startOCR(outputFileDir)
-            val imageUri: Uri = Objects.requireNonNull(data!!.extras)?.getParcelable(ScanActivity.SCAN_RESULT)!!
-            val imageStream: InputStream = activity!!.contentResolver.openInputStream(imageUri)!!
-            val scannedImage = BitmapFactory.decodeStream(imageStream)
-            activity!!.contentResolver.delete(imageUri, null, null)
-            detectText(scannedImage)
-        }
-        else
-        {
-            Toast.makeText(activity, "Error while analysing image.", Toast.LENGTH_SHORT).show()
+        if(requestCode == REQUEST_CODE){
+            if (isAuthorised&&resultCode== Activity.RESULT_OK){
+                val returnIntent = Intent("com.ba.etab.action.CUSTOM_INTENT")
+                returnIntent.putExtra("result",data!!.getStringExtra("result").toString())
+                requireActivity().setResult(Activity.RESULT_OK,returnIntent)
+                requireActivity().finish()
+            }
+
+            if (resultCode == Activity.RESULT_CANCELED){
+                requireActivity().setResult(Activity.RESULT_CANCELED)
+                requireActivity().finish()
+            }
         }
     }
 
     private fun detectText(scannedImage: Bitmap?)
     {
         var firebaseVisionImage: FirebaseVisionImage = FirebaseVisionImage.fromBitmap(scannedImage!!)
-        var firebaseApp = FirebaseApp.initializeApp(context)
-        var firebaseVisionTextDetector = FirebaseVision.getInstance().visionTextDetector
-        firebaseVisionTextDetector.detectInImage(firebaseVisionImage)
+        var firebaseApp = FirebaseApp.initializeApp(requireContext())
+        var firebaseVisionTextDetector = FirebaseVision.getInstance().onDeviceTextRecognizer
+        firebaseVisionTextDetector.processImage(firebaseVisionImage)
                 .addOnSuccessListener {
                     displayTextFromImage(it)
                 }
@@ -172,7 +193,7 @@ class OCRFragment : Fragment() {
 
     private fun displayTextFromImage(firebaseVisionText: FirebaseVisionText) {
         textView.text = ""
-        var blockList: List<FirebaseVisionText.Block> = firebaseVisionText.blocks
+        var blockList: List<FirebaseVisionText.TextBlock> = firebaseVisionText.textBlocks
         if (blockList.size == 0)
         {
             Toast.makeText(activity, "No text found", Toast.LENGTH_SHORT).show()
@@ -208,14 +229,14 @@ class OCRFragment : Fragment() {
     private fun copyTextToClipboard() {
         if (textView.text.isEmpty())
         {
-            DynamicToast.makeError(context!!, "Error: No text found.", Toast.LENGTH_LONG).show()
+            DynamicToast.makeError(requireContext(), "Error: No text found.", Toast.LENGTH_LONG).show()
             return
         }
 
-        var clipboard = context!!.getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
+        var clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
         var clip = ClipData.newPlainText("Copied Text", textView.text)
 
         //clipboard.primaryClip = clip
-        DynamicToast.makeSuccess(context!!, "Text copied to clipboard", Toast.LENGTH_SHORT).show()
+        DynamicToast.makeSuccess(requireContext(), "Text copied to clipboard", Toast.LENGTH_SHORT).show()
     }
 }

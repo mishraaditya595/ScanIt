@@ -1,37 +1,37 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml:2:1-6:12
-INJECTED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml:2:1-6:12
-INJECTED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml:2:1-6:12
-INJECTED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml:2:1-6:12
-INJECTED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml:2:1-6:12
-INJECTED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml:2:1-6:12
-INJECTED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml:2:1-6:12
+ADDED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml:2:1-6:12
+INJECTED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml:2:1-6:12
+INJECTED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml:2:1-6:12
+INJECTED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml:2:1-6:12
+INJECTED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml:2:1-6:12
+INJECTED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml:2:1-6:12
+INJECTED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml:2:1-6:12
 	package
-		ADDED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml:3:7-27
-		INJECTED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml
-		INJECTED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml
+		ADDED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml:3:7-27
+		INJECTED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml
+		INJECTED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml
 	android:versionName
-		ADDED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml:5:7-34
-		INJECTED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml
-		INJECTED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml
+		ADDED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml:5:7-34
+		INJECTED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml
+		INJECTED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml
 	xmlns:android
-		ADDED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml:2:11-69
+		ADDED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml:2:11-69
 	android:versionCode
-		ADDED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml:4:7-33
-		INJECTED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml
-		INJECTED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml
+		ADDED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml:4:7-33
+		INJECTED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml
+		INJECTED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml
 uses-sdk
-INJECTED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml
-INJECTED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml
-INJECTED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml
-INJECTED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml
+INJECTED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml
+INJECTED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml
+INJECTED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml
+INJECTED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml
-		ADDED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml
-		INJECTED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml
+		INJECTED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml
+		ADDED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml
+		INJECTED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml
-		ADDED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml
-		INJECTED from /home/ash-lnx/AndroidStudioProjects/ScanIt/opencv/AndroidManifest.xml
+		INJECTED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml
+		ADDED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml
+		INJECTED from F:\arvind\android_open_source\ScanIt\opencv\AndroidManifest.xml
