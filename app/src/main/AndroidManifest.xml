@@ -12,7 +12,6 @@
         android:allowBackup="true"
         android:icon="@mipmap/scanit_icon"
         android:label="@string/app_name"
-
         android:roundIcon="@mipmap/scanit_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -34,7 +33,15 @@
                 android:value="com.vob.scanit.ui.activities.MainActivity" />
         </activity>
         <activity android:name=".ui.activities.MainActivity" />
+        <activity android:name=".ui.activities.ScanActivity"/>
 
+        <activity android:name=".ui.CustomCameraPreview"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+
+        <activity android:name="ai.artivatic.cameracontroller.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat"/>
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat"/>
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="ocr" />
