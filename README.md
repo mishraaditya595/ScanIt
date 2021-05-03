@@ -47,7 +47,7 @@
 1. Easily converts images into a PDF file.
 2. Automatically detects edges from the image, so you don't have to.
 3. Live scanning of documents.
-4. Quickly extract texts from image.
+4. Quickly extract texts from images.
 5. Read and Generate QR codes.
 
 > Note: No processing happens on any server other than your phone and there is no risk of data theft from this side.
@@ -61,7 +61,7 @@
 
 ## Contributing 💻
 
-If you have any idea, feel free to fork it and submit your changes back to me. Contributions are appreciated.
+If you have any ideas, feel free to fork it and submit your changes back to me. Contributions are appreciated.
 
 Please check the contributing guidelines [here](https://github.com/mishraaditya595/Scanner/blob/master/CONTRIBUTING.md) before making a pull request.
 
@@ -94,14 +94,14 @@ The following libraries/modules/resources are used in the project:
 <img src="https://devscript.tech/woc/img/WOC-logo.png" alt="devscript-transparent-logo" border="0" width="25%">
 <br/>
 
-**DevScript Winter of Code** is an open-source program envisioned by DevScript that helps understand the paradigm of Open Source contribution. It aims to bring students into the world of open source development and see the power of unified problem solving in real time.<br>
+**DevScript Winter of Code** is an open-source program envisioned by DevScript that helps understand the paradigm of Open Source contribution. It aims to bring students into the world of open source development and see the power of unified problem-solving in real-time.<br>
 </p>
 
 <p align = "center">
 <img src="https://i.ibb.co/2gTFf7K/gssoc-trans-logo.png" alt="gssoc-transparent-logo" border="0" width="25%">
 <br/>
 
-**GirlScript Summer of Code** is the 3 month long Open Source program with an aim to help beginners get started with Open Source Development while encouraging diversity. <br/>
+**GirlScript Summer of Code** is the 3 month-long Open Source program with an aim to help beginners get started with Open Source Development while encouraging diversity. <br/>
 </p>
 
 ### Show some ❤️ by starring the repository!
@@ -109,3 +109,5 @@ The following libraries/modules/resources are used in the project:
 [![Stargazers repo roster for @mishraaditya595/ScanIt](https://reporoster.com/stars/mishraaditya595/ScanIt)](https://github.com/mishraaditya595/ScanIt/stargazers)
 
 [![Forkers repo roster for @mishraaditya595/ScanIt](https://reporoster.com/forks/mishraaditya595/ScanIt)](https://github.com/mishraaditya595/ScanIt/network/members)
+
+
