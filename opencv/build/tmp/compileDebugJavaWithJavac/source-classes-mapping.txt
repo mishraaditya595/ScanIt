@@ -26,10 +26,10 @@ org/opencv/engine/OpenCVEngineInterface.java
  org.opencv.engine.OpenCVEngineInterface$Stub$Proxy
 org/opencv/core/Scalar.java
  org.opencv.core.Scalar
-org/opencv/core/MatOfPoint.java
- org.opencv.core.MatOfPoint
 org/opencv/core/MatOfByte.java
  org.opencv.core.MatOfByte
+org/opencv/core/MatOfPoint.java
+ org.opencv.core.MatOfPoint
 org/opencv/core/MatOfDouble.java
  org.opencv.core.MatOfDouble
 org/opencv/core/Point3.java
@@ -44,10 +44,10 @@ org/opencv/core/MatOfInt.java
  org.opencv.core.MatOfInt
 org/opencv/core/MatOfFloat6.java
  org.opencv.core.MatOfFloat6
-org/opencv/core/Rect2d.java
- org.opencv.core.Rect2d
 org/opencv/core/MatOfPoint3f.java
  org.opencv.core.MatOfPoint3f
+org/opencv/core/Rect2d.java
+ org.opencv.core.Rect2d
 org/opencv/core/MatOfKeyPoint.java
  org.opencv.core.MatOfKeyPoint
 org/opencv/imgcodecs/Imgcodecs.java
@@ -58,10 +58,10 @@ org/opencv/core/MatOfRotatedRect.java
  org.opencv.core.MatOfRotatedRect
 org/opencv/core/MatOfRect2d.java
  org.opencv.core.MatOfRect2d
-org/opencv/core/TickMeter.java
- org.opencv.core.TickMeter
 org/opencv/android/Utils.java
  org.opencv.android.Utils
+org/opencv/core/TickMeter.java
+ org.opencv.core.TickMeter
 org/opencv/core/Size.java
  org.opencv.core.Size
 org/opencv/core/MatOfDMatch.java

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:gravity="center"
-        android:text="Click on the '+' icon to start extracting texts fromt the images."
+        android:text="Click on the '+' icon to start extracting texts from the images."
         android:textSize="15sp"
         android:textStyle="bold"
         android:layout_margin="10dp"
