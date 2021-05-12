@@ -6,8 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.HomeFragment"
     android:background="@color/colorBackground"
-    >
-
+    android:id="@+id/relLayout">
 
     <EditText
         android:id="@+id/search_bar_HF"
@@ -36,6 +35,13 @@
         android:layout_marginBottom="2dp"
         android:layout_below="@+id/search_bar_HF"/>
 
+<!--    <View-->
+<!--        android:id="@+id/background_dimmer"-->
+<!--        android:visibility="gone"-->
+<!--        android:background="#C0000000"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"/>-->
+
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,7 +50,8 @@
         android:layout_margin="15dp"
         app:fab_addButtonColorNormal="@color/colorAccent"
         app:fab_addButtonPlusIconColor="@color/white"
-        app:fab_labelStyle="@style/customFAB">
+        app:fab_labelStyle="@style/customFAB"
+        android:id="@+id/fab_menu">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/openCameraButton"

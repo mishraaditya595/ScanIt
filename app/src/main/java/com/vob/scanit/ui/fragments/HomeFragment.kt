@@ -4,9 +4,13 @@ import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
@@ -14,12 +18,17 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
 import android.widget.*
+import androidx.annotation.IntegerRes
+import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.getbase.floatingactionbutton.FloatingActionButton
+import com.getbase.floatingactionbutton.FloatingActionsMenu
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.monscanner.ScanActivity
 import com.monscanner.ScanConstants
 import com.pranavpandey.android.dynamic.toasts.DynamicToast
@@ -29,6 +38,8 @@ import com.vob.scanit.PDFProcessing
 import com.vob.scanit.R
 import com.vob.scanit.adapters.PdfAdapterRv
 import com.vob.scanit.ui.activities.DisplayPDFActivity
+import com.vob.scanit.ui.activities.MainActivity
+import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.annotations.Nullable
 import java.io.File
 import java.io.FileNotFoundException
@@ -39,7 +50,8 @@ import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment(),PdfAdapterRv.PdfAdapterInterface {
 
-
+    lateinit var dimView: View
+    private lateinit var fabMenu: FloatingActionsMenu
     lateinit var openCameraButton: FloatingActionButton
     lateinit var openFilesButton: FloatingActionButton
     private val REQUEST_CODE = 7
@@ -48,6 +60,8 @@ class HomeFragment : Fragment(),PdfAdapterRv.PdfAdapterInterface {
     lateinit var dir: File
     lateinit var listOfFiles: ArrayList<File>
     lateinit var searchBar: EditText
+    private lateinit var bottomNav: BottomNavigationView
+    private lateinit var appToolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +81,32 @@ class HomeFragment : Fragment(),PdfAdapterRv.PdfAdapterInterface {
         initialiseFields(view)
 
         updateListView()
+
+        fabMenu.setOnFloatingActionsMenuUpdateListener(object: FloatingActionsMenu.OnFloatingActionsMenuUpdateListener {
+            @RequiresApi(Build.VERSION_CODES.M)
+            override fun onMenuExpanded() {
+                searchBar.elevation = 0.0F
+                searchBar.alpha = 0.4F
+                recyclerView.alpha = 0.4F
+                bottomNav.alpha = 0.4F
+                appToolbar.alpha = 0.4F
+//                dimView.visibility = View.VISIBLE
+//                searchBar.backgroundTintMode = PorterDuff.Mode.SRC_OVER
+//                searchBar.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#C0000000"))
+            }
+
+            @RequiresApi(Build.VERSION_CODES.M)
+            override fun onMenuCollapsed() {
+//                dimView.visibility = View.GONE
+//                searchBar.backgroundTintMode = PorterDuff.Mode.CLEAR
+                searchBar.elevation = 2.0F
+                searchBar.alpha = 1F
+                recyclerView.alpha = 1F
+                bottomNav.alpha = 1F
+                appToolbar.alpha = 1F
+            }
+
+        })
 
         openCameraButton.setOnClickListener { openCamera(view) }
         openFilesButton.setOnClickListener { openGallery(view) }
@@ -89,27 +129,35 @@ class HomeFragment : Fragment(),PdfAdapterRv.PdfAdapterInterface {
 
     private fun checkForStoragePermissions() {
         //camera permissions
-        if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), 2)
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), 2)
         }
 
         //storage permissions
-        if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
         }
 
-        if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
+        }
+
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.MANAGE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.MANAGE_EXTERNAL_STORAGE), 1)
         }
     }
 
    fun initialiseFields(view: View?) {
+//        dimView = view?.findViewById(R.id.background_dimmer)!!
+        fabMenu = view?.findViewById(R.id.fab_menu)!!
         openCameraButton = view?.findViewById(R.id.openCameraButton)!!
         openFilesButton = view.findViewById(R.id.openFilesButton)!!
         recyclerView = view.findViewById(R.id.recycler_view)
         dir = File(Environment.getExternalStorageDirectory().absolutePath, "Scanner")
         searchBar = view.findViewById(R.id.search_bar_HF)
+        bottomNav = MainActivity.bottomNavigationView
+        appToolbar = MainActivity.topToolbar
     }
 
     fun updateListView() {
@@ -126,7 +174,7 @@ class HomeFragment : Fragment(),PdfAdapterRv.PdfAdapterInterface {
         val file = listOfFiles.get(position)
 
         val bottomSheetDialog = BottomSheetDialog(file)
-        bottomSheetDialog.show(activity!!.supportFragmentManager, "Modal Bottom Sheet")
+        bottomSheetDialog.show(requireActivity().supportFragmentManager, "Modal Bottom Sheet")
 
         val handler = Handler()
         handler.postDelayed({
@@ -163,24 +211,24 @@ class HomeFragment : Fragment(),PdfAdapterRv.PdfAdapterInterface {
     }
 
     fun openCamera(view: View?) {
-        if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), 2)
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), 2)
         } else {
             startScan(ScanConstants.OPEN_CAMERA)
         }
     }
 
     fun openGallery(view: View?) {
-        if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
         } else {
             startScan(ScanConstants.OPEN_GALERIE)
         }
     }
 
     fun startScan(preference: Int) {
-        val intent: Intent = Intent(context!!, ScanActivity::class.java)
+        val intent: Intent = Intent(requireContext(), ScanActivity::class.java)
         intent.putExtra(ScanConstants.OPEN_INTENT_PREFERENCE, preference)
         startActivityForResult(intent, REQUEST_CODE)
     }
@@ -194,9 +242,9 @@ class HomeFragment : Fragment(),PdfAdapterRv.PdfAdapterInterface {
                         error("Assertion failed")
                     }
                     val imageUri: Uri = Objects.requireNonNull(data!!.extras)?.getParcelable(ScanActivity.SCAN_RESULT)!!
-                    val imageStream: InputStream = activity!!.contentResolver.openInputStream(imageUri)!!
+                    val imageStream: InputStream = requireActivity().contentResolver.openInputStream(imageUri)!!
                     val scannedImage = BitmapFactory.decodeStream(imageStream)
-                    activity!!.contentResolver.delete(imageUri, null, null)
+                    requireActivity().contentResolver.delete(imageUri, null, null)
                     getNameAndSavePDF(scannedImage)
 
                     //PDFProcessing().makePDF(scannedImage, filename)
@@ -233,7 +281,7 @@ class HomeFragment : Fragment(),PdfAdapterRv.PdfAdapterInterface {
             val filelist = getFiles(dir)
             for (file in filelist) {
                 if (file.name.equals("$name.pdf")) {
-                    DynamicToast.makeWarning(context!!, "File with the given name already exists.", Toast.LENGTH_LONG).show()
+                    DynamicToast.makeWarning(requireContext(), "File with the given name already exists.", Toast.LENGTH_LONG).show()
                     //Toast.makeText(context, "Error: File with the given name already exists.", Toast.LENGTH_SHORT).show()
                     error_msg.visibility = View.VISIBLE
                     errorCode = false
