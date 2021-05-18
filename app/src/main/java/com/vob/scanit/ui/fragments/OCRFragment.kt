@@ -19,10 +19,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.getbase.floatingactionbutton.FloatingActionButton
+import com.getbase.floatingactionbutton.FloatingActionsMenu
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.FirebaseApp
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
@@ -31,6 +35,7 @@ import com.monscanner.ScanActivity
 import com.monscanner.ScanConstants
 import com.pranavpandey.android.dynamic.toasts.DynamicToast
 import com.vob.scanit.R
+import com.vob.scanit.ui.activities.MainActivity
 import java.io.File
 import java.io.InputStream
 import java.util.*
@@ -45,12 +50,15 @@ class OCRFragment : Fragment() {
     //public val TESS_DATA: String = "/tessdata"
     //lateinit var button: Button
     lateinit var textView: TextView
+    private lateinit var fabMenuOCR: FloatingActionsMenu
     lateinit var copyToClipboardBtn: Button
     lateinit var instruction_text: TextView
     lateinit var openCameraButton: FloatingActionButton
     lateinit var openFilesButton: FloatingActionButton
     lateinit var outputFileDir: Uri
     private var isAuthorised = false
+    lateinit var bottomNavOCR: BottomNavigationView
+    lateinit var appToolbarOCR: Toolbar
     val DATA_PATH: String = android.os.Environment.getExternalStorageDirectory().absolutePath + "/Scanner/Tess"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,6 +72,27 @@ class OCRFragment : Fragment() {
 
         initialiseFields(view)
         FirebaseApp.initializeApp(requireContext())
+
+        fabMenuOCR.setOnFloatingActionsMenuUpdateListener(object: FloatingActionsMenu.OnFloatingActionsMenuUpdateListener {
+            @RequiresApi(Build.VERSION_CODES.M)
+            override fun onMenuExpanded() {
+                textView.alpha = 0.4F
+                instruction_text.alpha = 0.4F
+                copyToClipboardBtn.alpha = 0.4F
+                bottomNavOCR.alpha = 0.4F
+                appToolbarOCR.alpha = 0.4F
+            }
+
+            @RequiresApi(Build.VERSION_CODES.M)
+            override fun onMenuCollapsed() {
+                textView.alpha = 1F
+                instruction_text.alpha = 1F
+                copyToClipboardBtn.alpha = 1F
+                bottomNavOCR.alpha = 1F
+                appToolbarOCR.alpha = 1F
+            }
+
+        })
 
         openCameraButton.setOnClickListener { openCamera(view) }
         openFilesButton.setOnClickListener { openGallery(view) }
@@ -79,11 +108,14 @@ class OCRFragment : Fragment() {
     }
 
     private fun initialiseFields(view: View) {
+        fabMenuOCR = view.findViewById(R.id.fab_menu_ocr)!!
         textView = view.findViewById(R.id.ocr_tv)
         openCameraButton = view.findViewById(R.id.openCameraButton_ocr)!!
         openFilesButton = view.findViewById(R.id.openFilesButton_ocr)!!
         instruction_text = view.findViewById(R.id.ocr_instruction_tv)
         copyToClipboardBtn = view.findViewById(R.id.copy_button)
+        bottomNavOCR = MainActivity.bottomNavigationView
+        appToolbarOCR = MainActivity.topToolbar
     }
 
     private fun openCamera(view: View){
