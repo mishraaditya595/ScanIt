@@ -31,7 +31,10 @@ class MainActivity : AppCompatActivity() {
 
     private val REQUEST_CODE = 7
     private var imageView: ImageView? = null
-    private lateinit var bottomNavigationView: BottomNavigationView
+    companion object {
+        lateinit var bottomNavigationView: BottomNavigationView
+        lateinit var topToolbar: Toolbar
+    }
 
     var sharedPreferences: SharedPreferences? = null
     private val SHARED_PREF = "APP_SHARED_PREF"
@@ -52,6 +55,7 @@ class MainActivity : AppCompatActivity() {
         FirebaseApp.initializeApp(applicationContext)
 
         bottomNavigationView = findViewById(R.id.bottom_nav_view)
+        topToolbar = findViewById(R.id.main_toolbar)
         loadFragment(HomeFragment())
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId)

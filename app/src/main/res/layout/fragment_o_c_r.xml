@@ -41,7 +41,8 @@
         android:layout_margin="15dp"
         app:fab_addButtonColorNormal="@color/colorAccent"
         app:fab_addButtonPlusIconColor="@color/white"
-        app:fab_labelStyle="@style/customFAB">
+        app:fab_labelStyle="@style/customFAB"
+        android:id="@+id/fab_menu_ocr">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/openCameraButton_ocr"

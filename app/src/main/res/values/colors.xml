@@ -8,5 +8,6 @@
     <color name="colorBackground">#FFF</color>
     <color name="colorBackgroundLight">#FFF</color>
     <color name="colorText">#000</color>
+    <color name="grey">#808080</color>
 
 </resources>
