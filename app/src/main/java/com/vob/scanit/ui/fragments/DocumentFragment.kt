@@ -43,7 +43,7 @@ class DocumentFragment : Fragment() {
         val viewModelFactory = DocumentViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory).get(DocumentFragmentViewModel::class.java)
 
-        val layoutManager = LinearLayoutManager(activity!!.applicationContext)
+        val layoutManager = LinearLayoutManager(requireActivity().applicationContext)
         binding.filesListRv.layoutManager = layoutManager
         binding.filesListRv.adapter = documentListAdapter
 

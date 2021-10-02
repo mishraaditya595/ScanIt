@@ -1,5 +1,6 @@
 package com.vob.scanit
 
+import android.content.ContentUris
 import android.content.ContentValues
 import android.content.Context
 import android.graphics.Bitmap
@@ -9,10 +10,12 @@ import android.graphics.Paint
 import android.graphics.pdf.PdfDocument
 import android.os.Environment
 import android.provider.MediaStore
+import android.provider.MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI
 import android.widget.Toast
 import com.vob.scanit.ui.fragments.HomeFragment
 import java.io.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 /* The following class enables us to generate, compress and save PDF documents*/
 public class PDFProcessing(context: Context) {
@@ -103,6 +106,43 @@ public class PDFProcessing(context: Context) {
 
     /* The following function saves the PDF file. It uses the ContentValues class to store a
     *  set of values that the ContentResolver can process. The put() method adds a value to the set */
+//    fun queryScopedStorage() : ArrayList<PdfDocument> {
+//        val projection = arrayOf(
+//                MediaStore.MediaColumns.DISPLAY_NAME,
+//                MediaStore.MediaColumns.MIME_TYPE,
+//                MediaStore.MediaColumns.RELATIVE_PATH,
+//                MediaStore.MediaColumns._ID)
+//
+//        val cursor = context.contentResolver.query(
+//                MediaStore.Files.getContentUri("external"),
+//                projection,
+//                null,
+//                null,
+//                null
+//        )
+//
+//        val idColumn = cursor?.getColumnIndexOrThrow(MediaStore.MediaColumns._ID)
+//        val nameColumn = cursor?.getColumnIndexOrThrow(MediaStore.MediaColumns.DISPLAY_NAME)
+//        val typeColumn = cursor?.getColumnIndexOrThrow(MediaStore.MediaColumns.MIME_TYPE)
+//        val pathColumn = cursor?.getColumnIndexOrThrow(MediaStore.MediaColumns.RELATIVE_PATH)
+//
+//        if (cursor != null) {
+//            while (cursor.moveToNext()) {
+//                val id = idColumn?.let { cursor.getLong(it) }
+//                val name = nameColumn?.let { cursor.getString(it) }
+//                val type = typeColumn?.let { cursor.getString(it) }
+//                val path = pathColumn?.let { cursor.getString(it) }
+//
+//                val contentUri = ContentUris.withAppendedId(
+//                        MediaStore.Files.getContentUri("external"),
+//                        id)
+//
+//                lateinit var fileList: ArrayList<PdfDocument>
+////                fileList.add(PdfDocument(contentUri, name, type, path))
+//            }
+//        }
+//    }
+
     fun saveFileToScopedStorage(filename: String) {
         val fos: FileOutputStream
         try {
@@ -129,12 +169,10 @@ public class PDFProcessing(context: Context) {
 
             val outputStream = context.contentResolver.openOutputStream(documentUri!!)
 
-            if (outputStream != null)
-            {
+            if (outputStream != null) {
                 pdfDocument.writeTo(outputStream)
             }
-            else
-            {
+            else {
                 Toast.makeText(context,"Null output stream", Toast.LENGTH_LONG).show()
             }
 
