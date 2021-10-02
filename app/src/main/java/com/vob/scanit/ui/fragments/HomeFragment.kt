@@ -47,7 +47,8 @@ import java.io.InputStream
 import java.util.*
 import kotlin.collections.ArrayList
 
-
+/*HomeFragment class handles opening the camera, checks for storage permissions, updates the list of
+* documents, saves PDF files and begins scanning*/
 class HomeFragment : Fragment(),PdfAdapterRv.PdfAdapterInterface {
 
     lateinit var dimView: View
@@ -72,6 +73,7 @@ class HomeFragment : Fragment(),PdfAdapterRv.PdfAdapterInterface {
         initialiseFields(view)
     }
 
+    /*onCreateView() inflates the layout and called the methods along with handling button clicks*/
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
